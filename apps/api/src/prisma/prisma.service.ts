@@ -10,10 +10,19 @@ import { ENV, type Env } from "../config/env.js";
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleDestroy {
   constructor(@Inject(ENV) config: Env) {
-    super({ adapter: new PrismaPg({ connectionString: config.DATABASE_URL, max: 5 }) });
+    super({ adapter: new PrismaPg({ connectionString: withStrictSsl(config.DATABASE_URL), max: 5 }) });
   }
 
   async onModuleDestroy(): Promise<void> {
     await this.$disconnect();
   }
+}
+
+/**
+ * Neon fournit des URL en sslmode=require. Le pilote pg les traite déjà comme
+ * verify-full (certificat et nom d'hôte vérifiés) : on l'écrit explicitement,
+ * ce qui supprime l'avertissement et garde ce niveau lors des futures versions.
+ */
+export function withStrictSsl(url: string): string {
+  return url.replace(/([?&]sslmode=)(prefer|require|verify-ca)(?=&|$)/, "$1verify-full");
 }
