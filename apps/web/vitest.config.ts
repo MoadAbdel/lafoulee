@@ -13,7 +13,7 @@ export default defineConfig({
     exclude: ["node_modules/**", ".next/**"],
     coverage: {
       provider: "v8",
-      include: ["app/**/*.tsx", "components/**/*.tsx", "lib/**/*.ts"],
+      include: ["app/**/*.tsx", "components/**/*.tsx", "lib/**/*.ts", "proxy.ts"],
       // Pages serveur asynchrones et données : couvertes par les tests e2e de l'API et Playwright.
       exclude: [
         "**/*.test.*",
