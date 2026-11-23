@@ -21,7 +21,9 @@
     "format:check": "prettier --check ."
   },
   "devDependencies": {
-    "prettier": "^3.4.2"
+    "@lhci/cli": "^0.16.1",
+    "prettier": "^3.4.2",
+    "wait-on": "^9.5.1"
   },
   "allowScripts": {
     "@prisma/engines@7.10.1": true,

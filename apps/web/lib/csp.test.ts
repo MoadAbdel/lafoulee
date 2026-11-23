@@ -24,6 +24,7 @@ describe("buildCsp (C16)", () => {
   it("unsafe-eval seulement en développement, vercel.live seulement en Preview", () => {
     expect(directive(buildCsp({ dev: true }), "script-src")).toContain("'unsafe-eval'");
     expect(buildCsp({ dev: true })).not.toContain("upgrade-insecure-requests");
+    expect(buildCsp({ https: false })).not.toContain("upgrade-insecure-requests"); // http://localhost en CI
     expect(buildCsp({ preview: true })).toContain("https://vercel.live");
     expect(buildCsp()).not.toContain("vercel.live");
   });

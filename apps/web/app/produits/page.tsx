@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { productListQuerySchema, type ProductListQuery } from "@lafoulee/shared";
+import { CatalogSkeleton } from "@/components/catalog-skeleton";
 import { ProductCard } from "@/components/product-card";
 import { getCategories, getProducts } from "@/lib/catalog";
 
@@ -44,7 +45,7 @@ function href(query: ProductListQuery, changes: Partial<ProductListQuery>): stri
 export default function ProductsPage({ searchParams }: PageProps<"/produits">) {
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
-      <Suspense fallback={<p>Chargement du catalogue...</p>}>
+      <Suspense fallback={<CatalogSkeleton />}>
         <Catalog searchParams={searchParams} />
       </Suspense>
     </div>

@@ -7,6 +7,8 @@
   --color-asphalte: #1c1f22;
   --color-foret: #2f5d46;
   --color-balise: #b4400b;
+  /* Orange pour fond sombre : 5,8:1 sur asphalte (l'orange principal n'y fait que 2,9:1). */
+  --color-balise-clair: #ea7a3c;
   --font-display: var(--font-barlow-condensed), ui-sans-serif, system-ui, sans-serif;
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
