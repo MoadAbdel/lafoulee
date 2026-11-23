@@ -1,4 +1,6 @@
 import request from "supertest";
+import { vi } from "vitest";
+import { MailService } from "../src/mail/mail.service.js";
 import { generate } from "otplib";
 import type { LoginResult } from "@lafoulee/shared";
 import { encrypt } from "../src/common/crypto.js";
@@ -62,6 +64,14 @@ describe("Authentification (e2e)", () => {
     const email = await verifiedCustomer();
     const again = await http().post("/api/v1/auth/register").send({ email, password: PASSWORD }).expect(202);
     expect(again.body).toEqual({ status: "VERIFICATION_SENT" });
+  });
+
+  it("un échec d'envoi de l'email n'empêche pas l'inscription (202)", async () => {
+    const send = t.app.get(MailService).send as unknown as ReturnType<typeof vi.fn>;
+    send.mockRejectedValueOnce(new Error("Brevo HTTP 401"));
+    const email = uniqueEmail("brevo-ko");
+    await http().post("/api/v1/auth/register").send({ email, password: PASSWORD }).expect(202);
+    expect(await t.prisma.user.findUnique({ where: { email } })).not.toBeNull();
   });
 
   it("TB14 connexion refusée tant que l'email n'est pas vérifié", async () => {

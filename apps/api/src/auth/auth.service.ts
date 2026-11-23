@@ -70,12 +70,18 @@ export class AuthService {
       },
     });
     const link = `${this.config.APP_ORIGIN}/verifier-email?token=${token}`;
-    await this.mail.send({
-      to: user.email,
-      subject: "Confirmez votre adresse email",
-      text: `Bonjour,\n\nPour activer votre compte La Foulée, ouvrez ce lien (valable 24 heures) :\n${link}\n\nSi vous n'avez pas créé de compte, ignorez ce message.`,
-      html: `<p>Bonjour,</p><p>Pour activer votre compte La Foulée, cliquez sur ce lien (valable 24 heures) :</p><p><a href="${link}">Confirmer mon adresse email</a></p><p>Si vous n'avez pas créé de compte, ignorez ce message.</p>`,
-    });
+    // Un échec d'envoi ne doit pas faire échouer l'inscription : le compte existe,
+    // l'erreur est journalisée et la personne peut redemander le lien.
+    try {
+      await this.mail.send({
+        to: user.email,
+        subject: "Confirmez votre adresse email",
+        text: `Bonjour,\n\nPour activer votre compte La Foulée, ouvrez ce lien (valable 24 heures) :\n${link}\n\nSi vous n'avez pas créé de compte, ignorez ce message.`,
+        html: `<p>Bonjour,</p><p>Pour activer votre compte La Foulée, cliquez sur ce lien (valable 24 heures) :</p><p><a href="${link}">Confirmer mon adresse email</a></p><p>Si vous n'avez pas créé de compte, ignorez ce message.</p>`,
+      });
+    } catch (error) {
+      this.logger.error(`Email de vérification non envoyé (utilisateur ${user.id}) : ${String(error)}`);
+    }
   }
 
   /** Lien de confirmation : à usage unique, expire après 24 h. */
