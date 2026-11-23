@@ -5,3 +5,4 @@ coverage
 package-lock.json
 apps/web/next-env.d.ts
 **/AGENTS.md
+apps/api/src/generated

@@ -15,6 +15,7 @@ jobs:
       - uses: actions/setup-node@v7
         with: { node-version: 24, cache: npm }
       - run: npm ci
+      - run: npm run build -w @lafoulee/shared
       - run: npm run format:check
       - run: npm run lint
       - run: npm run typecheck
@@ -23,13 +24,61 @@ jobs:
   test-api:
     needs: quality
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env: { POSTGRES_USER: test, POSTGRES_PASSWORD: test, POSTGRES_DB: test }
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U test" --health-interval 5s --health-retries 10
+      redis:
+        image: redis:8-alpine
+        ports: ["6379:6379"]
+      redis-http: # émule l'API REST d'Upstash
+        image: hiett/serverless-redis-http:0.0.10
+        env:
+          SRH_MODE: env
+          SRH_TOKEN: test_token
+          SRH_CONNECTION_STRING: redis://redis:6379
+        ports: ["8079:80"]
+    env:
+      # Valeurs de test uniquement : l'API refuse de démarrer sans elles.
+      NODE_ENV: test
+      DATABASE_URL: postgresql://test:test@localhost:5432/test
+      UPSTASH_REDIS_REST_URL: http://localhost:8079
+      UPSTASH_REDIS_REST_TOKEN: test_token
+      CRON_SECRET: ci-cron-secret-0123456789
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with: { node-version: 24, cache: npm }
       - run: npm ci
-      - run: npm run test:cov -w apps/api
-      - run: npm run test:e2e -w apps/api
+      - run: npm run build -w @lafoulee/shared
+      - name: Clés de test éphémères (JWT ES256, chiffrement TOTP)
+        run: |
+          node -e '
+          const c = require("node:crypto");
+          const { privateKey, publicKey } = c.generateKeyPairSync("ec", { namedCurve: "P-256" });
+          const b = (s) => Buffer.from(s).toString("base64");
+          console.log("JWT_PRIVATE_KEY_B64=" + b(privateKey.export({ type: "pkcs8", format: "pem" })));
+          console.log("JWT_PUBLIC_KEY_B64=" + b(publicKey.export({ type: "spki", format: "pem" })));
+          console.log("TOTP_ENC_KEY=" + c.randomBytes(32).toString("base64"));
+          ' >> "$GITHUB_ENV"
+      - run: npm exec -w apps/api -- prisma generate
+      - run: npm exec -w apps/api -- prisma migrate deploy
+      - run: npm exec -w apps/api -- prisma db seed
+      - run: npm run test:cov -w apps/api # unitaires + e2e, seuil de couverture 60 %
+
+  test-web:
+    needs: quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with: { node-version: 24, cache: npm }
+      - run: npm ci
+      - run: npm run build -w @lafoulee/shared
+      - run: npm run test:cov -w apps/web # seuil de couverture 60 %
 
   build-web:
     needs: quality
@@ -39,4 +88,6 @@ jobs:
       - uses: actions/setup-node@v7
         with: { node-version: 24, cache: npm }
       - run: npm ci
+      # L'API est volontairement injoignable : le build ne doit jamais l'appeler.
       - run: npm run build -w apps/web
+        env: { API_INTERNAL_URL: "http://127.0.0.1:1" }

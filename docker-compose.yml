@@ -6,14 +6,14 @@ services:
       POSTGRES_USER: foulee
       POSTGRES_PASSWORD: foulee_dev
       POSTGRES_DB: foulee
-    ports: ["5432:5432"]
+    ports: ["5433:5432"] # 5433 : évite un PostgreSQL déjà installé sur le poste
     volumes: [pgdata:/var/lib/postgresql/data]
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "foulee"]
       interval: 5s
       retries: 10
   redis:
-    image: redis:7-alpine
+    image: redis:8-alpine
     ports: ["6379:6379"]
   redis-http:
     # Émule l'API REST d'Upstash : le même client Redis qu'en production.

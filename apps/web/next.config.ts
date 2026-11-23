@@ -1,4 +1,10 @@
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
 import type { NextConfig } from "next";
+
+// En local (hors Vercel), lit le .env.local partagé à la racine du dépôt.
+const rootEnv = resolve(import.meta.dirname, "../../.env.local");
+if (!process.env.VERCEL && existsSync(rootEnv)) process.loadEnvFile(rootEnv);
 
 /**
  * En local, `npm run dev:web` et `npm run dev:api` tournent séparément :

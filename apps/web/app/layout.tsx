@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Barlow_Condensed } from "next/font/google";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
 // Police des titres, auto-hébergée par next/font (aucun appel à Google côté visiteur).
@@ -10,6 +12,11 @@ const barlow = Barlow_Condensed({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : "http://localhost:3000",
+  ),
   title: {
     default: "La Foulée : boutique de course à pied à Lyon",
     template: "%s | La Foulée",
@@ -24,11 +31,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-full flex-col font-sans">
         <a
           href="#contenu"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:bg-asphalte focus:px-4 focus:py-2 focus:text-craie"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-10 focus:bg-asphalte focus:px-4 focus:py-2 focus:text-craie"
         >
           Aller au contenu
         </a>
-        {children}
+        <SiteHeader />
+        <main id="contenu" className="flex-1">
+          {children}
+        </main>
+        <SiteFooter />
       </body>
     </html>
   );

@@ -20,3 +20,6 @@ next-env.d.ts
 playwright-report/
 test-results/
 
+
+# Client Prisma généré au build
+apps/api/src/generated/
