@@ -2,10 +2,10 @@
 // Tables et colonnes en snake_case côté PostgreSQL, modèles en PascalCase côté code.
 
 generator client {
-  provider               = "prisma-client"
-  output                 = "../src/generated/prisma"
-  moduleFormat           = "esm"
-  importFileExtension    = "js"
+  provider            = "prisma-client"
+  output              = "../src/generated/prisma"
+  moduleFormat        = "esm"
+  importFileExtension = "js"
 }
 
 datasource db {
@@ -206,19 +206,23 @@ enum Fulfillment {
 
 // RG2 : CHECK sur fulfillment / pickup_store_id / shipping_address ajouté en SQL.
 model Order {
-  id              String      @id @default(uuid()) @db.Uuid
-  number          Int         @unique @default(autoincrement())
-  userId          String?     @map("user_id") @db.Uuid
-  guestEmail      String?     @map("guest_email")
-  status          OrderStatus @default(PENDING)
-  fulfillment     Fulfillment
-  pickupStoreId   String?     @map("pickup_store_id") @db.Uuid
-  shippingAddress Json?       @map("shipping_address")
-  subtotalCents   Int         @map("subtotal_cents")
-  shippingCents   Int         @default(0) @map("shipping_cents")
-  totalCents      Int         @map("total_cents")
-  createdAt       DateTime    @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt       DateTime    @updatedAt @map("updated_at") @db.Timestamptz
+  id                 String      @id @default(uuid()) @db.Uuid
+  number             Int         @unique @default(autoincrement())
+  userId             String?     @map("user_id") @db.Uuid
+  guestEmail         String?     @map("guest_email")
+  status             OrderStatus @default(PENDING)
+  fulfillment        Fulfillment
+  pickupStoreId      String?     @map("pickup_store_id") @db.Uuid
+  shippingAddress    Json?       @map("shipping_address")
+  subtotalCents      Int         @map("subtotal_cents")
+  shippingCents      Int         @default(0) @map("shipping_cents")
+  totalCents         Int         @map("total_cents")
+  /// Empreinte du jeton qui permet au client (même sans compte) de suivre sa commande.
+  accessTokenHash    String      @map("access_token_hash")
+  /// Date d'envoi de l'email de confirmation (envoi idempotent).
+  confirmationSentAt DateTime?   @map("confirmation_sent_at") @db.Timestamptz
+  createdAt          DateTime    @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt          DateTime    @updatedAt @map("updated_at") @db.Timestamptz
 
   user        User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
   pickupStore Store?      @relation(fields: [pickupStoreId], references: [id])

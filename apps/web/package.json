@@ -13,6 +13,9 @@
   },
   "dependencies": {
     "@lafoulee/shared": "^0.1.0",
+    "@stripe/react-stripe-js": "^7.1.0",
+    "@stripe/stripe-js": "^10.3.0",
+    "@vercel/queue": "^0.11.0",
     "next": "16.4.6",
     "react": "19.3.0",
     "react-dom": "19.3.0"

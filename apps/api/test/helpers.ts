@@ -8,6 +8,8 @@ import { MailService, type MailMessage } from "../src/mail/mail.service.js";
 import { PrismaService } from "../src/prisma/prisma.service.js";
 import { REDIS } from "../src/redis/redis.constants.js";
 import type { Redis } from "@upstash/redis";
+import { StripeGateway } from "../src/payments/stripe.gateway.js";
+import { FakeStripeGateway } from "./fake-stripe.js";
 
 export interface TestApp {
   app: INestApplication<App>;
@@ -15,25 +17,29 @@ export interface TestApp {
   redis: Redis;
   /** Emails "envoyés" pendant le test (le service d'envoi est remplacé). */
   mails: MailMessage[];
+  stripe: FakeStripeGateway;
 }
 
 export async function createTestApp(): Promise<TestApp> {
   const mails: MailMessage[] = [];
+  const stripe = new FakeStripeGateway();
   const moduleRef = await Test.createTestingModule({ imports: [AppModule] })
     .overrideProvider(MailService)
     .useValue({ send: vi.fn((message: MailMessage) => Promise.resolve(void mails.push(message))) })
+    .overrideProvider(StripeGateway)
+    .useValue(stripe)
     .compile();
-  const app = moduleRef.createNestApplication<INestApplication<App>>();
+  const app = moduleRef.createNestApplication<INestApplication<App>>({ rawBody: true });
   configureApp(app);
   await app.init();
-  return { app, prisma: app.get(PrismaService), redis: app.get(REDIS), mails };
+  return { app, prisma: app.get(PrismaService), redis: app.get(REDIS), mails, stripe };
 }
 
 /** Efface les compteurs de limitation de débit entre deux tests. */
 export async function resetRateLimits(redis: Redis): Promise<void> {
   let cursor = "0";
   do {
-    const [next, keys] = await redis.scan(cursor, { match: "ratelimit:*", count: 500 });
+    const [next, keys] = await redis.scan(cursor, { match: "*ratelimit:*", count: 500 });
     if (keys.length) await redis.del(...keys);
     cursor = String(next);
   } while (cursor !== "0");

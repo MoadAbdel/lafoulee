@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
-import { getSession } from "@/lib/session";
+import { formatPrice, type OrderDto } from "@lafoulee/shared";
+import { getMyOrders, getSession } from "@/lib/session";
 import { LogoutButton } from "./logout-button";
 import { RefreshSession } from "./refresh-session";
 
@@ -33,10 +34,57 @@ async function Account() {
         <dt className="font-semibold">Profil</dt>
         <dd>{user.role === "ADMIN" ? "Administrateur" : "Client"}</dd>
       </dl>
-      <p className="mt-6 text-asphalte/80">L&apos;historique de vos commandes apparaîtra ici.</p>
+      <OrderHistory orders={await getMyOrders()} />
       <div className="mt-8 max-w-xs">
         <LogoutButton />
       </div>
     </>
+  );
+}
+
+const STATUS_LABELS: Record<OrderDto["status"], string> = {
+  PENDING: "En attente de paiement",
+  PAID: "Payée",
+  READY_FOR_PICKUP: "Prête en boutique",
+  SHIPPED: "Expédiée",
+  COMPLETED: "Terminée",
+  CANCELLED: "Annulée",
+  REFUNDED: "Remboursée",
+};
+
+function OrderHistory({ orders }: { orders: OrderDto[] }) {
+  return (
+    <section aria-labelledby="titre-commandes" className="mt-8">
+      <h2 id="titre-commandes" className="font-display text-3xl font-bold uppercase">
+        Mes commandes
+      </h2>
+      {orders.length === 0 ? (
+        <p className="mt-2 text-asphalte/80">Aucune commande pour le moment.</p>
+      ) : (
+        <ul className="mt-3 divide-y divide-asphalte/10 border border-asphalte/15 bg-white">
+          {orders.map((order) => (
+            <li key={order.id} className="p-4">
+              <p className="flex flex-wrap justify-between gap-2 font-semibold">
+                <span>
+                  Commande n°{order.number} du {new Date(order.createdAt).toLocaleDateString("fr-FR")}
+                </span>
+                <span>{formatPrice(order.totalCents)}</span>
+              </p>
+              <p className="text-sm text-asphalte/80">
+                {STATUS_LABELS[order.status]}
+                {order.pickupStoreName ? ` : retrait à ${order.pickupStoreName}` : " : livraison"}
+              </p>
+              <ul className="mt-1 text-sm">
+                {order.lines.map((line, index) => (
+                  <li key={index}>
+                    {line.quantity} x {line.productName} ({line.variantLabel})
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
   );
 }

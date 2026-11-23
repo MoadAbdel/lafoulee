@@ -4,6 +4,7 @@ import { generateSecret, generateURI, verify } from "otplib";
 import { ENV, type Env } from "../config/env.js";
 import { decrypt, encrypt } from "../common/crypto.js";
 import { REDIS } from "../redis/redis.constants.js";
+import { redisKey } from "../redis/redis-key.js";
 
 /**
  * Double authentification TOTP (RFC 6238) pour les administrateurs.
@@ -32,7 +33,7 @@ export class TotpService {
     const result = await verify({ secret, token: code, epochTolerance: 30 });
     if (!result.valid) return false;
     // SET NX : échoue si le même code a déjà servi pour ce compte.
-    const firstUse = await this.redis.set(`totp-used:${userId}:${code}`, 1, { nx: true, ex: 90 });
+    const firstUse = await this.redis.set(redisKey("totp-used", userId, code), 1, { nx: true, ex: 90 });
     return firstUse === "OK";
   }
 }

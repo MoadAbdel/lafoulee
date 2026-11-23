@@ -31,6 +31,12 @@
   "overrides": {
     "@prisma/config": {
       "effect": "3.22.5"
+    },
+    "@vercel/cli-config": {
+      "zod": "4.6.7"
+    },
+    "@vercel/queue": {
+      "minimatch": "11.0.9"
     }
   }
 }

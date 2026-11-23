@@ -9,7 +9,8 @@ import { env } from "./config/env.js";
  */
 async function bootstrap() {
   env(); // Valide la configuration avant tout : échec immédiat et explicite.
-  const app = await NestFactory.create(AppModule);
+  // rawBody : le webhook Stripe vérifie sa signature sur le corps brut de la requête.
+  const app = await NestFactory.create(AppModule, { rawBody: true });
   configureApp(app);
   await app.listen(process.env.PORT ?? 4000);
 }
