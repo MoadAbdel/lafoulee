@@ -6,6 +6,8 @@ export interface MailMessage {
   subject: string;
   text: string;
   html: string;
+  /** Pièces jointes (contenu en clair, encodé en base64 à l'envoi). */
+  attachments?: { name: string; content: string }[];
 }
 
 /**
@@ -39,6 +41,14 @@ export class MailService {
         subject: message.subject,
         textContent: message.text,
         htmlContent: message.html,
+        ...(message.attachments?.length
+          ? {
+              attachment: message.attachments.map((file) => ({
+                name: file.name,
+                content: Buffer.from(file.content, "utf8").toString("base64"),
+              })),
+            }
+          : {}),
       }),
     });
     if (!res.ok) {

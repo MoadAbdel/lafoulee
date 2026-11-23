@@ -1,5 +1,6 @@
 import { Module } from "@nestjs/common";
 import { CartModule } from "../cart/cart.module.js";
+import { PrivacyModule } from "../privacy/privacy.module.js";
 import { InternalController } from "../notifications/internal.controller.js";
 import { NotificationsService } from "../notifications/notifications.service.js";
 import { OrderEventsPublisher } from "../notifications/order-events.publisher.js";
@@ -11,7 +12,7 @@ import { StockService } from "./stock.service.js";
 
 /** Commande, paiement et notifications : un seul module, car ces flux sont liés. */
 @Module({
-  imports: [CartModule],
+  imports: [CartModule, PrivacyModule],
   controllers: [OrdersController, PaymentsController, InternalController],
   providers: [OrdersService, StockService, StripeGateway, OrderEventsPublisher, NotificationsService],
   exports: [OrdersService, StripeGateway],
