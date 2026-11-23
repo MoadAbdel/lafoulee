@@ -67,8 +67,7 @@ describe("Authentification (e2e)", () => {
   });
 
   it("un échec d'envoi de l'email n'empêche pas l'inscription (202)", async () => {
-    const send = t.app.get(MailService).send as unknown as ReturnType<typeof vi.fn>;
-    send.mockRejectedValueOnce(new Error("Brevo HTTP 401"));
+    vi.spyOn(t.app.get(MailService), "send").mockRejectedValueOnce(new Error("Brevo HTTP 401"));
     const email = uniqueEmail("brevo-ko");
     await http().post("/api/v1/auth/register").send({ email, password: PASSWORD }).expect(202);
     expect(await t.prisma.user.findUnique({ where: { email } })).not.toBeNull();

@@ -12,6 +12,7 @@ const valid = {
   JWT_PUBLIC_KEY_B64: b64(publicKey.export({ type: "spki", format: "pem" })),
   TOTP_ENC_KEY: randomBytes(32).toString("base64"),
   CRON_SECRET: "0123456789abcdef0123",
+  STRIPE_SECRET_KEY: "sk_test_dummy",
 };
 
 describe("loadEnv (validation de la configuration)", () => {

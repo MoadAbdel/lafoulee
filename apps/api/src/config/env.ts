@@ -25,6 +25,9 @@ const envSchema = z.object({
     .string()
     .refine((value) => Buffer.from(value, "base64").length === 32, { error: "doit faire 32 octets en base64" }),
   CRON_SECRET: z.string().min(16),
+  STRIPE_SECRET_KEY: z.string().regex(/^sk_(test|live)_/, { error: "doit commencer par sk_test_ ou sk_live_" }),
+  // Absent en Preview : Stripe ne peut pas joindre ces déploiements protégés.
+  STRIPE_WEBHOOK_SECRET: z.string().startsWith("whsec_").optional(),
   BREVO_API_KEY: z.string().min(1).optional(),
   MAIL_FROM: z.email().default("no-reply@lafoulee.example"),
 });

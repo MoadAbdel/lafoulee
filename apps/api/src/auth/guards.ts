@@ -24,11 +24,20 @@ export class JwtAuthGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC, [context.getHandler(), context.getClass()]);
-    if (isPublic) return true;
-
     const req = context.switchToHttp().getRequest<AuthenticatedRequest>();
     const cookies = req.cookies as Record<string, string | undefined> | undefined;
     const token = cookies?.[ACCESS_COOKIE];
+
+    // Route publique : la session est lue si elle existe (ex. commande d'un client
+    // connecté), mais n'est jamais exigée. Un jeton invalide est simplement ignoré.
+    if (isPublic) {
+      if (token) {
+        const claims = await this.tokens.verifyAccess(token).catch(() => null);
+        if (claims) req.user = { id: claims.sub, role: claims.role };
+      }
+      return true;
+    }
+
     if (!token) throw new UnauthorizedException("Connexion requise.");
     try {
       const claims = await this.tokens.verifyAccess(token);

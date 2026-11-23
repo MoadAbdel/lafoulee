@@ -1,0 +1,92 @@
+import { BadRequestException, Inject, Injectable, NotFoundException } from "@nestjs/common";
+import type { Redis } from "@upstash/redis";
+import { MAX_QUANTITY_PER_LINE, type CartDto, type CartLineDto } from "@lafoulee/shared";
+import { PrismaService } from "../prisma/prisma.service.js";
+import { REDIS } from "../redis/redis.constants.js";
+
+export const CART_TTL_SECONDS = 30 * 24 * 3600;
+
+/** Contenu stocké : identifiant de variante -> quantité. Rien d'autre (prix et stock viennent de la base). */
+export type CartItems = Record<string, number>;
+
+@Injectable()
+export class CartService {
+  constructor(
+    @Inject(REDIS) private readonly redis: Redis,
+    private readonly prisma: PrismaService,
+  ) {}
+
+  private key(cartId: string): string {
+    return `cart:${cartId}`;
+  }
+
+  async getItems(cartId: string | undefined): Promise<CartItems> {
+    if (!cartId) return {};
+    return (await this.redis.get<CartItems>(this.key(cartId))) ?? {};
+  }
+
+  /** Chaque modification prolonge la conservation du panier de 30 jours (EF04). */
+  private async save(cartId: string, items: CartItems): Promise<void> {
+    if (Object.keys(items).length === 0) await this.redis.del(this.key(cartId));
+    else await this.redis.set(this.key(cartId), items, { ex: CART_TTL_SECONDS });
+  }
+
+  async setQuantity(cartId: string, variantId: string, quantity: number): Promise<CartDto> {
+    const items = await this.getItems(cartId);
+    if (quantity === 0) {
+      delete items[variantId];
+    } else {
+      const variant = await this.prisma.productVariant.findFirst({
+        where: { id: variantId, product: { status: "PUBLISHED" } },
+        include: { stocks: true },
+      });
+      if (!variant) throw new NotFoundException("Produit introuvable.");
+      const available = variant.stocks.reduce((sum, stock) => sum + Math.max(0, stock.quantity - stock.reserved), 0);
+      if (available === 0) throw new BadRequestException("Cette taille est en rupture de stock.");
+      items[variantId] = Math.min(quantity, available, MAX_QUANTITY_PER_LINE);
+    }
+    await this.save(cartId, items);
+    return this.toDto(items);
+  }
+
+  async clear(cartId: string | undefined): Promise<void> {
+    if (cartId) await this.redis.del(this.key(cartId));
+  }
+
+  async view(cartId: string | undefined): Promise<CartDto> {
+    return this.toDto(await this.getItems(cartId));
+  }
+
+  /** Recalcule le panier depuis la base : un produit retiré du catalogue disparaît du panier. */
+  async toDto(items: CartItems): Promise<CartDto> {
+    const ids = Object.keys(items);
+    if (ids.length === 0) return { lines: [], itemCount: 0, subtotalCents: 0 };
+    const variants = await this.prisma.productVariant.findMany({
+      where: { id: { in: ids }, product: { status: "PUBLISHED" } },
+      include: { product: true, stocks: true },
+    });
+    const lines: CartLineDto[] = variants
+      .map((variant) => {
+        const quantity = items[variant.id] ?? 0;
+        const unitPriceCents = variant.priceCentsOverride ?? variant.product.priceCents;
+        return {
+          variantId: variant.id,
+          productSlug: variant.product.slug,
+          productName: variant.product.name,
+          brand: variant.product.brand,
+          size: variant.size,
+          color: variant.color,
+          unitPriceCents,
+          quantity,
+          lineTotalCents: unitPriceCents * quantity,
+          available: variant.stocks.reduce((sum, stock) => sum + Math.max(0, stock.quantity - stock.reserved), 0),
+        };
+      })
+      .sort((a, b) => a.productName.localeCompare(b.productName) || a.size.localeCompare(b.size));
+    return {
+      lines,
+      itemCount: lines.reduce((sum, line) => sum + line.quantity, 0),
+      subtotalCents: lines.reduce((sum, line) => sum + line.lineTotalCents, 0),
+    };
+  }
+}
