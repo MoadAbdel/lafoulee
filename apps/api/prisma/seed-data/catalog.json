@@ -1,0 +1,4460 @@
+{
+  "stores": [
+    {
+      "slug": "croix-rousse",
+      "name": "La Foulée Croix-Rousse",
+      "address": "42 rue d'Austerlitz",
+      "postalCode": "69004",
+      "city": "Lyon",
+      "openingHours": "Mar-Sam 10h-19h"
+    },
+    {
+      "slug": "part-dieu",
+      "name": "La Foulée Part-Dieu",
+      "address": "17 rue Garibaldi",
+      "postalCode": "69003",
+      "city": "Lyon",
+      "openingHours": "Lun-Sam 10h-19h30"
+    },
+    {
+      "slug": "gerland",
+      "name": "La Foulée Gerland",
+      "address": "8 avenue Jean Jaurès",
+      "postalCode": "69007",
+      "city": "Lyon",
+      "openingHours": "Mar-Sam 10h-19h, Dim 10h-13h"
+    }
+  ],
+  "categories": [
+    {
+      "slug": "chaussures-route",
+      "name": "Chaussures de route",
+      "description": "Des chaussures pour courir sur bitume, du footing quotidien à la compétition. Amorti, drop et poids sont indiqués sur chaque fiche."
+    },
+    {
+      "slug": "chaussures-trail",
+      "name": "Chaussures de trail",
+      "description": "Des chaussures à crampons pour les sentiers, la forêt et la montagne. Choisissez selon le terrain et la distance."
+    },
+    {
+      "slug": "textile-homme",
+      "name": "Textile homme",
+      "description": "Tee-shirts, shorts, collants et vestes techniques pour hommes. Des matières qui sèchent vite et protègent selon la météo."
+    },
+    {
+      "slug": "textile-femme",
+      "name": "Textile femme",
+      "description": "Vêtements de course coupés pour les femmes : tee-shirts, shorts, collants, brassières et vestes légères."
+    },
+    {
+      "slug": "nutrition",
+      "name": "Nutrition",
+      "description": "Gels, barres, boissons et comprimés pour avant, pendant et après l'effort. Des produits simples, testés par notre équipe."
+    },
+    {
+      "slug": "accessoires",
+      "name": "Accessoires",
+      "description": "Frontales, gourdes, sacs d'hydratation, chaussettes et ceintures porte-dossard pour courir mieux et plus longtemps."
+    }
+  ],
+  "products": [
+    {
+      "slug": "altivo-pulse-3",
+      "name": "Pulse 3",
+      "brand": "Altivo",
+      "categorySlugs": ["chaussures-route"],
+      "priceCents": 12990,
+      "shortDescription": "Chaussure d'entraînement polyvalente, amorti souple et relance franche.",
+      "description": "La Pulse 3 sert pour la majorité de vos sorties sur route, de 5 à 20 km. La mousse est souple sans être molle. Le drop (écart de hauteur entre talon et avant-pied) est de 8 mm, un bon repère pour la plupart des foulées. Le dessus en maille respire bien l'été. Elle pèse 270 g en pointure 42.",
+      "attributes": {
+        "drop": "8 mm",
+        "poids": "270 g",
+        "terrain": "Route",
+        "amorti": "Souple"
+      },
+      "variants": [
+        {
+          "size": "39",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 4,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "40",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 1,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "41",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "42",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 4,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "43",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 2,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "44",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "45",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 4,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "46",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 2,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "39",
+          "color": "Blanc cassé",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "40",
+          "color": "Blanc cassé",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "41",
+          "color": "Blanc cassé",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 1,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "42",
+          "color": "Blanc cassé",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 4,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "43",
+          "color": "Blanc cassé",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 6,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "44",
+          "color": "Blanc cassé",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "45",
+          "color": "Blanc cassé",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 2,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "46",
+          "color": "Blanc cassé",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 5,
+            "gerland": 0
+          }
+        }
+      ]
+    },
+    {
+      "slug": "brisa-allure",
+      "name": "Allure",
+      "brand": "Brisa",
+      "categorySlugs": ["chaussures-route"],
+      "priceCents": 9990,
+      "shortDescription": "Une chaussure simple et solide pour débuter ou courir souvent sans se ruiner.",
+      "description": "L'Allure est pensée pour les premiers kilomètres et les sorties régulières. La semelle en gomme durable résiste bien au bitume. Le drop de 10 mm soulage les mollets et le tendon d'Achille. Le maintien du talon est ferme, sans serrer. Elle pèse 285 g en pointure 42.",
+      "attributes": {
+        "drop": "10 mm",
+        "poids": "285 g",
+        "terrain": "Route",
+        "amorti": "Équilibré"
+      },
+      "variants": [
+        {
+          "size": "39",
+          "color": "Gris anthracite",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 1,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "40",
+          "color": "Gris anthracite",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "41",
+          "color": "Gris anthracite",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "42",
+          "color": "Gris anthracite",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 1,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "43",
+          "color": "Gris anthracite",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 3,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "44",
+          "color": "Gris anthracite",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "45",
+          "color": "Gris anthracite",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "46",
+          "color": "Gris anthracite",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 5,
+            "gerland": 4
+          }
+        }
+      ]
+    },
+    {
+      "slug": "nordane-fluide-2",
+      "name": "Fluide 2",
+      "brand": "Nordane",
+      "categorySlugs": ["chaussures-route"],
+      "priceCents": 13990,
+      "shortDescription": "Amorti généreux pour les longues sorties et les jambes fatiguées.",
+      "description": "La Fluide 2 protège les articulations sur les sorties longues et les jours de récupération. La semelle épaisse absorbe les chocs sans perdre en stabilité. Le drop est de 6 mm, avec un roulé fluide du talon vers l'avant. Le chaussant est large aux orteils. Elle pèse 295 g en pointure 42.",
+      "attributes": {
+        "drop": "6 mm",
+        "poids": "295 g",
+        "terrain": "Route",
+        "amorti": "Maximal"
+      },
+      "variants": [
+        {
+          "size": "39",
+          "color": "Sable",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 5,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "40",
+          "color": "Sable",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 4,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "41",
+          "color": "Sable",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "42",
+          "color": "Sable",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 2,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "43",
+          "color": "Sable",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 2,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "44",
+          "color": "Sable",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 4,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "45",
+          "color": "Sable",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 6,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "46",
+          "color": "Sable",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "39",
+          "color": "Vert sapin",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 3,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "40",
+          "color": "Vert sapin",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 6,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "41",
+          "color": "Vert sapin",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 5,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "42",
+          "color": "Vert sapin",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "43",
+          "color": "Vert sapin",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 2,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "44",
+          "color": "Vert sapin",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "45",
+          "color": "Vert sapin",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 5,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "46",
+          "color": "Vert sapin",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 4,
+            "gerland": 2
+          }
+        }
+      ]
+    },
+    {
+      "slug": "altivo-carbone-x",
+      "name": "Carbone X",
+      "brand": "Altivo",
+      "categorySlugs": ["chaussures-route"],
+      "priceCents": 18990,
+      "shortDescription": "Chaussure de compétition avec plaque carbone pour viser un record.",
+      "description": "La Carbone X est faite pour les courses de 10 km au marathon. Une plaque en carbone (lame rigide dans la semelle) renvoie l'énergie à chaque foulée. La mousse est légère et très réactive. Le drop est de 8 mm. Elle pèse 215 g en pointure 42. Gardez-la pour les jours de course et les séances rapides.",
+      "attributes": {
+        "drop": "8 mm",
+        "poids": "215 g",
+        "terrain": "Route, piste",
+        "amorti": "Réactif",
+        "plaque": "Carbone"
+      },
+      "variants": [
+        {
+          "size": "39",
+          "color": "Orange vif",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 3,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "40",
+          "color": "Orange vif",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 5,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "41",
+          "color": "Orange vif",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "42",
+          "color": "Orange vif",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 0,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "43",
+          "color": "Orange vif",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 3,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "44",
+          "color": "Orange vif",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 3,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "45",
+          "color": "Orange vif",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "46",
+          "color": "Orange vif",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "39",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 4,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "40",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "41",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 3,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "42",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 0,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "43",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 6,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "44",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "45",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 2,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "46",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 1,
+            "gerland": 0
+          }
+        }
+      ]
+    },
+    {
+      "slug": "ondine-sillage",
+      "name": "Sillage",
+      "brand": "Ondine",
+      "categorySlugs": ["chaussures-route"],
+      "priceCents": 11990,
+      "shortDescription": "Chaussure polyvalente, légère et stable, du footing à la séance rapide.",
+      "description": "La Sillage convient aux footings comme aux séances de fractionné. Elle est assez légère pour accélérer et assez amortie pour durer. Le drop de 8 mm convient à la plupart des coureurs. La semelle extérieure accroche bien sur le bitume mouillé. Elle pèse 260 g en pointure 42.",
+      "attributes": {
+        "drop": "8 mm",
+        "poids": "260 g",
+        "terrain": "Route",
+        "amorti": "Équilibré"
+      },
+      "variants": [
+        {
+          "size": "39",
+          "color": "Bleu ciel",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "40",
+          "color": "Bleu ciel",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "41",
+          "color": "Bleu ciel",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 0,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "42",
+          "color": "Bleu ciel",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 0,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "43",
+          "color": "Bleu ciel",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 0,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "44",
+          "color": "Bleu ciel",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "45",
+          "color": "Bleu ciel",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 0,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "46",
+          "color": "Bleu ciel",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "39",
+          "color": "Corail",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "40",
+          "color": "Corail",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "41",
+          "color": "Corail",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 2,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "42",
+          "color": "Corail",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "43",
+          "color": "Corail",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "44",
+          "color": "Corail",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 5,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "45",
+          "color": "Corail",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 2,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "46",
+          "color": "Corail",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        }
+      ]
+    },
+    {
+      "slug": "cairn-bitume",
+      "name": "Bitume",
+      "brand": "Cairn",
+      "categorySlugs": ["chaussures-route"],
+      "priceCents": 9990,
+      "shortDescription": "Modèle d'entrée de gamme robuste pour rouler ses kilomètres au quotidien.",
+      "description": "La Bitume est une chaussure d'entraînement sans fioritures. Elle offre un amorti moyen et une bonne durabilité, pour 700 km environ. Le drop de 10 mm convient aux coureurs qui tapent du talon. Le dessus est facile à nettoyer. Elle pèse 290 g en pointure 42.",
+      "attributes": {
+        "drop": "10 mm",
+        "poids": "290 g",
+        "terrain": "Route",
+        "amorti": "Moyen"
+      },
+      "variants": [
+        {
+          "size": "39",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 0,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "40",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "41",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 5,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "42",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "43",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 5,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "44",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 3,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "45",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 5,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "46",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 4,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "39",
+          "color": "Gris clair",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 1,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "40",
+          "color": "Gris clair",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "41",
+          "color": "Gris clair",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "42",
+          "color": "Gris clair",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 6,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "43",
+          "color": "Gris clair",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 1,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "44",
+          "color": "Gris clair",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 5,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "45",
+          "color": "Gris clair",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 2,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "46",
+          "color": "Gris clair",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        }
+      ]
+    },
+    {
+      "slug": "brisa-vitesse-lite",
+      "name": "Vitesse Lite",
+      "brand": "Brisa",
+      "categorySlugs": ["chaussures-route"],
+      "priceCents": 14990,
+      "shortDescription": "Chaussure rapide et légère pour les séances de tempo et les courses.",
+      "description": "La Vitesse Lite est destinée aux allures soutenues, sur 10 km et semi-marathon. La mousse est ferme et dynamique. Le drop de 6 mm favorise une pose du pied plus à plat. Le dessus fin garde le pied bien en place. Elle pèse 230 g en pointure 42.",
+      "attributes": {
+        "drop": "6 mm",
+        "poids": "230 g",
+        "terrain": "Route, piste",
+        "amorti": "Ferme"
+      },
+      "variants": [
+        {
+          "size": "39",
+          "color": "Jaune citron",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "40",
+          "color": "Jaune citron",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "41",
+          "color": "Jaune citron",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "42",
+          "color": "Jaune citron",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 3,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "43",
+          "color": "Jaune citron",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 3,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "44",
+          "color": "Jaune citron",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 5,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "45",
+          "color": "Jaune citron",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 1,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "46",
+          "color": "Jaune citron",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 1,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "39",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "40",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 0,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "41",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 3,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "42",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 6,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "43",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 0,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "44",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "45",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "46",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 2,
+            "gerland": 6
+          }
+        }
+      ]
+    },
+    {
+      "slug": "verglas-nimbus",
+      "name": "Nimbus",
+      "brand": "Verglas",
+      "categorySlugs": ["chaussures-route"],
+      "priceCents": 16990,
+      "shortDescription": "Amorti riche et guidage doux pour les pieds qui s'affaissent vers l'intérieur.",
+      "description": "La Nimbus aide les coureurs dont la cheville part vers l'intérieur (pronation). Un guide latéral dans la semelle corrige la trajectoire sans gêner. L'amorti est épais et durable. Le drop est de 8 mm. Elle pèse 310 g en pointure 42 et convient aux longues distances.",
+      "attributes": {
+        "drop": "8 mm",
+        "poids": "310 g",
+        "terrain": "Route",
+        "amorti": "Épais",
+        "stabilite": "Guidage"
+      },
+      "variants": [
+        {
+          "size": "39",
+          "color": "Gris perle",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 6,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "40",
+          "color": "Gris perle",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "41",
+          "color": "Gris perle",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "42",
+          "color": "Gris perle",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 2,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "43",
+          "color": "Gris perle",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 1,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "44",
+          "color": "Gris perle",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 3,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "45",
+          "color": "Gris perle",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 5,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "46",
+          "color": "Gris perle",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 5,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "39",
+          "color": "Bleu marine",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 4,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "40",
+          "color": "Bleu marine",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "41",
+          "color": "Bleu marine",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 3,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "42",
+          "color": "Bleu marine",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "43",
+          "color": "Bleu marine",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "44",
+          "color": "Bleu marine",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 0,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "45",
+          "color": "Bleu marine",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 6,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "46",
+          "color": "Bleu marine",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 1,
+            "gerland": 0
+          }
+        }
+      ]
+    },
+    {
+      "slug": "ondine-etoile",
+      "name": "Étoile",
+      "brand": "Ondine",
+      "categorySlugs": ["chaussures-route"],
+      "priceCents": 12990,
+      "shortDescription": "Stabilité légère pour courir longtemps sans fatigue de la cheville.",
+      "description": "L'Étoile combine un léger maintien de la voûte plantaire et un poids contenu. Elle convient aux sorties de 10 à 25 km. La semelle est assez large pour rester stable en fin de sortie. Le drop est de 9 mm. Elle pèse 275 g en pointure 42.",
+      "attributes": {
+        "drop": "9 mm",
+        "poids": "275 g",
+        "terrain": "Route",
+        "amorti": "Équilibré",
+        "stabilite": "Légère"
+      },
+      "variants": [
+        {
+          "size": "39",
+          "color": "Blanc",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 3,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "40",
+          "color": "Blanc",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "41",
+          "color": "Blanc",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 2,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "42",
+          "color": "Blanc",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "43",
+          "color": "Blanc",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "44",
+          "color": "Blanc",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 5,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "45",
+          "color": "Blanc",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 3,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "46",
+          "color": "Blanc",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 1,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "39",
+          "color": "Violet nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 2,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "40",
+          "color": "Violet nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 6,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "41",
+          "color": "Violet nuit",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 4,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "42",
+          "color": "Violet nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 2,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "43",
+          "color": "Violet nuit",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 3,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "44",
+          "color": "Violet nuit",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 0,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "45",
+          "color": "Violet nuit",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 2,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "46",
+          "color": "Violet nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 1,
+            "gerland": 1
+          }
+        }
+      ]
+    },
+    {
+      "slug": "sentier-crete",
+      "name": "Crête",
+      "brand": "Sentier",
+      "categorySlugs": ["chaussures-trail"],
+      "priceCents": 15990,
+      "shortDescription": "Trail technique : accroche forte, protection du pied sur rocher et racines.",
+      "description": "La Crête est faite pour les sentiers raides, caillouteux et glissants. Les crampons de 5 mm mordent dans la terre et la roche. Une protection devant les orteils évite les coups dans les cailloux. Le drop est de 6 mm. Elle pèse 285 g en pointure 42.",
+      "attributes": {
+        "drop": "6 mm",
+        "poids": "285 g",
+        "terrain": "Trail technique",
+        "crampons": "5 mm"
+      },
+      "variants": [
+        {
+          "size": "39",
+          "color": "Vert mousse",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "40",
+          "color": "Vert mousse",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 6,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "41",
+          "color": "Vert mousse",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 0,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "42",
+          "color": "Vert mousse",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 3,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "43",
+          "color": "Vert mousse",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 6,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "44",
+          "color": "Vert mousse",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "45",
+          "color": "Vert mousse",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 1,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "46",
+          "color": "Vert mousse",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 4,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "39",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 5,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "40",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 3,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "41",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "42",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "43",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "44",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "45",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "46",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        }
+      ]
+    },
+    {
+      "slug": "sentier-moraine",
+      "name": "Moraine",
+      "brand": "Sentier",
+      "categorySlugs": ["chaussures-trail"],
+      "priceCents": 16990,
+      "shortDescription": "Confort et protection pour les ultras et les longues sorties en montagne.",
+      "description": "La Moraine vise les sorties de plus de 3 heures. L'amorti épais protège le pied sur les longues descentes. Le chaussant est un peu plus haut pour laisser gonfler le pied. Le drop est de 8 mm. Elle pèse 320 g en pointure 42. Les crampons de 4 mm restent efficaces sur terrain sec.",
+      "attributes": {
+        "drop": "8 mm",
+        "poids": "320 g",
+        "terrain": "Trail longue distance",
+        "crampons": "4 mm"
+      },
+      "variants": [
+        {
+          "size": "39",
+          "color": "Gris pierre",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 3,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "40",
+          "color": "Gris pierre",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 4,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "41",
+          "color": "Gris pierre",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "42",
+          "color": "Gris pierre",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "43",
+          "color": "Gris pierre",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 6,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "44",
+          "color": "Gris pierre",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 5,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "45",
+          "color": "Gris pierre",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 6,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "46",
+          "color": "Gris pierre",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 5,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "39",
+          "color": "Orange brûlé",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 0,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "40",
+          "color": "Orange brûlé",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "41",
+          "color": "Orange brûlé",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 0,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "42",
+          "color": "Orange brûlé",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 6,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "43",
+          "color": "Orange brûlé",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "44",
+          "color": "Orange brûlé",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 4,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "45",
+          "color": "Orange brûlé",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 3,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "46",
+          "color": "Orange brûlé",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 6,
+            "gerland": 6
+          }
+        }
+      ]
+    },
+    {
+      "slug": "cairn-ravin",
+      "name": "Ravin",
+      "brand": "Cairn",
+      "categorySlugs": ["chaussures-trail"],
+      "priceCents": 13990,
+      "shortDescription": "Chaussure de trail mixte, à l'aise sur chemin, forêt et petits sentiers.",
+      "description": "La Ravin est la bonne option pour passer de la route au trail. Elle accroche bien sur chemin et sentier sec ou humide. L'amorti est moyen et le poids reste modéré. Le drop est de 8 mm. Elle pèse 290 g en pointure 42.",
+      "attributes": {
+        "drop": "8 mm",
+        "poids": "290 g",
+        "terrain": "Trail mixte",
+        "crampons": "4 mm"
+      },
+      "variants": [
+        {
+          "size": "39",
+          "color": "Marron terre",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 4,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "40",
+          "color": "Marron terre",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "41",
+          "color": "Marron terre",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 3,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "42",
+          "color": "Marron terre",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "43",
+          "color": "Marron terre",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 0,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "44",
+          "color": "Marron terre",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "45",
+          "color": "Marron terre",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 3,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "46",
+          "color": "Marron terre",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 2,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "39",
+          "color": "Bleu pétrole",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "40",
+          "color": "Bleu pétrole",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "41",
+          "color": "Bleu pétrole",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 5,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "42",
+          "color": "Bleu pétrole",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "43",
+          "color": "Bleu pétrole",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 5,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "44",
+          "color": "Bleu pétrole",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "45",
+          "color": "Bleu pétrole",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "46",
+          "color": "Bleu pétrole",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 6,
+            "gerland": 3
+          }
+        }
+      ]
+    },
+    {
+      "slug": "cairn-granit",
+      "name": "Granit",
+      "brand": "Cairn",
+      "categorySlugs": ["chaussures-trail"],
+      "priceCents": 17990,
+      "shortDescription": "Semelle rigide et crampons profonds pour les terrains de haute montagne.",
+      "description": "Le Granit s'utilise sur sentiers rocheux, pierriers et neige fondue. La semelle plus rigide protège la plante du pied des arêtes. Les crampons de 6 mm tiennent bien en pente. Le drop est de 5 mm. Elle pèse 340 g en pointure 42. Le dessus renforcé résiste aux frottements.",
+      "attributes": {
+        "drop": "5 mm",
+        "poids": "340 g",
+        "terrain": "Montagne, rocher",
+        "crampons": "6 mm"
+      },
+      "variants": [
+        {
+          "size": "39",
+          "color": "Anthracite",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 1,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "40",
+          "color": "Anthracite",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 6,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "41",
+          "color": "Anthracite",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 2,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "42",
+          "color": "Anthracite",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 0,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "43",
+          "color": "Anthracite",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 3,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "44",
+          "color": "Anthracite",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 5,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "45",
+          "color": "Anthracite",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 6,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "46",
+          "color": "Anthracite",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        }
+      ]
+    },
+    {
+      "slug": "nordane-sous-bois",
+      "name": "Sous-Bois",
+      "brand": "Nordane",
+      "categorySlugs": ["chaussures-trail"],
+      "priceCents": 11990,
+      "shortDescription": "Trail léger pour les sentiers roulants, les parcs et les forêts.",
+      "description": "La Sous-Bois convient aux sentiers roulants et aux chemins forestiers. Elle est légère et souple, pour garder du rythme. Les crampons de 3 mm accrochent sans freiner. Le drop est de 8 mm. Elle pèse 255 g en pointure 42.",
+      "attributes": {
+        "drop": "8 mm",
+        "poids": "255 g",
+        "terrain": "Sentier roulant",
+        "crampons": "3 mm"
+      },
+      "variants": [
+        {
+          "size": "39",
+          "color": "Vert olive",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 6,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "40",
+          "color": "Vert olive",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "41",
+          "color": "Vert olive",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "42",
+          "color": "Vert olive",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 2,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "43",
+          "color": "Vert olive",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "44",
+          "color": "Vert olive",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 3,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "45",
+          "color": "Vert olive",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 6,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "46",
+          "color": "Vert olive",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 2,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "39",
+          "color": "Gris clair",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 0,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "40",
+          "color": "Gris clair",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 6,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "41",
+          "color": "Gris clair",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 0,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "42",
+          "color": "Gris clair",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "43",
+          "color": "Gris clair",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 3,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "44",
+          "color": "Gris clair",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 1,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "45",
+          "color": "Gris clair",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 2,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "46",
+          "color": "Gris clair",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 6,
+            "gerland": 1
+          }
+        }
+      ]
+    },
+    {
+      "slug": "verglas-serac",
+      "name": "Sérac",
+      "brand": "Verglas",
+      "categorySlugs": ["chaussures-trail"],
+      "priceCents": 18990,
+      "shortDescription": "Modèle haut de gamme avec plaque de protection et grip pour sol mouillé.",
+      "description": "Le Sérac vise les trails exigeants, en conditions variables. Une plaque fine sous le pied protège des pierres sans durcir la foulée. La gomme de la semelle garde son grip sur roche mouillée. Le drop est de 6 mm. Elle pèse 300 g en pointure 42. Le dessus est résistant à l'abrasion.",
+      "attributes": {
+        "drop": "6 mm",
+        "poids": "300 g",
+        "terrain": "Trail technique, humide",
+        "crampons": "5 mm"
+      },
+      "variants": [
+        {
+          "size": "39",
+          "color": "Bleu glacier",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 4,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "40",
+          "color": "Bleu glacier",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 3,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "41",
+          "color": "Bleu glacier",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 3,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "42",
+          "color": "Bleu glacier",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 0,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "43",
+          "color": "Bleu glacier",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 4,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "44",
+          "color": "Bleu glacier",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 5,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "45",
+          "color": "Bleu glacier",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "46",
+          "color": "Bleu glacier",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 0,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "39",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 2,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "40",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 4,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "41",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 0,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "42",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 0,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "43",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 4,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "44",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 3,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "45",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 0,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "46",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 3,
+            "gerland": 5
+          }
+        }
+      ]
+    },
+    {
+      "slug": "altivo-lacet",
+      "name": "Lacet",
+      "brand": "Altivo",
+      "categorySlugs": ["chaussures-trail"],
+      "priceCents": 12990,
+      "shortDescription": "Trail polyvalent, bon rapport qualité prix, bien amorti en descente.",
+      "description": "Le Lacet est un trail d'usage courant, pour 10 à 25 km de sentier. L'amorti est assez épais pour les descentes. Le laçage est rapide et reste serré. Le drop est de 7 mm. Elle pèse 280 g en pointure 42.",
+      "attributes": {
+        "drop": "7 mm",
+        "poids": "280 g",
+        "terrain": "Trail mixte",
+        "crampons": "4 mm"
+      },
+      "variants": [
+        {
+          "size": "39",
+          "color": "Rouge brique",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 2,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "40",
+          "color": "Rouge brique",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 5,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "41",
+          "color": "Rouge brique",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "42",
+          "color": "Rouge brique",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 1,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "43",
+          "color": "Rouge brique",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 3,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "44",
+          "color": "Rouge brique",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "45",
+          "color": "Rouge brique",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 3,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "46",
+          "color": "Rouge brique",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "39",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 3,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "40",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "41",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 0,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "42",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 2,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "43",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "44",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 4,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "45",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "46",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        }
+      ]
+    },
+    {
+      "slug": "ondine-garrigue",
+      "name": "Garrigue",
+      "brand": "Ondine",
+      "categorySlugs": ["chaussures-trail"],
+      "priceCents": 10990,
+      "shortDescription": "Trail d'entrée de gamme pour découvrir les chemins sans forcer le budget.",
+      "description": "La Garrigue est idéale pour une première chaussure de trail. Elle protège du sable, des cailloux et des ronces. Les crampons de 3 mm suffisent sur chemins secs. Le drop est de 10 mm. Elle pèse 295 g en pointure 42.",
+      "attributes": {
+        "drop": "10 mm",
+        "poids": "295 g",
+        "terrain": "Chemin, garrigue",
+        "crampons": "3 mm"
+      },
+      "variants": [
+        {
+          "size": "39",
+          "color": "Beige",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "40",
+          "color": "Beige",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 2,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "41",
+          "color": "Beige",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 2,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "42",
+          "color": "Beige",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 6,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "43",
+          "color": "Beige",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 4,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "44",
+          "color": "Beige",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 0,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "45",
+          "color": "Beige",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 5,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "46",
+          "color": "Beige",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 3,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "39",
+          "color": "Vert sapin",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "40",
+          "color": "Vert sapin",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 4,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "41",
+          "color": "Vert sapin",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 1,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "42",
+          "color": "Vert sapin",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 4,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "43",
+          "color": "Vert sapin",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 2,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "44",
+          "color": "Vert sapin",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 4,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "45",
+          "color": "Vert sapin",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 4,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "46",
+          "color": "Vert sapin",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 0,
+            "gerland": 3
+          }
+        }
+      ]
+    },
+    {
+      "slug": "brisa-torrent",
+      "name": "Torrent",
+      "brand": "Brisa",
+      "categorySlugs": ["chaussures-trail"],
+      "priceCents": 14990,
+      "shortDescription": "Trail imperméable pour les sorties sous la pluie et dans la boue.",
+      "description": "Le Torrent a une membrane imperméable qui garde le pied au sec par temps pluvieux. Les crampons de 5 mm dégagent bien la boue. Le chaussant est un peu plus chaud, à garder pour l'automne et l'hiver. Le drop est de 6 mm. Elle pèse 310 g en pointure 42.",
+      "attributes": {
+        "drop": "6 mm",
+        "poids": "310 g",
+        "terrain": "Trail boueux",
+        "crampons": "5 mm",
+        "membrane": "Imperméable"
+      },
+      "variants": [
+        {
+          "size": "39",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 3,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "40",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 2,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "41",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "42",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 4,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "43",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "44",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 4,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "45",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 2,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "46",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 2,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "39",
+          "color": "Bleu pétrole",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 4,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "40",
+          "color": "Bleu pétrole",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 4,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "41",
+          "color": "Bleu pétrole",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 6,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "42",
+          "color": "Bleu pétrole",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 4,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "43",
+          "color": "Bleu pétrole",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 5,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "44",
+          "color": "Bleu pétrole",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 1,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "45",
+          "color": "Bleu pétrole",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 3,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "46",
+          "color": "Bleu pétrole",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        }
+      ]
+    },
+    {
+      "slug": "altivo-tee-souffle-homme",
+      "name": "Tee-shirt Souffle",
+      "brand": "Altivo",
+      "categorySlugs": ["textile-homme"],
+      "priceCents": 3490,
+      "shortDescription": "Tee-shirt respirant en fibres recyclées, léger et sans couture irritante.",
+      "description": "Le tee-shirt Souffle évacue la transpiration vite et sèche en quelques minutes. Les coutures plates évitent les frottements. Un traitement limite les odeurs après plusieurs sorties. Il se porte seul l'été ou sous une veste. Coupe ajustée, tissu recyclé à 70 %.",
+      "attributes": {
+        "matiere": "Polyester recyclé",
+        "coupe": "Ajustée",
+        "usage": "Toute saison"
+      },
+      "variants": [
+        {
+          "size": "XS",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 4,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "S",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "M",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 1,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "L",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 1,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Bleu nuit",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 0,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "XS",
+          "color": "Gris chiné",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 1,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "S",
+          "color": "Gris chiné",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "M",
+          "color": "Gris chiné",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "L",
+          "color": "Gris chiné",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 3,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Gris chiné",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 2,
+            "gerland": 0
+          }
+        }
+      ]
+    },
+    {
+      "slug": "brisa-short-foulee-homme",
+      "name": "Short Foulée 5\"",
+      "brand": "Brisa",
+      "categorySlugs": ["textile-homme"],
+      "priceCents": 3990,
+      "shortDescription": "Short léger avec slip intégré et poche zippée pour les clés.",
+      "description": "Le short Foulée 5\" mesure environ 13 cm d'entrejambe. Un slip intégré maintient et limite les frottements. La poche zippée dans le dos garde clés et carte. La ceinture plate se règle avec un cordon. Le tissu est très léger.",
+      "attributes": {
+        "matiere": "Polyester",
+        "longueur": "5 pouces",
+        "poches": "Dos zippée"
+      },
+      "variants": [
+        {
+          "size": "XS",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "S",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "M",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 6,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "L",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 3,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "XS",
+          "color": "Vert sapin",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 1,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "S",
+          "color": "Vert sapin",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 6,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "M",
+          "color": "Vert sapin",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 6,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "L",
+          "color": "Vert sapin",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Vert sapin",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        }
+      ]
+    },
+    {
+      "slug": "nordane-collant-hiver-homme",
+      "name": "Collant Hiver",
+      "brand": "Nordane",
+      "categorySlugs": ["textile-homme"],
+      "priceCents": 5990,
+      "shortDescription": "Collant chaud et fin pour courir par temps froid, de 0 à 10 degrés.",
+      "description": "Le collant Hiver a un intérieur légèrement gratté qui garde la chaleur. Il reste fin, donc il ne gêne pas la foulée. Des fermetures aux chevilles facilitent l'enfilage avec les chaussures. Des bandes réfléchissantes améliorent la visibilité de nuit.",
+      "attributes": {
+        "matiere": "Polyamide, élasthanne",
+        "temperature": "0 à 10 °C",
+        "reflechissant": "Oui"
+      },
+      "variants": [
+        {
+          "size": "XS",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "S",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 1,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "M",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 1,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "L",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 6,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 4,
+            "gerland": 1
+          }
+        }
+      ]
+    },
+    {
+      "slug": "verglas-veste-coupe-vent-homme",
+      "name": "Veste Rafale",
+      "brand": "Verglas",
+      "categorySlugs": ["textile-homme"],
+      "priceCents": 8990,
+      "shortDescription": "Coupe-vent ultra léger qui se range dans une poche, protège du vent et des averses.",
+      "description": "La veste Rafale pèse 110 g et se plie dans sa propre poche. Elle coupe le vent et résiste à une averse courte. Des aérations dans le dos limitent la surchauffe. Une capuche ajustable se range dans le col. Idéale en demi-saison ou en sac de trail.",
+      "attributes": {
+        "matiere": "Nylon ripstop",
+        "poids": "110 g",
+        "impermeabilite": "Déperlant"
+      },
+      "variants": [
+        {
+          "size": "XS",
+          "color": "Orange vif",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 6,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "S",
+          "color": "Orange vif",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "M",
+          "color": "Orange vif",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 1,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "L",
+          "color": "Orange vif",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Orange vif",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "XS",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "S",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "M",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "L",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 5,
+            "gerland": 0
+          }
+        }
+      ]
+    },
+    {
+      "slug": "cairn-manches-longues-homme",
+      "name": "Maillot Manches Longues Brume",
+      "brand": "Cairn",
+      "categorySlugs": ["textile-homme"],
+      "priceCents": 4490,
+      "shortDescription": "Maillot à manches longues, doux et chaud, pour l'automne et le printemps.",
+      "description": "Le maillot Brume garde la chaleur sans surchauffer grâce à une maille fine. Le col zippé court permet de régler l'aération. Les pouces peuvent passer dans des passants pour couvrir le dos des mains. Les coutures sont plates pour éviter les irritations.",
+      "attributes": {
+        "matiere": "Polyester, laine mérinos",
+        "coupe": "Ajustée",
+        "usage": "Automne, printemps"
+      },
+      "variants": [
+        {
+          "size": "XS",
+          "color": "Gris chiné",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 2,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "S",
+          "color": "Gris chiné",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "M",
+          "color": "Gris chiné",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "L",
+          "color": "Gris chiné",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 1,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Gris chiné",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 2,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "XS",
+          "color": "Bleu pétrole",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "S",
+          "color": "Bleu pétrole",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 4,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "M",
+          "color": "Bleu pétrole",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 4,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "L",
+          "color": "Bleu pétrole",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 1,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Bleu pétrole",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 0,
+            "gerland": 1
+          }
+        }
+      ]
+    },
+    {
+      "slug": "ondine-debardeur-homme",
+      "name": "Débardeur Zéphyr",
+      "brand": "Ondine",
+      "categorySlugs": ["textile-homme"],
+      "priceCents": 2490,
+      "shortDescription": "Débardeur très léger pour les fortes chaleurs et les séances de piste.",
+      "description": "Le débardeur Zéphyr laisse l'air circuler et sèche très vite. Il convient aux journées chaudes et aux séances rapides. La maille est ajourée dans le dos. Les emmanchures sont larges pour libérer les bras. Pensez à une crème solaire.",
+      "attributes": {
+        "matiere": "Polyester ajouré",
+        "coupe": "Droite",
+        "usage": "Été"
+      },
+      "variants": [
+        {
+          "size": "XS",
+          "color": "Blanc",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 0,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "S",
+          "color": "Blanc",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "M",
+          "color": "Blanc",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 1,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "L",
+          "color": "Blanc",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 4,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Blanc",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 0,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "XS",
+          "color": "Jaune citron",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 0,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "S",
+          "color": "Jaune citron",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "M",
+          "color": "Jaune citron",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 5,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "L",
+          "color": "Jaune citron",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 3,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Jaune citron",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 3,
+            "gerland": 2
+          }
+        }
+      ]
+    },
+    {
+      "slug": "altivo-tee-souffle-femme",
+      "name": "Tee-shirt Souffle Femme",
+      "brand": "Altivo",
+      "categorySlugs": ["textile-femme"],
+      "priceCents": 3490,
+      "shortDescription": "Tee-shirt respirant, coupe pensée pour la morphologie féminine.",
+      "description": "Le tee-shirt Souffle Femme évacue la transpiration et sèche vite. La coupe est ajustée à la taille et plus longue dans le dos. Les coutures plates limitent les frottements sous la bretelle de brassière. Le tissu est recyclé à 70 %. Il convient en toute saison.",
+      "attributes": {
+        "matiere": "Polyester recyclé",
+        "coupe": "Ajustée",
+        "usage": "Toute saison"
+      },
+      "variants": [
+        {
+          "size": "XS",
+          "color": "Corail",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 4,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "S",
+          "color": "Corail",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 6,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "M",
+          "color": "Corail",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "L",
+          "color": "Corail",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 3,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Corail",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 1,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "XS",
+          "color": "Gris chiné",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 6,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "S",
+          "color": "Gris chiné",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 5,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "M",
+          "color": "Gris chiné",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 3,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "L",
+          "color": "Gris chiné",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Gris chiné",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 0,
+            "gerland": 1
+          }
+        }
+      ]
+    },
+    {
+      "slug": "brisa-short-foulee-femme",
+      "name": "Short Foulée Femme",
+      "brand": "Brisa",
+      "categorySlugs": ["textile-femme"],
+      "priceCents": 3990,
+      "shortDescription": "Short léger avec slip intégré et poche pour le téléphone.",
+      "description": "Le short Foulée Femme a une ceinture haute qui ne roule pas. Le slip intégré évite les frottements. La poche latérale accueille un téléphone sans rebondir. Le tissu est léger et sèche vite. La coupe est près du corps sans serrer.",
+      "attributes": {
+        "matiere": "Polyester",
+        "longueur": "4 pouces",
+        "poches": "Latérale"
+      },
+      "variants": [
+        {
+          "size": "XS",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 6,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "S",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 6,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "M",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 2,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "L",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 0,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "XS",
+          "color": "Violet nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "S",
+          "color": "Violet nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 6,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "M",
+          "color": "Violet nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "L",
+          "color": "Violet nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Violet nuit",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 6,
+            "gerland": 0
+          }
+        }
+      ]
+    },
+    {
+      "slug": "nordane-collant-7-8-femme",
+      "name": "Collant 7/8 Maintien",
+      "brand": "Nordane",
+      "categorySlugs": ["textile-femme"],
+      "priceCents": 5490,
+      "shortDescription": "Collant 7/8 avec bon maintien et poche de ceinture, pour courir toute l'année.",
+      "description": "Le collant 7/8 s'arrête au-dessus de la cheville. Le tissu est compressif et reste opaque à l'étirement. La ceinture large soutient le ventre. Une poche dans la ceinture garde clés et carte. Il convient de 8 à 20 degrés.",
+      "attributes": {
+        "matiere": "Polyamide, élasthanne",
+        "longueur": "7/8",
+        "poches": "Ceinture"
+      },
+      "variants": [
+        {
+          "size": "XS",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "S",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "M",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 3,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "L",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 1,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 2,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "XS",
+          "color": "Bleu marine",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "S",
+          "color": "Bleu marine",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "M",
+          "color": "Bleu marine",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 3,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "L",
+          "color": "Bleu marine",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 5,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Bleu marine",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 4
+          }
+        }
+      ]
+    },
+    {
+      "slug": "verglas-veste-coupe-vent-femme",
+      "name": "Veste Rafale Femme",
+      "brand": "Verglas",
+      "categorySlugs": ["textile-femme"],
+      "priceCents": 8990,
+      "shortDescription": "Coupe-vent léger et déperlant, qui se range dans une poche.",
+      "description": "La veste Rafale Femme pèse 105 g et se range dans sa poche. Elle coupe le vent et repousse une averse courte. La coupe suit la taille et laisse de la place aux épaules. Des bandes réfléchissantes améliorent la visibilité. La capuche se règle avec un cordon.",
+      "attributes": {
+        "matiere": "Nylon ripstop",
+        "poids": "105 g",
+        "impermeabilite": "Déperlant"
+      },
+      "variants": [
+        {
+          "size": "XS",
+          "color": "Vert olive",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 2,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "S",
+          "color": "Vert olive",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "M",
+          "color": "Vert olive",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 3,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "L",
+          "color": "Vert olive",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 2,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Vert olive",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 1,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "XS",
+          "color": "Corail",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 5,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "S",
+          "color": "Corail",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 0,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "M",
+          "color": "Corail",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 5,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "L",
+          "color": "Corail",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Corail",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 2,
+            "gerland": 0
+          }
+        }
+      ]
+    },
+    {
+      "slug": "cairn-brassiere-sport-femme",
+      "name": "Brassière Appui",
+      "brand": "Cairn",
+      "categorySlugs": ["textile-femme"],
+      "priceCents": 3990,
+      "shortDescription": "Brassière à maintien élevé, dos nageur et bretelles larges.",
+      "description": "La brassière Appui offre un maintien élevé pour la course à pied. Le dos nageur et les bretelles larges répartissent la pression. Les bonnets sont moulés, sans armature. La bande sous la poitrine ne remonte pas. Elle sèche vite après l'effort.",
+      "attributes": {
+        "matiere": "Polyamide, élasthanne",
+        "maintien": "Élevé",
+        "dos": "Nageur"
+      },
+      "variants": [
+        {
+          "size": "XS",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 4,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "S",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 2,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "M",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 1,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "L",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 6,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "XS",
+          "color": "Sable",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 5,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "S",
+          "color": "Sable",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 6,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "M",
+          "color": "Sable",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 5,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "L",
+          "color": "Sable",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 1,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Sable",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 5,
+            "gerland": 0
+          }
+        }
+      ]
+    },
+    {
+      "slug": "ondine-manches-longues-femme",
+      "name": "Maillot Manches Longues Brume Femme",
+      "brand": "Ondine",
+      "categorySlugs": ["textile-femme"],
+      "priceCents": 4490,
+      "shortDescription": "Maillot à manches longues, doux et chaud, pour l'automne et le printemps.",
+      "description": "Le maillot Brume Femme garde la chaleur sans surchauffer. Le col zippé court règle l'aération. Les passants pour les pouces couvrent le dos des mains. La coupe est ajustée, légèrement plus longue dans le dos. Les coutures sont plates.",
+      "attributes": {
+        "matiere": "Polyester, laine mérinos",
+        "coupe": "Ajustée",
+        "usage": "Automne, printemps"
+      },
+      "variants": [
+        {
+          "size": "XS",
+          "color": "Violet nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 1,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "S",
+          "color": "Violet nuit",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "M",
+          "color": "Violet nuit",
+          "stock": {
+            "croix-rousse": 1,
+            "part-dieu": 2,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "L",
+          "color": "Violet nuit",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 3,
+            "gerland": 1
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Violet nuit",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 2,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "XS",
+          "color": "Gris chiné",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 0,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "S",
+          "color": "Gris chiné",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 3,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "M",
+          "color": "Gris chiné",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 6,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "L",
+          "color": "Gris chiné",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 2,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "XL",
+          "color": "Gris chiné",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 4,
+            "gerland": 0
+          }
+        }
+      ]
+    },
+    {
+      "slug": "altivo-gel-energie",
+      "name": "Gel Énergie",
+      "brand": "Altivo",
+      "categorySlugs": ["nutrition"],
+      "priceCents": 290,
+      "shortDescription": "Gel de glucides facile à avaler, pour tenir sur les sorties de plus d'une heure.",
+      "description": "Le gel Énergie apporte environ 22 g de glucides par sachet. Prenez-en un toutes les 40 minutes après la première heure, avec quelques gorgées d'eau. La texture est fluide et le sachet s'ouvre d'une main. Il ne contient ni colorant ni conservateur ajouté.",
+      "attributes": {
+        "glucides": "22 g par gel",
+        "contenance": "35 g",
+        "usage": "Pendant l'effort"
+      },
+      "variants": [
+        {
+          "size": "Unité",
+          "color": "Citron",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 1,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "Unité",
+          "color": "Fruits rouges",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 1,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "Boîte de 12",
+          "color": "Citron",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "Boîte de 12",
+          "color": "Fruits rouges",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 2,
+            "gerland": 1
+          }
+        }
+      ]
+    },
+    {
+      "slug": "sentier-barre-avoine",
+      "name": "Barre Avoine et Miel",
+      "brand": "Sentier",
+      "categorySlugs": ["nutrition"],
+      "priceCents": 290,
+      "shortDescription": "Barre moelleuse à base d'avoine, facile à manger en marchant ou en courant.",
+      "description": "Cette barre contient avoine, miel et amandes. Elle se mange pendant les longues sorties de trail ou avant le départ. Elle apporte environ 25 g de glucides et reste tendre même par temps froid. Comptez une barre toutes les 45 à 60 minutes.",
+      "attributes": {
+        "glucides": "25 g par barre",
+        "poids": "40 g",
+        "usage": "Avant et pendant"
+      },
+      "variants": [
+        {
+          "size": "Unité",
+          "color": "Miel",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 1,
+            "gerland": 2
+          }
+        },
+        {
+          "size": "Boîte de 12",
+          "color": "Miel",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 0,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "Boîte de 12",
+          "color": "Chocolat",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 1,
+            "gerland": 0
+          }
+        }
+      ]
+    },
+    {
+      "slug": "brisa-boisson-effort",
+      "name": "Boisson de l'Effort",
+      "brand": "Brisa",
+      "categorySlugs": ["nutrition"],
+      "priceCents": 1890,
+      "shortDescription": "Poudre à diluer qui apporte glucides et sels minéraux pendant la course.",
+      "description": "La Boisson de l'Effort remplace l'eau seule sur les sorties de plus d'une heure. Elle apporte des glucides et du sodium, pour limiter les crampes. Diluez 40 g dans 500 ml d'eau. Le pot de 600 g donne environ 15 gourdes.",
+      "attributes": {
+        "glucides": "30 g par gourde",
+        "contenance": "600 g",
+        "usage": "Pendant l'effort"
+      },
+      "variants": [
+        {
+          "size": "Pot de 600 g",
+          "color": "Citron",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "Pot de 600 g",
+          "color": "Orange",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 0,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "Pot de 600 g",
+          "color": "Neutre",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        }
+      ]
+    },
+    {
+      "slug": "cairn-electrolytes",
+      "name": "Comprimés Électrolytes",
+      "brand": "Cairn",
+      "categorySlugs": ["nutrition"],
+      "priceCents": 990,
+      "shortDescription": "Comprimés effervescents pour remplacer les sels perdus par la sueur.",
+      "description": "Les comprimés Électrolytes apportent sodium, potassium et magnésium. Ils sont utiles par forte chaleur ou sur les efforts longs. Dissolvez un comprimé dans 500 ml d'eau. Le tube contient 10 comprimés. Ils contiennent peu de sucre.",
+      "attributes": {
+        "contenance": "10 comprimés",
+        "sucres": "Moins de 1 g",
+        "usage": "Pendant l'effort"
+      },
+      "variants": [
+        {
+          "size": "Tube de 10",
+          "color": "Citron vert",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "Tube de 10",
+          "color": "Pamplemousse",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "Boîte de 4 tubes",
+          "color": "Citron vert",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        }
+      ]
+    },
+    {
+      "slug": "ondine-recuperation",
+      "name": "Poudre de Récupération",
+      "brand": "Ondine",
+      "categorySlugs": ["nutrition"],
+      "priceCents": 3490,
+      "shortDescription": "Boisson protéinée à prendre après la séance pour aider les muscles à récupérer.",
+      "description": "La Poudre de Récupération associe protéines et glucides dans un rapport adapté après l'effort. Buvez-la dans les 30 minutes qui suivent la séance. Diluez 40 g dans 300 ml d'eau ou de lait. Le pot de 900 g donne environ 22 portions.",
+      "attributes": {
+        "proteines": "20 g par portion",
+        "contenance": "900 g",
+        "usage": "Après l'effort"
+      },
+      "variants": [
+        {
+          "size": "Pot de 900 g",
+          "color": "Chocolat",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 6
+          }
+        },
+        {
+          "size": "Pot de 900 g",
+          "color": "Vanille",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 1,
+            "gerland": 4
+          }
+        }
+      ]
+    },
+    {
+      "slug": "nordane-frontale-sillon",
+      "name": "Frontale Sillon 400",
+      "brand": "Nordane",
+      "categorySlugs": ["accessoires"],
+      "priceCents": 5990,
+      "shortDescription": "Frontale rechargeable de 400 lumens pour courir de nuit sur route et sentier.",
+      "description": "La Sillon 400 éclaire jusqu'à 400 lumens, soit assez pour un sentier de nuit. Elle se recharge en USB et tient 6 heures à pleine puissance. Le bandeau est large et ne glisse pas. Le faisceau s'incline pour viser plus près ou plus loin. Elle pèse 85 g.",
+      "attributes": {
+        "puissance": "400 lumens",
+        "autonomie": "6 h",
+        "poids": "85 g",
+        "recharge": "USB-C"
+      },
+      "variants": [
+        {
+          "size": "Taille unique",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 5,
+            "part-dieu": 2,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "Taille unique",
+          "color": "Orange vif",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 2,
+            "gerland": 5
+          }
+        }
+      ]
+    },
+    {
+      "slug": "sentier-gourde-souple",
+      "name": "Gourde Souple 500 ml",
+      "brand": "Sentier",
+      "categorySlugs": ["accessoires"],
+      "priceCents": 1990,
+      "shortDescription": "Flasque souple qui se roule quand elle est vide, pour sac ou poche de trail.",
+      "description": "La gourde Souple contient 500 ml et se range dans la poche avant d'un sac de trail. Quand elle est vide, elle prend très peu de place. Le bouchon à valve s'ouvre avec les dents. Le matériau est sans bisphénol A. Elle pèse 40 g.",
+      "attributes": {
+        "contenance": "500 ml",
+        "poids": "40 g",
+        "bpa": "Sans"
+      },
+      "variants": [
+        {
+          "size": "500 ml",
+          "color": "Transparent",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 2,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "500 ml",
+          "color": "Bleu glacier",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 3,
+            "gerland": 4
+          }
+        }
+      ]
+    },
+    {
+      "slug": "cairn-sac-hydratation-10l",
+      "name": "Sac d'Hydratation 10 L",
+      "brand": "Cairn",
+      "categorySlugs": ["accessoires"],
+      "priceCents": 7990,
+      "shortDescription": "Sac de trail de 10 litres avec poche à eau de 1,5 litre incluse.",
+      "description": "Ce sac de 10 litres convient aux sorties de 2 à 5 heures. La poche à eau de 1,5 litre est fournie. Les bretelles en maille respirent et se règlent finement. Des poches à l'avant permettent de prendre gels et téléphone sans retirer le sac. Pesé à vide, il fait 380 g.",
+      "attributes": {
+        "volume": "10 L",
+        "poche": "1,5 L incluse",
+        "poids": "380 g"
+      },
+      "variants": [
+        {
+          "size": "S/M",
+          "color": "Gris pierre",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 4,
+            "gerland": 4
+          }
+        },
+        {
+          "size": "L",
+          "color": "Gris pierre",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "S/M",
+          "color": "Orange brûlé",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        }
+      ]
+    },
+    {
+      "slug": "brisa-chaussettes-run",
+      "name": "Chaussettes Run Confort",
+      "brand": "Brisa",
+      "categorySlugs": ["accessoires"],
+      "priceCents": 1290,
+      "shortDescription": "Chaussettes techniques sans couture épaisse, avec renfort talon et avant-pied.",
+      "description": "Les chaussettes Run Confort limitent les ampoules grâce à un tricot ajusté et des coutures plates. Le talon et l'avant-pied sont renforcés. La maille respire sur le dessus du pied. Elles gardent leur forme après de nombreux lavages. Vendues à l'unité (une paire).",
+      "attributes": {
+        "matiere": "Polyamide, coton",
+        "hauteur": "Cheville",
+        "lot": "1 paire"
+      },
+      "variants": [
+        {
+          "size": "S (35-38)",
+          "color": "Blanc",
+          "stock": {
+            "croix-rousse": 2,
+            "part-dieu": 0,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "M (39-42)",
+          "color": "Blanc",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 0,
+            "gerland": 5
+          }
+        },
+        {
+          "size": "L (43-46)",
+          "color": "Blanc",
+          "stock": {
+            "croix-rousse": 0,
+            "part-dieu": 1,
+            "gerland": 0
+          }
+        },
+        {
+          "size": "M (39-42)",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 3,
+            "part-dieu": 4,
+            "gerland": 1
+          }
+        }
+      ]
+    },
+    {
+      "slug": "altivo-ceinture-dossard",
+      "name": "Ceinture Porte-Dossard",
+      "brand": "Altivo",
+      "categorySlugs": ["accessoires"],
+      "priceCents": 1990,
+      "shortDescription": "Ceinture élastique avec attaches pour dossard, poche pour gels et clés.",
+      "description": "Cette ceinture évite de percer le dossard avec des épingles. Les quatre attaches le maintiennent à plat. Une poche zippée garde clés et gels. L'élastique se règle et ne rebondit pas pendant la course. Elle pèse 45 g.",
+      "attributes": {
+        "poids": "45 g",
+        "attaches": "4 pour dossard",
+        "poche": "Zippée"
+      },
+      "variants": [
+        {
+          "size": "S/M",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 4,
+            "part-dieu": 4,
+            "gerland": 3
+          }
+        },
+        {
+          "size": "L/XL",
+          "color": "Noir",
+          "stock": {
+            "croix-rousse": 6,
+            "part-dieu": 4,
+            "gerland": 6
+          }
+        }
+      ]
+    }
+  ]
+}
