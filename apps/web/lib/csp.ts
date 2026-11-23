@@ -7,7 +7,15 @@
  * imposent alors 'unsafe-inline' pour les scripts. Toutes les autres directives
  * sont strictes, et les domaines tiers sont limités au strict nécessaire.
  */
-export function buildCsp({ dev = false, preview = false } = {}): string {
+interface CspOptions {
+  dev?: boolean;
+  preview?: boolean;
+  /** Site servi en HTTPS (Vercel). Par défaut : vrai hors développement. */
+  https?: boolean;
+}
+
+export function buildCsp({ dev = false, preview = false, https }: CspOptions = {}): string {
+  const secure = https ?? !dev;
   const vercelLive = preview ? ["https://vercel.live"] : []; // barre d'outils des Previews
   const directives: Record<string, string[]> = {
     "default-src": ["'self'"],
@@ -29,6 +37,8 @@ export function buildCsp({ dev = false, preview = false } = {}): string {
     "frame-ancestors": ["'none'"],
   };
   const policy = Object.entries(directives).map(([name, values]) => `${name} ${values.join(" ")}`);
-  if (!dev) policy.push("upgrade-insecure-requests");
+  // Seulement quand le site est servi en HTTPS (Vercel) : en local et en CI (http://localhost),
+  // cette directive ferait échouer toutes les requêtes.
+  if (secure) policy.push("upgrade-insecure-requests");
   return policy.join("; ");
 }

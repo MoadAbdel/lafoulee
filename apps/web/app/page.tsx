@@ -10,7 +10,7 @@ export default function HomePage() {
     <>
       <section className="bg-asphalte text-craie">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:py-24">
-          <p className="font-display text-lg font-semibold uppercase tracking-widest text-balise">
+          <p className="font-display text-lg font-semibold uppercase tracking-widest text-balise-clair">
             Course à pied et trail, Lyon
           </p>
           <h1 className="mt-3 max-w-3xl font-display text-5xl font-bold uppercase leading-none sm:text-7xl">

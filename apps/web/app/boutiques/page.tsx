@@ -17,9 +17,28 @@ export default function StoresPage() {
       <p className="mt-2 max-w-2xl">
         Retrait gratuit de vos commandes, essayage et analyse de foulée par des vendeurs coureurs.
       </p>
-      <Suspense fallback={<p className="mt-6">Chargement des boutiques...</p>}>
+      <Suspense fallback={<StoresSkeleton />}>
         <Stores />
       </Suspense>
+    </div>
+  );
+}
+
+/** Réserve la place des 3 boutiques (évite le décalage de la page à leur arrivée). */
+function StoresSkeleton() {
+  return (
+    <div aria-busy="true">
+      <p className="sr-only" role="status">
+        Chargement des boutiques...
+      </p>
+      <ul aria-hidden="true" className="mt-8 space-y-10">
+        {[0, 1, 2].map((index) => (
+          <li key={index} className="grid gap-4 md:grid-cols-2">
+            <div className="h-40 bg-asphalte/5" />
+            <div className="aspect-video border border-asphalte/20 bg-craie" />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

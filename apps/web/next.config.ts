@@ -30,6 +30,7 @@ const nextConfig: NextConfig = {
     const csp = buildCsp({
       dev: process.env.NODE_ENV === "development",
       preview: process.env.VERCEL_ENV === "preview",
+      https: Boolean(process.env.VERCEL),
     });
     return [{ source: "/(.*)", headers: [{ key: "Content-Security-Policy", value: csp }] }];
   },

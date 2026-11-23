@@ -92,3 +92,73 @@ jobs:
       # L'API est volontairement injoignable : le build ne doit jamais l'appeler.
       - run: npm run build -w apps/web
         env: { API_INTERNAL_URL: "http://127.0.0.1:1" }
+
+  # Parcours réels dans un navigateur : API + site lancés sur des services éphémères.
+  e2e:
+    needs: quality
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env: { POSTGRES_USER: test, POSTGRES_PASSWORD: test, POSTGRES_DB: test }
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U test" --health-interval 5s --health-retries 10
+      redis:
+        image: redis:8-alpine
+        ports: ["6379:6379"]
+      redis-http:
+        image: hiett/serverless-redis-http:0.0.10
+        env:
+          SRH_MODE: env
+          SRH_TOKEN: test_token
+          SRH_CONNECTION_STRING: redis://redis:6379
+        ports: ["8079:80"]
+    env:
+      DATABASE_URL: postgresql://test:test@localhost:5432/test
+      UPSTASH_REDIS_REST_URL: http://localhost:8079
+      UPSTASH_REDIS_REST_TOKEN: test_token
+      CRON_SECRET: ci-cron-secret-0123456789
+      STRIPE_SECRET_KEY: sk_test_ci_factice # TE01 (paiement) est sauté sans vraie clé de test
+      API_DEV_URL: http://localhost:4000
+      BASE_URL: http://localhost:3000
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with: { node-version: 24, cache: npm }
+      - run: npm ci
+      - name: Clés de test éphémères
+        run: |
+          node -e '
+          const c = require("node:crypto");
+          const { privateKey, publicKey } = c.generateKeyPairSync("ec", { namedCurve: "P-256" });
+          const b = (s) => Buffer.from(s).toString("base64");
+          console.log("JWT_PRIVATE_KEY_B64=" + b(privateKey.export({ type: "pkcs8", format: "pem" })));
+          console.log("JWT_PUBLIC_KEY_B64=" + b(publicKey.export({ type: "spki", format: "pem" })));
+          console.log("TOTP_ENC_KEY=" + c.randomBytes(32).toString("base64"));
+          ' >> "$GITHUB_ENV"
+      - run: npm run build -w apps/api # construit aussi le paquet partagé et le client Prisma
+      - run: npm exec -w apps/api -- prisma migrate deploy
+      - run: npm exec -w apps/api -- prisma db seed
+      - run: npm run build -w apps/web
+      - name: Lancement de l'API et du site
+        run: |
+          (cd apps/api && NODE_ENV=production node dist/main.js > ../../api.log 2>&1 &) # comme en production
+          (npm run start -w apps/web -- -p 3000 > web.log 2>&1 &)
+          npx wait-on -t 120000 http://localhost:4000/api/v1/health http://localhost:3000
+      - run: npx playwright install --with-deps chromium firefox webkit
+        working-directory: apps/web
+      - run: npx playwright test # TE, TA (axe-core), TS, TC01 sur 3 moteurs + mobile
+        working-directory: apps/web
+      - run: npx lhci autorun # Lighthouse : seuils SEO, accessibilité, bonnes pratiques
+      - if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: rapports-e2e
+          path: |
+            apps/web/playwright-report
+            apps/web/test-results
+            api.log
+            web.log
+            .lighthouseci
+          retention-days: 7
