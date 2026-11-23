@@ -32,6 +32,13 @@ describe("loadEnv (validation de la configuration)", () => {
     }
   });
 
+  it("accepte les noms de variables de l'intégration Upstash du Marketplace (KV_REST_API_*)", () => {
+    const { UPSTASH_REDIS_REST_URL: _u, UPSTASH_REDIS_REST_TOKEN: _t, ...rest } = valid;
+    const config = loadEnv({ ...rest, KV_REST_API_URL: "https://eu.upstash.io", KV_REST_API_TOKEN: "kv-token" });
+    expect(config.UPSTASH_REDIS_REST_URL).toBe("https://eu.upstash.io");
+    expect(config.UPSTASH_REDIS_REST_TOKEN).toBe("kv-token");
+  });
+
   it("en Preview sans APP_ORIGIN, utilise l'URL de branche Vercel", () => {
     const config = loadEnv({ ...valid, VERCEL_BRANCH_URL: "lafoulee-git-feat-moadabdels-projects.vercel.app" });
     expect(config.APP_ORIGIN).toBe("https://lafoulee-git-feat-moadabdels-projects.vercel.app");

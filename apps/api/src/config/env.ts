@@ -44,7 +44,13 @@ export function loadEnv(source: NodeJS.ProcessEnv = process.env): Env {
   if (source === process.env) loadLocalEnvFile();
   // Déploiement Preview sans APP_ORIGIN : on prend l'URL stable de la branche.
   const appOrigin = source.APP_ORIGIN ?? (source.VERCEL_BRANCH_URL ? `https://${source.VERCEL_BRANCH_URL}` : undefined);
-  const result = envSchema.safeParse({ ...source, APP_ORIGIN: appOrigin });
+  const result = envSchema.safeParse({
+    ...source,
+    APP_ORIGIN: appOrigin,
+    // L'intégration Upstash du Marketplace Vercel nomme ses variables KV_REST_API_*.
+    UPSTASH_REDIS_REST_URL: source.UPSTASH_REDIS_REST_URL ?? source.KV_REST_API_URL,
+    UPSTASH_REDIS_REST_TOKEN: source.UPSTASH_REDIS_REST_TOKEN ?? source.KV_REST_API_TOKEN,
+  });
   if (!result.success) {
     const problems = result.error.issues.map((issue) => `${issue.path.join(".")} : ${issue.message}`);
     throw new Error(`Configuration invalide :\n- ${problems.join("\n- ")}`);
