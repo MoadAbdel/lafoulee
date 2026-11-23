@@ -55,6 +55,16 @@ export class PaymentsController {
       throw error;
     }
 
+    if (event.type === "charge.refunded") {
+      const charge = event.data.object as Stripe.Charge;
+      const intentId = typeof charge.payment_intent === "string" ? charge.payment_intent : charge.payment_intent?.id;
+      const payment = intentId
+        ? await this.prisma.payment.findUnique({ where: { stripePaymentIntentId: intentId } })
+        : null;
+      if (payment && charge.refunded) await this.orders.markRefunded(payment.orderId);
+      return { received: true };
+    }
+
     if (event.type.startsWith("payment_intent.")) {
       const intent = event.data.object as Stripe.PaymentIntent;
       const payment = await this.prisma.payment.findUnique({ where: { stripePaymentIntentId: intent.id } });

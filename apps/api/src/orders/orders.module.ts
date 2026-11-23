@@ -14,5 +14,6 @@ import { StockService } from "./stock.service.js";
   imports: [CartModule],
   controllers: [OrdersController, PaymentsController, InternalController],
   providers: [OrdersService, StockService, StripeGateway, OrderEventsPublisher, NotificationsService],
+  exports: [OrdersService, StripeGateway],
 })
 export class OrdersModule {}

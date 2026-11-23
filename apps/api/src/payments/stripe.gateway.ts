@@ -51,6 +51,14 @@ export class StripeGateway {
     return (await this.stripe.paymentIntents.cancel(paymentIntentId)).status;
   }
 
+  /** Remboursement intégral (back-office). La clé d'idempotence évite un double remboursement. */
+  async refund(paymentIntentId: string): Promise<void> {
+    await this.stripe.refunds.create(
+      { payment_intent: paymentIntentId },
+      { idempotencyKey: `refund-${paymentIntentId}` },
+    );
+  }
+
   /** Vérifie la signature du webhook (corps brut + secret du point de terminaison). */
   verifyWebhook(rawBody: Buffer, signature: string): Stripe.Event {
     if (!this.config.STRIPE_WEBHOOK_SECRET) {

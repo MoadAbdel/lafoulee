@@ -33,8 +33,19 @@ export class FakeStripeGateway {
     return Promise.resolve(intent?.status ?? "canceled");
   }
 
+  readonly refunds: string[] = [];
+  refund(id: string): Promise<void> {
+    this.refunds.push(id);
+    return Promise.resolve();
+  }
+
   verifyWebhook(rawBody: Buffer, signature: string): Stripe.Event {
     return stripe.webhooks.constructEvent(rawBody, signature, TEST_WEBHOOK_SECRET);
+  }
+
+  /** Signe un corps d'événement quelconque, comme Stripe le ferait. */
+  signedEventFromPayload(payload: string) {
+    return { payload, header: stripe.webhooks.generateTestHeaderString({ payload, secret: TEST_WEBHOOK_SECRET }) };
   }
 
   /** Construit un événement Stripe signé, comme Stripe l'enverrait. */

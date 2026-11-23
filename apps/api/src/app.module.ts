@@ -1,4 +1,6 @@
 import { Module } from "@nestjs/common";
+import { AdminModule } from "./admin/admin.module.js";
+import { AuditModule } from "./audit/audit.module.js";
 import { AuthModule } from "./auth/auth.module.js";
 import { CartModule } from "./cart/cart.module.js";
 import { CatalogModule } from "./catalog/catalog.module.js";
@@ -19,6 +21,8 @@ import { RedisModule } from "./redis/redis.module.js";
     CatalogModule,
     CartModule,
     OrdersModule,
+    AuditModule,
+    AdminModule,
     HealthModule,
   ],
 })
