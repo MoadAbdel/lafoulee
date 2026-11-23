@@ -115,7 +115,6 @@ jobs:
           SRH_CONNECTION_STRING: redis://redis:6379
         ports: ["8079:80"]
     env:
-      NODE_ENV: production
       DATABASE_URL: postgresql://test:test@localhost:5432/test
       UPSTASH_REDIS_REST_URL: http://localhost:8079
       UPSTASH_REDIS_REST_TOKEN: test_token
@@ -144,7 +143,7 @@ jobs:
       - run: npm run build -w apps/web
       - name: Lancement de l'API et du site
         run: |
-          (cd apps/api && node dist/main.js > ../../api.log 2>&1 &)
+          (cd apps/api && NODE_ENV=production node dist/main.js > ../../api.log 2>&1 &) # comme en production
           (npm run start -w apps/web -- -p 3000 > web.log 2>&1 &)
           npx wait-on -t 120000 http://localhost:4000/api/v1/health http://localhost:3000
       - run: npx playwright install --with-deps chromium firefox webkit
