@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import { formatPrice, type OrderDto } from "@lafoulee/shared";
 import { getMyOrders, getSession } from "@/lib/session";
 import { LogoutButton } from "./logout-button";
+import { MyData } from "./my-data";
 import { RefreshSession } from "./refresh-session";
 
 export const metadata: Metadata = { title: "Mon compte", robots: { index: false } };
@@ -44,6 +45,7 @@ async function Account() {
         </Link>
       )}
       <OrderHistory orders={await getMyOrders()} />
+      {user.role !== "ADMIN" && <MyData />}
       <div className="mt-8 max-w-xs">
         <LogoutButton />
       </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Barlow_Condensed } from "next/font/google";
+import { ConsentBanner } from "@/components/consent-banner";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <SiteFooter />
+        <ConsentBanner />
       </body>
     </html>
   );

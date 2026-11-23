@@ -48,4 +48,6 @@ export interface GdprRequestDto {
   createdAt: string;
   dueAt: string;
   closedAt: string | null;
+  /** Demande ouverte dont l'échéance d'un mois est dépassée. */
+  overdue: boolean;
 }

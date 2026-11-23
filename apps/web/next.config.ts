@@ -1,6 +1,7 @@
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import type { NextConfig } from "next";
+import { buildCsp } from "./lib/csp";
 
 // En local (hors Vercel), lit le .env.local partagé à la racine du dépôt.
 const rootEnv = resolve(import.meta.dirname, "../../.env.local");
@@ -24,6 +25,13 @@ const nextConfig: NextConfig = {
         as: "*.css",
       },
     },
+  },
+  async headers() {
+    const csp = buildCsp({
+      dev: process.env.NODE_ENV === "development",
+      preview: process.env.VERCEL_ENV === "preview",
+    });
+    return [{ source: "/(.*)", headers: [{ key: "Content-Security-Policy", value: csp }] }];
   },
   async rewrites() {
     return localApi ? [{ source: "/api/v1/:path*", destination: `${localApi}/api/v1/:path*` }] : [];

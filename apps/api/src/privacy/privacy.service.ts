@@ -206,6 +206,7 @@ export class PrivacyService {
       createdAt: row.createdAt.toISOString(),
       dueAt: row.dueAt.toISOString(),
       closedAt: row.closedAt?.toISOString() ?? null,
+      overdue: row.status === "OPEN" && row.dueAt < new Date(),
     }));
   }
 
@@ -250,6 +251,7 @@ export class PrivacyService {
       createdAt: row.createdAt.toISOString(),
       dueAt: row.dueAt.toISOString(),
       closedAt: row.closedAt?.toISOString() ?? null,
+      overdue: row.status === "OPEN" && row.dueAt < new Date(),
     };
   }
 
