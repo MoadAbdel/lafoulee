@@ -4,6 +4,7 @@ import { env } from "../src/config/env.js";
 import { PasswordService } from "../src/auth/password.service.js";
 import { CART_TTL_SECONDS } from "../src/cart/cart.service.js";
 import { createTestApp, resetRateLimits, uniqueEmail, type TestApp } from "./helpers.js";
+import { redisKey } from "../src/redis/redis-key.js";
 
 const PASSWORD = "Foulee-2026-lyon";
 
@@ -121,7 +122,7 @@ describe("Commande et paiement (e2e)", () => {
       const cookie = (res.headers["set-cookie"] as unknown as string[]).find((c) => c.startsWith("lf_cart="))!;
       expect(cookie).toMatch(/HttpOnly/);
       expect(cookie).toMatch(/Path=\/api\/v1/);
-      const ttl = await t.redis.ttl(`cart:${cookie.split(";")[0]!.slice("lf_cart=".length)}`);
+      const ttl = await t.redis.ttl(redisKey("cart", cookie.split(";")[0]!.slice("lf_cart=".length)));
       expect(ttl).toBeGreaterThan(CART_TTL_SECONDS - 60);
     });
 

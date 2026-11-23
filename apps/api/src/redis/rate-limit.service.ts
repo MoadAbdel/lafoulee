@@ -1,6 +1,7 @@
 import { HttpException, HttpStatus, Inject, Injectable } from "@nestjs/common";
 import type { Redis } from "@upstash/redis";
 import { REDIS } from "./redis.constants.js";
+import { redisKey } from "./redis-key.js";
 
 const UNITS = { s: 1, m: 60, h: 3600 } as const;
 type Duration = `${number} ${keyof typeof UNITS}`;
@@ -34,7 +35,7 @@ export class RateLimitService {
     const nowSeconds = now / 1000;
     const index = Math.floor(nowSeconds / size);
     const elapsedRatio = (nowSeconds - index * size) / size;
-    const base = `ratelimit:${name}:${identifier}`;
+    const base = redisKey("ratelimit", name, identifier);
 
     const pipeline = this.redis.pipeline();
     pipeline.incr(`${base}:${index}`);

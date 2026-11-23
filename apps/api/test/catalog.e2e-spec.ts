@@ -1,6 +1,7 @@
 import request from "supertest";
 import type { ProductDetailDto, ProductListDto } from "@lafoulee/shared";
 import { createTestApp, type TestApp } from "./helpers.js";
+import { redisKey } from "../src/redis/redis-key.js";
 
 /** Nécessite la base de démonstration (npx prisma db seed). */
 describe("Catalogue (e2e)", () => {
@@ -81,7 +82,7 @@ describe("Catalogue (e2e)", () => {
       where: { variantId_storeId: { variantId: variant.id, storeId: stock.storeId } },
       data: { reserved: 1 },
     });
-    await t.redis.incr("cache-version:catalog");
+    await t.redis.incr(redisKey("cache-version", "catalog"));
     try {
       const product = (await http().get(`/api/v1/products/${variant.product.slug}`).expect(200))
         .body as ProductDetailDto;
@@ -92,7 +93,7 @@ describe("Catalogue (e2e)", () => {
         where: { variantId_storeId: { variantId: variant.id, storeId: stock.storeId } },
         data: { reserved: 0 },
       });
-      await t.redis.incr("cache-version:catalog");
+      await t.redis.incr(redisKey("cache-version", "catalog"));
     }
   });
 

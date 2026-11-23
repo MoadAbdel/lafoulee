@@ -39,7 +39,7 @@ export async function createTestApp(): Promise<TestApp> {
 export async function resetRateLimits(redis: Redis): Promise<void> {
   let cursor = "0";
   do {
-    const [next, keys] = await redis.scan(cursor, { match: "ratelimit:*", count: 500 });
+    const [next, keys] = await redis.scan(cursor, { match: "*ratelimit:*", count: 500 });
     if (keys.length) await redis.del(...keys);
     cursor = String(next);
   } while (cursor !== "0");

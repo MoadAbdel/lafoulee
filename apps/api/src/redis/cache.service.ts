@@ -1,6 +1,7 @@
 import { Inject, Injectable, Logger } from "@nestjs/common";
 import type { Redis } from "@upstash/redis";
 import { REDIS } from "./redis.constants.js";
+import { redisKey } from "./redis-key.js";
 
 /**
  * Cache des lectures fréquentes (dossier, C21 et C22 : écoconception).
@@ -18,8 +19,8 @@ export class CacheService {
   async getOrSet<T>(namespace: string, key: string, ttlSeconds: number, load: () => Promise<T>): Promise<T> {
     let fullKey: string | null = null;
     try {
-      const version = (await this.redis.get<number>(`cache-version:${namespace}`)) ?? 0;
-      fullKey = `cache:${namespace}:v${version}:${key}`;
+      const version = (await this.redis.get<number>(redisKey("cache-version", namespace))) ?? 0;
+      fullKey = redisKey("cache", namespace, `v${version}`, key);
       const hit = await this.redis.get<T>(fullKey);
       if (hit !== null) return hit;
     } catch (error) {
@@ -38,6 +39,6 @@ export class CacheService {
   }
 
   async invalidate(namespace: string): Promise<void> {
-    await this.redis.incr(`cache-version:${namespace}`);
+    await this.redis.incr(redisKey("cache-version", namespace));
   }
 }

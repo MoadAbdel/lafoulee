@@ -3,6 +3,7 @@ import type { Redis } from "@upstash/redis";
 import { MAX_QUANTITY_PER_LINE, type CartDto, type CartLineDto } from "@lafoulee/shared";
 import { PrismaService } from "../prisma/prisma.service.js";
 import { REDIS } from "../redis/redis.constants.js";
+import { redisKey } from "../redis/redis-key.js";
 
 export const CART_TTL_SECONDS = 30 * 24 * 3600;
 
@@ -17,7 +18,7 @@ export class CartService {
   ) {}
 
   private key(cartId: string): string {
-    return `cart:${cartId}`;
+    return redisKey("cart", cartId);
   }
 
   async getItems(cartId: string | undefined): Promise<CartItems> {
