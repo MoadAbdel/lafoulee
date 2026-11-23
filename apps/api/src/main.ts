@@ -12,4 +12,9 @@ async function bootstrap() {
   app.enableShutdownHooks();
   await app.listen(process.env.PORT ?? 4000);
 }
-await bootstrap();
+// Pas de await au niveau du module : Vercel attend la fin du chargement du module
+// pour récupérer le serveur HTTP. Une erreur de démarrage arrête le processus.
+bootstrap().catch((error: unknown) => {
+  console.error(error);
+  process.exit(1);
+});
