@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { formatPrice, type OrderDto } from "@lafoulee/shared";
@@ -34,6 +35,14 @@ async function Account() {
         <dt className="font-semibold">Profil</dt>
         <dd>{user.role === "ADMIN" ? "Administrateur" : "Client"}</dd>
       </dl>
+      {user.role === "ADMIN" && (
+        <Link
+          href="/admin"
+          className="mt-6 inline-block min-h-11 content-center bg-asphalte px-5 font-semibold text-craie"
+        >
+          Accéder au back-office
+        </Link>
+      )}
       <OrderHistory orders={await getMyOrders()} />
       <div className="mt-8 max-w-xs">
         <LogoutButton />

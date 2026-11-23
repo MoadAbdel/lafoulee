@@ -89,13 +89,10 @@ export function CartView() {
                 <button
                   type="button"
                   onClick={() => void update(line, 0)}
+                  aria-label={`Retirer ${line.productName} ${line.size} du panier`}
                   className="min-h-11 text-sm underline underline-offset-4"
                 >
                   Retirer
-                  <span className="sr-only">
-                    {" "}
-                    {line.productName} {line.size}
-                  </span>
                 </button>
               </li>
             );

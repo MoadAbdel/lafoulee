@@ -6,7 +6,7 @@ const GUEST_ONLY = ["/connexion", "/inscription"];
 
 /**
  * Redirections selon la présence d'une session, avant tout rendu (code 307) :
- * - espace client sans aucun cookie de session : vers la connexion ;
+ * - espace client ou back-office sans aucun cookie de session : vers la connexion ;
  * - connexion ou inscription avec une session active : vers l'accueil.
  *
  * Pour la seconde règle, seul le cookie d'accès compte : il expire en même temps
@@ -18,7 +18,8 @@ export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const hasAccess = request.cookies.has(ACCESS_COOKIE);
 
-  if (pathname.startsWith("/compte") && !hasAccess && !request.cookies.has(REFRESH_COOKIE)) {
+  const isPrivate = pathname.startsWith("/compte") || pathname.startsWith("/admin");
+  if (isPrivate && !hasAccess && !request.cookies.has(REFRESH_COOKIE)) {
     return NextResponse.redirect(new URL("/connexion", request.url));
   }
   if (GUEST_ONLY.includes(pathname) && hasAccess) {
@@ -28,5 +29,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/compte/:path*", "/connexion", "/inscription"],
+  matcher: ["/compte/:path*", "/admin/:path*", "/connexion", "/inscription"],
 };
