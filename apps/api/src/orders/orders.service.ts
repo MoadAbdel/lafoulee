@@ -173,6 +173,31 @@ export class OrdersService {
     return done;
   }
 
+  /**
+   * Passage à "remboursée", une seule fois (bouton du back-office ou webhook
+   * charge.refunded de Stripe, dans n'importe quel ordre) : les articles
+   * reviennent en stock dans leur boutique.
+   */
+  async markRefunded(orderId: string): Promise<boolean> {
+    const done = await this.prisma.$transaction(async (tx) => {
+      const { count } = await tx.order.updateMany({
+        where: { id: orderId, status: { in: ["PAID", "READY_FOR_PICKUP", "SHIPPED", "COMPLETED"] } },
+        data: { status: "REFUNDED" },
+      });
+      if (count === 0) return false;
+      const order = await tx.order.findUniqueOrThrow({ where: { id: orderId }, include: { lines: true } });
+      for (const a of allocationsOf(order)) {
+        await tx.$executeRaw`
+          UPDATE stocks SET quantity = quantity + ${a.quantity}
+          WHERE variant_id = ${a.variantId}::uuid AND store_id = ${a.storeId}::uuid`;
+      }
+      await tx.payment.updateMany({ where: { orderId }, data: { status: "REFUNDED" } });
+      return true;
+    });
+    if (done) await this.cache.invalidate(CATALOG_CACHE);
+    return done;
+  }
+
   /** Annulation d'une commande non payée : le stock réservé est rendu. */
   async cancel(orderId: string): Promise<boolean> {
     const done = await this.prisma.$transaction(async (tx) => {
