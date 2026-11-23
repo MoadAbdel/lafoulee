@@ -1,3 +1,5 @@
+import "./zod-config.js";
+
 export * from "./auth.js";
 export * from "./catalog.js";
 export * from "./money.js";
