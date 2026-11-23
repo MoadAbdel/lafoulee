@@ -9,6 +9,7 @@ import { HealthModule } from "./health/health.module.js";
 import { MailModule } from "./mail/mail.module.js";
 import { OrdersModule } from "./orders/orders.module.js";
 import { PrismaModule } from "./prisma/prisma.module.js";
+import { PrivacyModule } from "./privacy/privacy.module.js";
 import { RedisModule } from "./redis/redis.module.js";
 
 @Module({
@@ -23,6 +24,7 @@ import { RedisModule } from "./redis/redis.module.js";
     OrdersModule,
     AuditModule,
     AdminModule,
+    PrivacyModule,
     HealthModule,
   ],
 })

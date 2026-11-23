@@ -70,9 +70,12 @@ model EmailToken {
   tokenHash String            @unique @map("token_hash")
   expiresAt DateTime          @map("expires_at") @db.Timestamptz
   usedAt    DateTime?         @map("used_at") @db.Timestamptz
+  /// Données liées au jeton (ex. type de demande RGPD).
+  metadata  Json?
   createdAt DateTime          @default(now()) @map("created_at") @db.Timestamptz
   user      User?             @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@index([expiresAt])
   @@map("email_tokens")
 }
 
@@ -349,4 +352,19 @@ model AuditLog {
 
   @@index([createdAt])
   @@map("audit_logs")
+}
+
+/// Preuve du consentement aux cookies (RGPD, article 7.1) : aucune donnée
+/// identifiante, seulement un identifiant aléatoire généré par le navigateur.
+/// Conservée 6 mois.
+model ConsentLog {
+  id        String   @id @default(uuid()) @db.Uuid
+  consentId String   @map("consent_id") @db.Uuid
+  version   String
+  choices   Json
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  @@index([consentId])
+  @@index([createdAt])
+  @@map("consent_logs")
 }

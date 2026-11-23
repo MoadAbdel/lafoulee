@@ -3,6 +3,7 @@ import { z } from "zod";
 import { Public } from "../common/decorators.js";
 import { InternalSecretGuard } from "../common/internal-secret.guard.js";
 import { OrdersService } from "../orders/orders.service.js";
+import { PrivacyService } from "../privacy/privacy.service.js";
 import { NotificationsService } from "./notifications.service.js";
 
 const orderPaidMessage = z.strictObject({ orderId: z.uuid() });
@@ -15,6 +16,7 @@ export class InternalController {
   constructor(
     private readonly notifications: NotificationsService,
     private readonly orders: OrdersService,
+    private readonly privacy: PrivacyService,
   ) {}
 
   /** Appelée par le consommateur Vercel Queues (service web) pour chaque commande payée. */
@@ -26,10 +28,11 @@ export class InternalController {
 
   /**
    * Tâche de nuit (Vercel Cron, une fois par jour sur l'offre Hobby) :
-   * libère les réservations des paiements abandonnés.
+   * libère les réservations des paiements abandonnés, puis applique les durées
+   * de conservation du RGPD (dossier, C9).
    */
   @Get("cron/nightly")
   async nightly() {
-    return { expired: await this.orders.expireAbandoned(500) };
+    return { expired: await this.orders.expireAbandoned(500), retention: await this.privacy.applyRetention() };
   }
 }
