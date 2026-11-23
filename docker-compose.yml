@@ -1,0 +1,28 @@
+# Services locaux pour le développement (procédure : docs/annexe-E4).
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: foulee
+      POSTGRES_PASSWORD: foulee_dev
+      POSTGRES_DB: foulee
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "foulee"]
+      interval: 5s
+      retries: 10
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+  redis-http:
+    # Émule l'API REST d'Upstash : le même client Redis qu'en production.
+    image: hiett/serverless-redis-http:0.0.10
+    environment:
+      SRH_MODE: env
+      SRH_TOKEN: local_token
+      SRH_CONNECTION_STRING: redis://redis:6379
+    ports: ["8079:80"]
+    depends_on: [redis]
+volumes:
+  pgdata:

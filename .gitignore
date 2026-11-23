@@ -1,0 +1,21 @@
+node_modules/
+dist/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+next-env.d.ts
+
+# Environnement : jamais versionné
+.env
+.env.*
+!.env.example
+
+# Vercel
+.vercel/
+
+# Divers
+.DS_Store
+*.log
+playwright-report/
+test-results/
