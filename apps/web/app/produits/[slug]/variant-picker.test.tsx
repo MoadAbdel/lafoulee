@@ -47,7 +47,7 @@ describe("VariantPicker (EF03)", () => {
   it("affiche le stock par boutique de la pointure choisie", async () => {
     const user = userEvent.setup();
     render(<VariantPicker variants={variants} stores={stores} />);
-    expect(screen.getByText(/Choisissez une taille/)).toBeInTheDocument();
+    expect(screen.getByText(/Choisissez une taille pour voir le stock/)).toBeInTheDocument();
     await user.click(screen.getByRole("radio", { name: "41" }));
     expect(screen.getByText("2 en stock")).toBeInTheDocument();
     expect(screen.getByText("Indisponible")).toBeInTheDocument();
@@ -59,7 +59,7 @@ describe("VariantPicker (EF03)", () => {
     await user.click(screen.getByRole("radio", { name: "41" }));
     await user.click(screen.getByRole("radio", { name: "Orange" }));
     expect(screen.queryByRole("radio", { name: "41" })).not.toBeInTheDocument();
-    expect(screen.getByText(/Choisissez une taille/)).toBeInTheDocument();
+    expect(screen.getByText(/Choisissez une taille pour voir le stock/)).toBeInTheDocument();
     await user.click(screen.getByRole("radio", { name: "42" }));
     expect(screen.getByText("3 en stock")).toBeInTheDocument();
   });

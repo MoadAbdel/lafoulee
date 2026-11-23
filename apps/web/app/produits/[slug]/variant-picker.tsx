@@ -2,6 +2,7 @@
 
 import { useId, useMemo, useState } from "react";
 import { formatPrice, type StoreDto, type VariantDto } from "@lafoulee/shared";
+import { AddToCart } from "./add-to-cart";
 
 /**
  * Choix du coloris puis de la pointure ou taille, et disponibilité par boutique (EF03).
@@ -101,13 +102,7 @@ export function VariantPicker({ variants, stores }: { variants: VariantDto[]; st
         )}
       </div>
 
-      <button
-        type="button"
-        disabled
-        className="min-h-12 w-full cursor-not-allowed bg-asphalte/40 px-6 font-semibold text-craie"
-      >
-        Ajout au panier bientôt disponible
-      </button>
+      <AddToCart variantId={selected?.id ?? null} disabled={!selected} />
     </div>
   );
 }

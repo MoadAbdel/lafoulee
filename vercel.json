@@ -12,7 +12,17 @@
           "format": "url",
           "env": "API_INTERNAL_URL"
         }
-      ]
+      ],
+      "functions": {
+        "app/api/queues/order-paid/route.ts": {
+          "experimentalTriggers": [
+            {
+              "type": "queue/v2beta",
+              "topic": "order-paid"
+            }
+          ]
+        }
+      }
     },
     "api": {
       "root": "apps/api",
@@ -54,6 +64,12 @@
           "value": "camera=(), microphone=(), geolocation=()"
         }
       ]
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/v1/internal/cron/nightly",
+      "schedule": "0 3 * * *"
     }
   ]
 }

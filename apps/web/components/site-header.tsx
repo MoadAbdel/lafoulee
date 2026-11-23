@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { MAIN_NAV } from "@/lib/nav";
+import { CartBadge } from "./cart-badge";
 
 /** En-tête statique : logo, recherche (formulaire GET, fonctionne sans JavaScript), navigation. */
 export function SiteHeader() {
@@ -25,12 +26,12 @@ export function SiteHeader() {
             Rechercher
           </button>
         </form>
-        <Link
-          href="/compte"
-          className="ml-auto min-h-11 content-center font-semibold underline-offset-4 hover:underline sm:ml-0"
-        >
-          Mon compte
-        </Link>
+        <div className="ml-auto flex items-center gap-5 sm:ml-0">
+          <Link href="/compte" className="min-h-11 content-center font-semibold underline-offset-4 hover:underline">
+            Mon compte
+          </Link>
+          <CartBadge />
+        </div>
       </div>
       <nav aria-label="Catégories" className="border-t border-asphalte/10">
         <ul className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-2">

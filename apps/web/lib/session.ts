@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import type { SessionUser } from "@lafoulee/shared";
+import type { OrderDto, SessionUser } from "@lafoulee/shared";
 import { apiUrl } from "./api";
 
 export type SessionState =
@@ -18,4 +18,12 @@ export async function getSession(): Promise<SessionState> {
   const res = await fetch(apiUrl("/auth/me"), { headers: { cookie: `lf_at=${access}` }, cache: "no-store" });
   if (res.ok) return { status: "authenticated", user: (await res.json()) as SessionUser };
   return { status: "expired" };
+}
+
+/** Commandes du client connecté (EF09), lues avec son cookie d'accès. */
+export async function getMyOrders(): Promise<OrderDto[]> {
+  const access = (await cookies()).get("lf_at")?.value;
+  if (!access) return [];
+  const res = await fetch(apiUrl("/me/orders"), { headers: { cookie: `lf_at=${access}` }, cache: "no-store" });
+  return res.ok ? ((await res.json()) as OrderDto[]) : [];
 }
