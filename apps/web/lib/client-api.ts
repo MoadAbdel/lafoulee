@@ -44,6 +44,25 @@ export async function apiRequest<T>(
   return { ok: false, error: { status: res.status, code: payload.code as string | undefined, messages } };
 }
 
+/** Envoie un fichier tel quel (corps binaire, type du fichier) : photos produits. */
+export async function uploadFile<T>(path: string, file: File): Promise<ApiResult<T>> {
+  let res: Response;
+  try {
+    res = await fetch(`/api/v1${path}`, {
+      method: "POST",
+      headers: { "content-type": file.type, accept: "application/json" },
+      body: file,
+      credentials: "same-origin",
+    });
+  } catch {
+    return { ok: false, error: { status: 0, messages: ["Connexion impossible. Vérifiez votre réseau."] } };
+  }
+  const payload = (await res.json().catch(() => ({}))) as Record<string, unknown>;
+  if (res.ok) return { ok: true, data: payload as T };
+  const messages = res.status === 413 ? ["La photo dépasse 4 Mo."] : toMessages(payload.message);
+  return { ok: false, error: { status: res.status, code: payload.code as string | undefined, messages } };
+}
+
 export function postJson<T>(path: string, body?: unknown): Promise<ApiResult<T>> {
   return apiRequest<T>("POST", path, body);
 }

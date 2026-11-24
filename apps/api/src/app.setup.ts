@@ -1,6 +1,7 @@
 import { StandardSchemaValidationPipe, type INestApplication } from "@nestjs/common";
 import type { NestExpressApplication } from "@nestjs/platform-express";
 import cookieParser from "cookie-parser";
+import { IMAGE_MAX_BYTES, IMAGE_TYPES } from "@lafoulee/shared";
 import helmet from "helmet";
 
 /**
@@ -22,6 +23,8 @@ export function configureApp(app: INestApplication): void {
     }),
   );
   app.use(cookieParser());
+  // Photos produits (EA03) : corps binaire, seulement pour ces formats, 4 Mo au plus.
+  express.useBodyParser("raw", { type: [...IMAGE_TYPES], limit: IMAGE_MAX_BYTES });
   app.useGlobalPipes(new StandardSchemaValidationPipe());
   app.enableShutdownHooks();
 }

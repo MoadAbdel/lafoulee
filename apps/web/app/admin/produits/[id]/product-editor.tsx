@@ -2,12 +2,26 @@
 
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
-import { productUpdateSchema, type AdminProductDetailDto, type ProductUpdateInput } from "@lafoulee/shared";
+import {
+  productUpdateSchema,
+  type AdminCategoryDto,
+  type AdminProductDetailDto,
+  type ProductUpdateInput,
+} from "@lafoulee/shared";
 import { FormErrors, inputClass } from "@/components/form-errors";
 import { apiRequest } from "@/lib/client-api";
+import { CategoryCheckboxes, checkedCategories, parsePriceCents } from "../catalog-fields";
+
+const sameList = (a: string[], b: string[]) => a.length === b.length && a.every((item) => b.includes(item));
 
 /** Modification d'un produit (EA03). Seuls les champs modifiés sont envoyés (et journalisés). */
-export function ProductEditor({ product }: { product: AdminProductDetailDto }) {
+export function ProductEditor({
+  product,
+  categories,
+}: {
+  product: AdminProductDetailDto;
+  categories: AdminCategoryDto[];
+}) {
   const router = useRouter();
   const [errors, setErrors] = useState<string[]>([]);
   const [saved, setSaved] = useState(false);
@@ -16,7 +30,7 @@ export function ProductEditor({ product }: { product: AdminProductDetailDto }) {
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
-    const price = Math.round(Number(String(form.get("price")).replace(",", ".")) * 100);
+    const price = parsePriceCents(form.get("price"));
     const candidate: Record<string, unknown> = {
       name: String(form.get("name")),
       brand: String(form.get("brand")),
@@ -28,6 +42,8 @@ export function ProductEditor({ product }: { product: AdminProductDetailDto }) {
     const changes = Object.fromEntries(
       Object.entries(candidate).filter(([key, value]) => product[key as keyof AdminProductDetailDto] !== value),
     );
+    const selected = checkedCategories(form);
+    if (!sameList(selected, product.categorySlugs)) changes.categorySlugs = selected;
     const parsed = productUpdateSchema.safeParse(changes);
     if (!parsed.success) {
       setErrors(parsed.error.issues.map((issue) => issue.message));
@@ -118,6 +134,7 @@ export function ProductEditor({ product }: { product: AdminProductDetailDto }) {
           className={`${inputClass} py-2`}
         />
       </div>
+      <CategoryCheckboxes categories={categories} selected={product.categorySlugs} />
       <div className="flex items-center gap-4">
         <button
           type="submit"

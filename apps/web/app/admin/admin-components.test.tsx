@@ -115,6 +115,8 @@ describe("StockGrid (EA04)", () => {
     description: "",
     priceCents: 12990,
     status: "PUBLISHED",
+    categorySlugs: ["chaussures-route"],
+    images: [],
     stores: [{ slug: "gerland", name: "La Foulée Gerland" }],
     variants: [
       {

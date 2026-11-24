@@ -29,6 +29,8 @@ const envSchema = z.object({
   // Absent en Preview : Stripe ne peut pas joindre ces déploiements protégés.
   STRIPE_WEBHOOK_SECRET: z.string().startsWith("whsec_").optional(),
   BREVO_API_KEY: z.string().min(1).optional(),
+  // Stockage Vercel Blob des photos produits (EA03), injecté par l'intégration Vercel.
+  BLOB_READ_WRITE_TOKEN: z.string().min(1).optional(),
   MAIL_FROM: z.email().default("no-reply@lafoulee.example"),
 });
 

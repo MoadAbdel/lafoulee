@@ -27,7 +27,7 @@ export function buildCsp({ dev = false, preview = false, https }: CspOptions = {
       ...vercelLive,
     ],
     "style-src": ["'self'", "'unsafe-inline'"],
-    "img-src": ["'self'", "data:", "blob:", "https://*.stripe.com"],
+    "img-src": ["'self'", "data:", "blob:", "https://*.stripe.com", "https://*.public.blob.vercel-storage.com"],
     "font-src": ["'self'"],
     "connect-src": ["'self'", "https://api.stripe.com", "https://data.geopf.fr", ...vercelLive],
     "frame-src": ["https://js.stripe.com", "https://hooks.stripe.com", "https://www.google.com", ...vercelLive],

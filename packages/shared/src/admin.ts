@@ -34,18 +34,85 @@ export const adminProductQuerySchema = z.object({
 });
 export type AdminProductQuery = z.infer<typeof adminProductQuerySchema>;
 
+/** Adresse lisible d'un produit ou d'une catégorie : minuscules, chiffres, tirets. */
+export const slugSchema = z
+  .string()
+  .max(80)
+  .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, { error: "Lien invalide : minuscules, chiffres et tirets seulement." });
+
+/** "Gel Énergie Café" donne "gel-energie-cafe". */
+export function slugify(text: string): string {
+  return text
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 80)
+    .replace(/-+$/, "");
+}
+
+const productFields = {
+  name: z.string().trim().min(1, { error: "Le nom est obligatoire." }).max(120),
+  brand: z.string().trim().min(1, { error: "La marque est obligatoire." }).max(60),
+  shortDescription: z.string().trim().min(1, { error: "L'accroche est obligatoire." }).max(160),
+  description: z.string().trim().min(1, { error: "La description est obligatoire." }).max(4000),
+  priceCents: z.number({ error: "Prix invalide." }).int().min(1, { error: "Prix invalide." }).max(10_000_00),
+  categorySlugs: z.array(slugSchema).min(1, { error: "Choisissez au moins une catégorie." }).max(5),
+};
+
+/** Création d'un produit (EA03) : il naît en brouillon, sans variante ni image. */
+export const productCreateSchema = z.strictObject({ ...productFields, slug: slugSchema.optional() });
+export type ProductCreateInput = z.infer<typeof productCreateSchema>;
+
 export const productUpdateSchema = z
-  .strictObject({
-    name: z.string().trim().min(1).max(120),
-    brand: z.string().trim().min(1).max(60),
-    shortDescription: z.string().trim().min(1).max(160),
-    description: z.string().trim().min(1).max(4000),
-    priceCents: z.number().int().min(1).max(10_000_00),
-    status: z.enum(["DRAFT", "PUBLISHED", "ARCHIVED"]),
-  })
+  .strictObject({ ...productFields, status: z.enum(["DRAFT", "PUBLISHED", "ARCHIVED"]) })
   .partial()
   .refine((value) => Object.keys(value).length > 0, { error: "Aucune modification." });
 export type ProductUpdateInput = z.infer<typeof productUpdateSchema>;
+
+/** Nouvelle variante (taille et coloris) ; son stock démarre à 0 dans chaque boutique. */
+export const variantCreateSchema = z.strictObject({
+  size: z.string().trim().min(1, { error: "La taille est obligatoire." }).max(20),
+  color: z.string().trim().min(1, { error: "Le coloris est obligatoire." }).max(40),
+});
+export type VariantCreateInput = z.infer<typeof variantCreateSchema>;
+
+const categoryFields = {
+  name: z.string().trim().min(2, { error: "Le nom fait au moins 2 caractères." }).max(60),
+  description: z.string().trim().min(1, { error: "La description est obligatoire." }).max(300),
+  position: z.number().int().min(0).max(100),
+};
+
+export const categoryCreateSchema = z.strictObject({
+  ...categoryFields,
+  position: categoryFields.position.default(0),
+  slug: slugSchema.optional(),
+});
+export type CategoryCreateInput = z.infer<typeof categoryCreateSchema>;
+
+export const categoryUpdateSchema = z
+  .strictObject(categoryFields)
+  .partial()
+  .refine((value) => Object.keys(value).length > 0, { error: "Aucune modification." });
+export type CategoryUpdateInput = z.infer<typeof categoryUpdateSchema>;
+
+/** Photos produit : formats web courants, 4 Mo au plus (limite des fonctions Vercel : 4,5 Mo). */
+export const IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"] as const;
+export const IMAGE_MAX_BYTES = 4 * 1024 * 1024;
+export const IMAGES_PER_PRODUCT = 6;
+export const imageUploadQuerySchema = z.object({
+  alt: z.string().trim().min(3, { error: "Décrivez l'image en au moins 3 caractères." }).max(160),
+});
+
+export interface AdminCategoryDto {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  position: number;
+  productCount: number;
+}
 
 export const stockUpdateSchema = z.strictObject({
   variantId: z.uuid(),
@@ -118,6 +185,8 @@ export interface AdminProductDetailDto {
   description: string;
   priceCents: number;
   status: "DRAFT" | "PUBLISHED" | "ARCHIVED";
+  categorySlugs: string[];
+  images: { id: string; url: string; alt: string }[];
   stores: { slug: string; name: string }[];
   variants: {
     id: string;
