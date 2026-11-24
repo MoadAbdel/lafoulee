@@ -7,8 +7,9 @@ import { FormErrors } from "@/components/form-errors";
 import { apiRequest } from "@/lib/client-api";
 
 /**
- * Stock par variante et par boutique (EA04). Chaque cellule s'enregistre seule.
+ * Stock et seuil d'alerte par variante et par boutique (EA04). Chaque champ s'enregistre seul.
  * Le stock réservé (paiements en cours) est affiché : on ne peut pas descendre en dessous.
+ * Le seuil d'alerte fixe à partir de quand la ligne apparaît dans les stocks bas du tableau de bord.
  */
 export function StockGrid({ product }: { product: AdminProductDetailDto }) {
   const router = useRouter();
@@ -16,19 +17,32 @@ export function StockGrid({ product }: { product: AdminProductDetailDto }) {
   const [saving, setSaving] = useState<string | null>(null);
   const [message, setMessage] = useState("");
 
-  async function save(variantId: string, storeSlug: string, value: string) {
+  async function save(variantId: string, storeSlug: string, value: string, threshold?: string) {
     const quantity = Number(value);
     if (!Number.isInteger(quantity) || quantity < 0 || quantity > 9999) {
       setErrors(["Le stock est un nombre entier entre 0 et 9999."]);
       return;
     }
+    const alertThreshold = threshold === undefined ? undefined : Number(threshold);
+    if (
+      alertThreshold !== undefined &&
+      (!Number.isInteger(alertThreshold) || alertThreshold < 0 || alertThreshold > 100)
+    ) {
+      setErrors(["Le seuil d'alerte est un nombre entier entre 0 et 100."]);
+      return;
+    }
     const cell = `${variantId}-${storeSlug}`;
     setSaving(cell);
     setErrors([]);
-    const result = await apiRequest("PUT", "/admin/stocks", { variantId, storeSlug, quantity });
+    const result = await apiRequest("PUT", "/admin/stocks", {
+      variantId,
+      storeSlug,
+      quantity,
+      ...(alertThreshold === undefined ? {} : { alertThreshold }),
+    });
     setSaving(null);
     if (result.ok) {
-      setMessage("Stock enregistré.");
+      setMessage(alertThreshold === undefined ? "Stock enregistré." : "Seuil d'alerte enregistré.");
       router.refresh();
     } else {
       setErrors(result.error.messages);
@@ -93,6 +107,33 @@ export function StockGrid({ product }: { product: AdminProductDetailDto }) {
                           dont {stock.reserved} réservé{stock.reserved > 1 ? "s" : ""}
                         </span>
                       )}
+                      <label htmlFor={`${id}-seuil`} className="mt-1 flex items-center gap-1 text-xs text-asphalte/70">
+                        Seuil
+                        <span className="sr-only">
+                          {" "}
+                          d&apos;alerte {variant.size} {variant.color} à {store.name}
+                        </span>
+                        <input
+                          id={`${id}-seuil`}
+                          type="number"
+                          min={0}
+                          max={100}
+                          defaultValue={stock?.alertThreshold ?? 2}
+                          disabled={saving === `${variant.id}-${store.slug}`}
+                          onBlur={(event) => {
+                            if (Number(event.target.value) !== (stock?.alertThreshold ?? 2)) {
+                              const quantity = (document.getElementById(id) as HTMLInputElement | null)?.value;
+                              void save(
+                                variant.id,
+                                store.slug,
+                                quantity ?? String(stock?.quantity ?? 0),
+                                event.target.value,
+                              );
+                            }
+                          }}
+                          className="min-h-9 w-14 border border-asphalte/40 px-1 text-asphalte"
+                        />
+                      </label>
                     </td>
                   );
                 })}
@@ -102,7 +143,8 @@ export function StockGrid({ product }: { product: AdminProductDetailDto }) {
         </table>
       </div>
       <p className="text-xs text-asphalte/70">
-        Cadre orange : stock sous le seuil d&apos;alerte. Le stock s&apos;enregistre en quittant le champ.
+        Cadre rouge : stock disponible au niveau du seuil d&apos;alerte ou en dessous (la ligne apparaît alors dans les
+        stocks bas du tableau de bord). Stock et seuil s&apos;enregistrent en quittant le champ.
       </p>
     </section>
   );

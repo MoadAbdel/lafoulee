@@ -152,4 +152,22 @@ describe("StockGrid (EA04)", () => {
     expect(screen.getByRole("alert")).toHaveTextContent("nombre entier");
     expect(calls).toHaveLength(0);
   });
+
+  it("le seuil d'alerte se modifie et s'enregistre avec le stock actuel", async () => {
+    const { calls } = mockFetch({ "/admin/stocks": { body: { status: "OK" } } });
+    const user = userEvent.setup();
+    render(<StockGrid product={product} />);
+    const seuil = screen.getByLabelText(/Seuil d'alerte 42 Bleu à La Foulée Gerland/);
+    expect(seuil).toHaveValue(2);
+    await user.clear(seuil);
+    await user.type(seuil, "5");
+    await user.tab();
+    expect(JSON.parse(String(calls[0]!.init?.body))).toEqual({
+      variantId: "v1",
+      storeSlug: "gerland",
+      quantity: 3,
+      alertThreshold: 5,
+    });
+    expect(await screen.findByText("Seuil d'alerte enregistré.")).toBeInTheDocument();
+  });
 });
