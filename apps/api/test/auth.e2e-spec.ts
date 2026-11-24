@@ -115,6 +115,8 @@ describe("Authentification (e2e)", () => {
     const me = await http().get("/api/v1/auth/me").set("Cookie", access.split(";")[0]!).expect(200);
     expect(me.body.email).toBe(email);
     expect(me.body.passwordHash).toBeUndefined();
+    const session = await http().get("/api/v1/auth/session").set("Cookie", access.split(";")[0]!).expect(200);
+    expect(session.body.user.email).toBe(email);
   });
 
   it("mauvais mot de passe et email inconnu : même message (401)", async () => {
@@ -130,6 +132,12 @@ describe("Authentification (e2e)", () => {
   it("/auth/me sans session ou avec un jeton falsifié : 401", async () => {
     await http().get("/api/v1/auth/me").expect(401);
     await http().get("/api/v1/auth/me").set("Cookie", "lf_at=eyJhbGciOiJub25lIn0.e30.").expect(401);
+  });
+
+  it("/auth/session pour l'en-tête : toujours 200, user null sans session valide", async () => {
+    expect((await http().get("/api/v1/auth/session").expect(200)).body).toEqual({ user: null });
+    const forged = await http().get("/api/v1/auth/session").set("Cookie", "lf_at=eyJhbGciOiJub25lIn0.e30.").expect(200);
+    expect(forged.body).toEqual({ user: null });
   });
 
   it("TB16 rotation du jeton de rafraîchissement, rejeu détecté et famille révoquée", async () => {

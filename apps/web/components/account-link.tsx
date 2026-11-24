@@ -15,7 +15,9 @@ export function AccountLink() {
 
   useEffect(() => {
     const check = () => {
-      void getJson<SessionUser>("/auth/me").then((result) => setUser(result.ok ? result.data : null));
+      void getJson<{ user: SessionUser | null }>("/auth/session").then((result) =>
+        setUser(result.ok ? result.data.user : null),
+      );
     };
     check();
     window.addEventListener(AUTH_EVENT, check);
