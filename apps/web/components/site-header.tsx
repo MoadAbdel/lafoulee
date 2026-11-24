@@ -1,12 +1,14 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { MAIN_NAV } from "@/lib/nav";
 import { AccountLink } from "./account-link";
 import { CartBadge } from "./cart-badge";
+import { HeaderShell } from "./header-shell";
 
 /** En-tête statique : logo, recherche (formulaire GET, fonctionne sans JavaScript), navigation. */
 export function SiteHeader() {
-  return (
-    <header className="site-header border-b-[3px] border-asphalte bg-craie">
+  const content = (
+    <>
       <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-3 px-4 py-3">
         <Link href="/" className="font-display text-3xl font-extrabold leading-none tracking-tight">
           La Foulée
@@ -46,6 +48,13 @@ export function SiteHeader() {
           ))}
         </ul>
       </nav>
-    </header>
+    </>
+  );
+  // La couleur dépend de l'adresse (HeaderShell). Sur une route dynamique, l'adresse n'est connue
+  // qu'à la requête : le repli est l'en-tête blanc, identique hors de l'accueil.
+  return (
+    <Suspense fallback={<header className="site-header border-b-[3px] border-asphalte bg-craie">{content}</header>}>
+      <HeaderShell>{content}</HeaderShell>
+    </Suspense>
   );
 }
