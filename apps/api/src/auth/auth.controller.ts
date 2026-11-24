@@ -35,6 +35,7 @@ export class AuthController {
   @HttpCode(202)
   async register(@Body({ schema: registerSchema }) body: RegisterInput, @Req() req: Request) {
     await this.rateLimit.consume("register", clientIp(req), 5, "10 m");
+    await this.rateLimit.consume("register-email", body.email, 3, "1 h");
     await this.auth.register(body);
     return { status: "VERIFICATION_SENT" };
   }
@@ -44,6 +45,7 @@ export class AuthController {
   @HttpCode(202)
   async resend(@Body({ schema: resendVerificationSchema }) body: { email: string }, @Req() req: Request) {
     await this.rateLimit.consume("resend", clientIp(req), 3, "10 m");
+    await this.rateLimit.consume("resend-email", body.email, 3, "1 h");
     await this.auth.resendVerification(body.email);
     return { status: "VERIFICATION_SENT" };
   }

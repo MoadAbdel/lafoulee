@@ -27,8 +27,12 @@ export class OrdersController {
     @Req() req: Request,
     @CurrentUser() user: AuthUser | undefined,
   ): Promise<CreateOrderResult> {
-    await this.rateLimit.consume("order", clientIp(req), 10, "10 m");
-    return this.orders.create(readCartId(req), user?.id ?? null, body);
+    // Chaque commande réserve du stock 30 minutes : limites par IP et par panier,
+    // pour qu'un visiteur ne puisse pas bloquer tout un modèle en boucle.
+    await this.rateLimit.consume("order", clientIp(req), 5, "10 m");
+    const cartId = readCartId(req);
+    if (cartId) await this.rateLimit.consume("order-cart", cartId, 3, "30 m");
+    return this.orders.create(cartId, user?.id ?? null, body);
   }
 
   /** Suivi d'une commande : réservé à qui détient le jeton reçu à la création. */

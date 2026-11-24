@@ -3,6 +3,8 @@ updates:
   - package-ecosystem: npm
     directory: /
     schedule: { interval: weekly }
+    # Délai avant de proposer une version toute neuve : un paquet piégé est souvent retiré en quelques jours.
+    cooldown: { default-days: 3 }
     groups:
       correctifs:
         update-types: [minor, patch]

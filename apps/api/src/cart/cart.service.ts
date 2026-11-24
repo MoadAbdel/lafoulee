@@ -10,6 +10,9 @@ export const CART_TTL_SECONDS = 30 * 24 * 3600;
 /** Contenu stocké : identifiant de variante -> quantité. Rien d'autre (prix et stock viennent de la base). */
 export type CartItems = Record<string, number>;
 
+/** Nombre d'articles différents dans un panier : borne la taille stockée dans Redis. */
+const MAX_LINES = 30;
+
 @Injectable()
 export class CartService {
   constructor(
@@ -44,6 +47,9 @@ export class CartService {
         include: { stocks: true },
       });
       if (!variant) throw new NotFoundException("Produit introuvable.");
+      if (!lines.has(variantId) && lines.size >= MAX_LINES) {
+        throw new BadRequestException(`Votre panier contient déjà ${MAX_LINES} articles différents.`);
+      }
       const available = variant.stocks.reduce((sum, stock) => sum + Math.max(0, stock.quantity - stock.reserved), 0);
       if (available === 0) throw new BadRequestException("Cette taille est en rupture de stock.");
       lines.set(variantId, Math.min(quantity, available, MAX_QUANTITY_PER_LINE));

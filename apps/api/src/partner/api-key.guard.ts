@@ -9,6 +9,7 @@ import {
 import { Reflector } from "@nestjs/core";
 import type { Request } from "express";
 import type { ApiScope } from "@lafoulee/shared";
+import { clientIp } from "../common/decorators.js";
 import { RateLimitService } from "../redis/rate-limit.service.js";
 import { ApiKeysService } from "./api-keys.service.js";
 
@@ -30,6 +31,8 @@ export class ApiKeyGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const req = context.switchToHttp().getRequest<Request>();
+    // Limite par IP avant la recherche de la clé : des essais de clés au hasard ne chargent pas la base.
+    await this.rateLimit.consume("partner-ip", clientIp(req), 120, "1 m");
     const header = req.headers.authorization ?? "";
     const raw = header.startsWith("Bearer ") ? header.slice(7).trim() : "";
     // authenticate refuse lui-même une clé vide ou mal formée : pas de raccourci ici.
