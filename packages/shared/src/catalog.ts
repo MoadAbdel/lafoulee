@@ -87,7 +87,8 @@ export interface ProductDetailDto {
   description: string;
   attributes: Record<string, string>;
   categories: CategoryDto[];
-  images: { url: string; alt: string }[];
+  /** color : coloris montré (null : photo commune). La fiche affiche la photo du coloris choisi. */
+  images: { url: string; alt: string; color: string | null }[];
   variants: VariantDto[];
   stores: StoreDto[];
 }

@@ -22,7 +22,7 @@ interface SeedData {
     description: string;
     attributes: Record<string, string>;
     variants: { size: string; color: string; stock: Record<string, number> }[];
-    images?: { url: string; alt: string }[];
+    images?: { url: string; alt: string; color?: string }[];
   }[];
 }
 
@@ -86,6 +86,7 @@ async function main() {
           productId: product.id,
           blobUrl: image.url,
           alt: image.alt,
+          color: image.color ?? null,
           position,
         })),
       });

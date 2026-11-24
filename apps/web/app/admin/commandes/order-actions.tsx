@@ -52,7 +52,7 @@ export function OrderActions({ order }: { order: AdminOrderDto }) {
         )}
       </div>
       {/* <dialog> natif : focus piégé et touche Échap gérés par le navigateur (TF14). */}
-      <dialog ref={dialog} aria-labelledby={`remb-${order.id}`} className="max-w-md p-6 backdrop:bg-asphalte/60">
+      <dialog ref={dialog} aria-labelledby={`remb-${order.id}`} className="m-auto max-w-md p-6 backdrop:bg-asphalte/60">
         <h2 id={`remb-${order.id}`} className="font-display tracking-tight text-2xl font-extrabold">
           Rembourser la commande n°{order.number} ?
         </h2>

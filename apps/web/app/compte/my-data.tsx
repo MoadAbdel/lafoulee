@@ -53,7 +53,7 @@ export function MyData() {
           Supprimer mon compte
         </button>
       </div>
-      <dialog ref={dialog} aria-labelledby="titre-suppression" className="max-w-md p-6 backdrop:bg-asphalte/60">
+      <dialog ref={dialog} aria-labelledby="titre-suppression" className="m-auto max-w-md p-6 backdrop:bg-asphalte/60">
         <form onSubmit={remove} noValidate className="space-y-4">
           <h3 id="titre-suppression" className="font-display tracking-tight text-2xl font-extrabold">
             Supprimer mon compte ?

@@ -313,7 +313,13 @@
       "images": [
         {
           "url": "/catalogue/asics-gel-nimbus-28.jpg",
-          "alt": "Asics Gel-Nimbus 28, illustration du produit"
+          "alt": "Asics Gel-Nimbus 28, illustration du produit",
+          "color": "Bleu"
+        },
+        {
+          "url": "/catalogue/asics-gel-nimbus-28-vert.jpg",
+          "alt": "Asics Gel-Nimbus 28 coloris vert, illustration du produit",
+          "color": "Vert"
         }
       ]
     },
@@ -479,7 +485,13 @@
       "images": [
         {
           "url": "/catalogue/asics-gel-cumulus-28.jpg",
-          "alt": "Asics Gel-Cumulus 28, illustration du produit"
+          "alt": "Asics Gel-Cumulus 28, illustration du produit",
+          "color": "Bleu"
+        },
+        {
+          "url": "/catalogue/asics-gel-cumulus-28-vert.jpg",
+          "alt": "Asics Gel-Cumulus 28 coloris vert, illustration du produit",
+          "color": "Vert"
         }
       ]
     },
@@ -645,7 +657,13 @@
       "images": [
         {
           "url": "/catalogue/hoka-clifton-10.jpg",
-          "alt": "Hoka Clifton 10, illustration du produit"
+          "alt": "Hoka Clifton 10, illustration du produit",
+          "color": "Vert"
+        },
+        {
+          "url": "/catalogue/hoka-clifton-10-bleu.jpg",
+          "alt": "Hoka Clifton 10 coloris bleu, illustration du produit",
+          "color": "Bleu"
         }
       ]
     },
@@ -811,7 +829,13 @@
       "images": [
         {
           "url": "/catalogue/saucony-ride-19.jpg",
-          "alt": "Saucony Ride 19, illustration du produit"
+          "alt": "Saucony Ride 19, illustration du produit",
+          "color": "Gris"
+        },
+        {
+          "url": "/catalogue/saucony-ride-19-bleu.jpg",
+          "alt": "Saucony Ride 19 coloris bleu, illustration du produit",
+          "color": "Bleu"
         }
       ]
     },
@@ -977,7 +1001,13 @@
       "images": [
         {
           "url": "/catalogue/nike-pegasus-42.jpg",
-          "alt": "Nike Pegasus 42, illustration du produit"
+          "alt": "Nike Pegasus 42, illustration du produit",
+          "color": "Noir"
+        },
+        {
+          "url": "/catalogue/nike-pegasus-42-blanc.jpg",
+          "alt": "Nike Pegasus 42 coloris blanc, illustration du produit",
+          "color": "Blanc"
         }
       ]
     },
@@ -1403,7 +1433,18 @@
       "images": [
         {
           "url": "/catalogue/adidas-adizero-boston-13.jpg",
-          "alt": "Adidas Adizero Boston 13, illustration du produit"
+          "alt": "Adidas Adizero Boston 13, illustration du produit",
+          "color": "Blanc"
+        },
+        {
+          "url": "/catalogue/adidas-adizero-boston-13-bleu.jpg",
+          "alt": "Adidas Adizero Boston 13 coloris bleu, illustration du produit",
+          "color": "Bleu"
+        },
+        {
+          "url": "/catalogue/adidas-adizero-boston-13-noir.jpg",
+          "alt": "Adidas Adizero Boston 13 coloris noir, illustration du produit",
+          "color": "Noir"
         }
       ]
     },
@@ -1663,7 +1704,13 @@
       "images": [
         {
           "url": "/catalogue/hoka-speedgoat-6.jpg",
-          "alt": "Hoka Speedgoat 6, illustration du produit"
+          "alt": "Hoka Speedgoat 6, illustration du produit",
+          "color": "Vert"
+        },
+        {
+          "url": "/catalogue/hoka-speedgoat-6-rouge.jpg",
+          "alt": "Hoka Speedgoat 6 coloris rouge, illustration du produit",
+          "color": "Rouge"
         }
       ]
     },
@@ -1829,7 +1876,13 @@
       "images": [
         {
           "url": "/catalogue/saucony-peregrine-16.jpg",
-          "alt": "Saucony Peregrine 16, illustration du produit"
+          "alt": "Saucony Peregrine 16, illustration du produit",
+          "color": "Bleu"
+        },
+        {
+          "url": "/catalogue/saucony-peregrine-16-orange.jpg",
+          "alt": "Saucony Peregrine 16 coloris orange, illustration du produit",
+          "color": "Orange"
         }
       ]
     },
@@ -1995,7 +2048,13 @@
       "images": [
         {
           "url": "/catalogue/brooks-cascadia-19.jpg",
-          "alt": "Brooks Cascadia 19, illustration du produit"
+          "alt": "Brooks Cascadia 19, illustration du produit",
+          "color": "Noir"
+        },
+        {
+          "url": "/catalogue/brooks-cascadia-19-beige.jpg",
+          "alt": "Brooks Cascadia 19 coloris beige, illustration du produit",
+          "color": "Beige"
         }
       ]
     },
@@ -2161,7 +2220,13 @@
       "images": [
         {
           "url": "/catalogue/altra-lone-peak-9.jpg",
-          "alt": "Altra Lone Peak 9, illustration du produit"
+          "alt": "Altra Lone Peak 9, illustration du produit",
+          "color": "Noir"
+        },
+        {
+          "url": "/catalogue/altra-lone-peak-9-gris.jpg",
+          "alt": "Altra Lone Peak 9 coloris gris, illustration du produit",
+          "color": "Gris"
         }
       ]
     },
@@ -2327,7 +2392,13 @@
       "images": [
         {
           "url": "/catalogue/la-sportiva-bushido-iii.jpg",
-          "alt": "La Sportiva Bushido III, illustration du produit"
+          "alt": "La Sportiva Bushido III, illustration du produit",
+          "color": "Noir"
+        },
+        {
+          "url": "/catalogue/la-sportiva-bushido-iii-jaune.jpg",
+          "alt": "La Sportiva Bushido III coloris jaune, illustration du produit",
+          "color": "Jaune"
         }
       ]
     },
@@ -2493,7 +2564,13 @@
       "images": [
         {
           "url": "/catalogue/nike-pegasus-trail-5.jpg",
-          "alt": "Nike Pegasus Trail 5, illustration du produit"
+          "alt": "Nike Pegasus Trail 5, illustration du produit",
+          "color": "Bleu"
+        },
+        {
+          "url": "/catalogue/nike-pegasus-trail-5-rose.jpg",
+          "alt": "Nike Pegasus Trail 5 coloris rose, illustration du produit",
+          "color": "Rose"
         }
       ]
     },
@@ -2731,7 +2808,18 @@
       "images": [
         {
           "url": "/catalogue/kiprun-kipclimb.jpg",
-          "alt": "Kiprun Kipclimb, illustration du produit"
+          "alt": "Kiprun Kipclimb, illustration du produit",
+          "color": "Beige"
+        },
+        {
+          "url": "/catalogue/kiprun-kipclimb-bleu.jpg",
+          "alt": "Kiprun Kipclimb coloris bleu, illustration du produit",
+          "color": "Bleu"
+        },
+        {
+          "url": "/catalogue/kiprun-kipclimb-noir.jpg",
+          "alt": "Kiprun Kipclimb coloris noir, illustration du produit",
+          "color": "Noir"
         }
       ]
     },
@@ -2897,7 +2985,13 @@
       "images": [
         {
           "url": "/catalogue/salomon-sense-ride-5.jpg",
-          "alt": "Salomon Sense Ride 5, illustration du produit"
+          "alt": "Salomon Sense Ride 5, illustration du produit",
+          "color": "Noir"
+        },
+        {
+          "url": "/catalogue/salomon-sense-ride-5-rouge.jpg",
+          "alt": "Salomon Sense Ride 5 coloris rouge, illustration du produit",
+          "color": "Rouge"
         }
       ]
     },
@@ -3187,7 +3281,18 @@
       "images": [
         {
           "url": "/catalogue/nike-dri-fit-uv-miler.jpg",
-          "alt": "Nike Dri-FIT UV Miler, illustration du produit"
+          "alt": "Nike Dri-FIT UV Miler, illustration du produit",
+          "color": "Bleu"
+        },
+        {
+          "url": "/catalogue/nike-dri-fit-uv-miler-gris.jpg",
+          "alt": "Nike Dri-FIT UV Miler coloris gris, illustration du produit",
+          "color": "Gris"
+        },
+        {
+          "url": "/catalogue/nike-dri-fit-uv-miler-noir.jpg",
+          "alt": "Nike Dri-FIT UV Miler coloris noir, illustration du produit",
+          "color": "Noir"
         }
       ]
     },
@@ -3364,7 +3469,13 @@
       "images": [
         {
           "url": "/catalogue/brooks-run-visible-2.jpg",
-          "alt": "Brooks Run Visible 2.0, illustration du produit"
+          "alt": "Brooks Run Visible 2.0, illustration du produit",
+          "color": "Blanc"
+        },
+        {
+          "url": "/catalogue/brooks-run-visible-2-orange.jpg",
+          "alt": "Brooks Run Visible 2.0 coloris orange, illustration du produit",
+          "color": "Orange"
         }
       ]
     },
@@ -3541,7 +3652,13 @@
       "images": [
         {
           "url": "/catalogue/brooks-chaser-5-short-2.jpg",
-          "alt": "Brooks Chaser 5\" Short 2.0, illustration du produit"
+          "alt": "Brooks Chaser 5\" Short 2.0, illustration du produit",
+          "color": "Bleu"
+        },
+        {
+          "url": "/catalogue/brooks-chaser-5-short-2-rose.jpg",
+          "alt": "Brooks Chaser 5\" Short 2.0 coloris rose, illustration du produit",
+          "color": "Rose"
         }
       ]
     },
@@ -3653,7 +3770,13 @@
       "images": [
         {
           "url": "/catalogue/nike-swift-legging-7-8.jpg",
-          "alt": "Nike Swift 7/8, illustration du produit"
+          "alt": "Nike Swift 7/8, illustration du produit",
+          "color": "Bleu"
+        },
+        {
+          "url": "/catalogue/nike-swift-legging-7-8-noir.jpg",
+          "alt": "Nike Swift 7/8 coloris noir, illustration du produit",
+          "color": "Noir"
         }
       ]
     },
@@ -3830,7 +3953,13 @@
       "images": [
         {
           "url": "/catalogue/compressport-feelfree-seamless-bra.jpg",
-          "alt": "Compressport FeelFree Seamless Bra, illustration du produit"
+          "alt": "Compressport FeelFree Seamless Bra, illustration du produit",
+          "color": "Noir"
+        },
+        {
+          "url": "/catalogue/compressport-feelfree-seamless-bra-vert.jpg",
+          "alt": "Compressport FeelFree Seamless Bra coloris vert, illustration du produit",
+          "color": "Vert"
         }
       ]
     },
@@ -4007,7 +4136,13 @@
       "images": [
         {
           "url": "/catalogue/kiprun-run-900-ultra-2-en-1-w.jpg",
-          "alt": "Kiprun Run 900 Ultra 2 en 1, illustration du produit"
+          "alt": "Kiprun Run 900 Ultra 2 en 1, illustration du produit",
+          "color": "Noir"
+        },
+        {
+          "url": "/catalogue/kiprun-run-900-ultra-2-en-1-w-marron.jpg",
+          "alt": "Kiprun Run 900 Ultra 2 en 1 coloris marron, illustration du produit",
+          "color": "Marron"
         }
       ]
     },
@@ -4208,7 +4343,18 @@
       "images": [
         {
           "url": "/catalogue/garmin-forerunner-165.jpg",
-          "alt": "Garmin Forerunner 165, illustration du produit"
+          "alt": "Garmin Forerunner 165, illustration du produit",
+          "color": "Noir"
+        },
+        {
+          "url": "/catalogue/garmin-forerunner-165-gris.jpg",
+          "alt": "Garmin Forerunner 165 coloris gris, illustration du produit",
+          "color": "Gris"
+        },
+        {
+          "url": "/catalogue/garmin-forerunner-165-violet.jpg",
+          "alt": "Garmin Forerunner 165 coloris violet, illustration du produit",
+          "color": "Violet"
         }
       ]
     },
@@ -4248,7 +4394,13 @@
       "images": [
         {
           "url": "/catalogue/petzl-actik-core.jpg",
-          "alt": "Petzl Actik Core, illustration du produit"
+          "alt": "Petzl Actik Core, illustration du produit",
+          "color": "Vert"
+        },
+        {
+          "url": "/catalogue/petzl-actik-core-noir.jpg",
+          "alt": "Petzl Actik Core coloris noir, illustration du produit",
+          "color": "Noir"
         }
       ]
     },
@@ -4444,7 +4596,18 @@
       "images": [
         {
           "url": "/catalogue/compressport-pro-racing-socks-v4-run-low.jpg",
-          "alt": "Compressport Pro Racing Socks v4.0 Run Low, illustration du produit"
+          "alt": "Compressport Pro Racing Socks v4.0 Run Low, illustration du produit",
+          "color": "Blanc"
+        },
+        {
+          "url": "/catalogue/compressport-pro-racing-socks-v4-run-low-bleu.jpg",
+          "alt": "Compressport Pro Racing Socks v4.0 Run Low coloris bleu, illustration du produit",
+          "color": "Bleu"
+        },
+        {
+          "url": "/catalogue/compressport-pro-racing-socks-v4-run-low-noir.jpg",
+          "alt": "Compressport Pro Racing Socks v4.0 Run Low coloris noir, illustration du produit",
+          "color": "Noir"
         }
       ]
     },
