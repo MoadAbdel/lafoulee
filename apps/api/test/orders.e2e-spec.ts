@@ -59,6 +59,25 @@ describe("Commande et paiement (e2e)", () => {
     return cookie;
   }
 
+  it("retrait : le panier ne propose que les boutiques qui ont toutes les lignes en stock", async () => {
+    await resetStock();
+    const slugs = async (cookie: string) =>
+      (await http().get("/api/v1/cart").set("Cookie", cookie).expect(200)).body.pickupStoreSlugs as string[];
+    // variantA : 3 en boutique 0, 1 en boutique 1 ; variantB : 1 en boutique 0 seulement.
+    expect(await slugs(await cartWith([[variantA, 1]]))).toEqual(
+      expect.arrayContaining([stores[0]!.slug, stores[1]!.slug]),
+    );
+    expect(await slugs(await cartWith([[variantA, 2]]))).toEqual([stores[0]!.slug]);
+    expect(
+      await slugs(
+        await cartWith([
+          [variantA, 1],
+          [variantB, 1],
+        ]),
+      ),
+    ).toEqual([stores[0]!.slug]);
+  });
+
   async function order(cookie: string, body: object) {
     return http().post("/api/v1/orders").set("Cookie", cookie).send(body);
   }
