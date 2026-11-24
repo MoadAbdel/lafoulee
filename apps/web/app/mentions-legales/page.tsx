@@ -29,6 +29,26 @@ export default function LegalPage() {
           .
         </p>
       </section>
+      <section>
+        <h2 className="font-display tracking-tight text-3xl font-extrabold">Crédits photos</h2>
+        <p>
+          Photographies sous licence libre, issues de Wikimedia Commons et reproduites dans le respect de leur licence
+          (citation de l&apos;auteur et de la licence) :
+        </p>
+        <ul className="list-disc space-y-1 pl-6">
+          <li>
+            Page d&apos;accueil, sprinteur au départ : ThoroughlyReviewed,{" "}
+            <a
+              href="https://creativecommons.org/licenses/by/2.0/deed.fr"
+              className="underline underline-offset-4"
+              rel="license noopener"
+            >
+              CC BY 2.0
+            </a>
+            , passée en noir et blanc et fondue dans le rouge de l&apos;affiche.
+          </li>
+        </ul>
+      </section>
     </article>
   );
 }

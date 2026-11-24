@@ -33,6 +33,7 @@ test.describe("Accessibilité (axe-core)", () => {
     ["connexion", "/connexion"],
     ["inscription", "/inscription"],
     ["confidentialité", "/confidentialite"],
+    ["mentions légales", "/mentions-legales"],
     ["demande RGPD", "/confidentialite/demande"],
     ["panier vide", "/panier"],
   ] as const) {
