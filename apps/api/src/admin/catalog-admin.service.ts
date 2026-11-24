@@ -102,10 +102,12 @@ export class CatalogAdminService {
   }
 
   async addImage(context: AuditContext, productId: string, body: unknown, alt: string): Promise<AdminProductDetailDto> {
-    if (!Buffer.isBuffer(body) || body.length === 0) {
+    // Le corps n'est un Buffer que si le Content-Type est un format d'image accepté (app.setup.ts).
+    if (!(body instanceof Buffer) || body.length === 0) {
       throw new BadRequestException("Envoyez une image JPEG, PNG ou WebP de 4 Mo au plus.");
     }
-    const format = detectImage(body);
+    const data = Buffer.from(body); // copie typée : plus aucune ambiguïté sur la nature du corps
+    const format = detectImage(data);
     if (!format) throw new BadRequestException("Ce fichier n'est pas une image JPEG, PNG ou WebP.");
     const product = await this.prisma.product.findUnique({
       where: { id: productId },
@@ -114,7 +116,7 @@ export class CatalogAdminService {
     if (!product) throw new NotFoundException("Produit introuvable.");
     const count = product._count.images;
     if (count >= IMAGES_PER_PRODUCT) throw new ConflictException(`${IMAGES_PER_PRODUCT} photos au plus par produit.`);
-    const url = await this.images.upload(productId, body, format.contentType, format.extension);
+    const url = await this.images.upload(productId, data, format.contentType, format.extension);
     const image = await this.prisma.productImage.create({ data: { productId, blobUrl: url, alt, position: count } });
     await this.audit.record(context, "product.image.add", "product", productId, { imageId: image.id, alt });
     await this.catalog.catalogChanged();

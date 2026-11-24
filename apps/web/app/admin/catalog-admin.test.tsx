@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import type { AdminCategoryDto, AdminProductDetailDto } from "@lafoulee/shared";
+import { slugify, type AdminCategoryDto, type AdminProductDetailDto } from "@lafoulee/shared";
 import { mockFetch } from "@/test-utils/fetch-mock";
 import { CategoryManager } from "./categories/category-manager";
 import { parsePriceCents } from "./produits/catalog-fields";
@@ -37,6 +37,17 @@ const product: AdminProductDetailDto = {
 };
 
 const body = (call: { init?: RequestInit } | undefined) => JSON.parse(String(call?.init?.body)) as unknown;
+
+describe("slugify", () => {
+  it("accents retirés, tirets uniques, 80 caractères au plus, rapide sur une chaîne de tirets", () => {
+    expect(slugify("Gel Énergie Café !")).toBe("gel-energie-cafe");
+    expect(slugify("--Trail--  Été--")).toBe("trail-ete");
+    expect(slugify("mot ".repeat(40)).length).toBeLessThanOrEqual(80);
+    const start = performance.now();
+    slugify(`${"-".repeat(100_000)}!`);
+    expect(performance.now() - start).toBeLessThan(200);
+  });
+});
 
 describe("parsePriceCents", () => {
   it("accepte la virgule ou le point, refuse le reste", () => {

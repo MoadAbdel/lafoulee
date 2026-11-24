@@ -40,16 +40,24 @@ export const slugSchema = z
   .max(80)
   .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, { error: "Lien invalide : minuscules, chiffres et tirets seulement." });
 
-/** "Gel Énergie Café" donne "gel-energie-cafe". */
+/**
+ * "Gel Énergie Café" donne "gel-energie-cafe". Découpage en mots sans expression
+ * régulière ambiguë (pas de risque de lenteur sur une chaîne de tirets) ; 80 caractères au plus.
+ */
 export function slugify(text: string): string {
-  return text
+  const words = text
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "")
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 80)
-    .replace(/-+$/, "");
+    .split(/[^a-z0-9]+/)
+    .filter(Boolean);
+  let slug = "";
+  for (const word of words) {
+    const next = slug ? `${slug}-${word}` : word;
+    if (next.length > 80) break;
+    slug = next;
+  }
+  return slug || (words[0] ?? "").slice(0, 80);
 }
 
 const productFields = {
