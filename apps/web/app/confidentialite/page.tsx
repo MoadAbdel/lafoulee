@@ -144,7 +144,7 @@ export default function PrivacyPage() {
         <ul className="mt-2 list-inside list-disc">
           <li>
             Avec un compte : téléchargement et suppression immédiats depuis{" "}
-            <Link href="/compte" className="underline underline-offset-4">
+            <Link prefetch={false} href="/compte" className="underline underline-offset-4">
               Mon compte
             </Link>
             .

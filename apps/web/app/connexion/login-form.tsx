@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import type { LoginResult } from "@lafoulee/shared";
 import { buttonClass, FormErrors, inputClass } from "@/components/form-errors";
@@ -9,7 +8,6 @@ import { notifyAuthChanged, postJson } from "@/lib/client-api";
 
 /** Connexion en une étape (clients) ou deux étapes avec code TOTP (administrateurs). */
 export function LoginForm() {
-  const router = useRouter();
   const [errors, setErrors] = useState<string[]>([]);
   const [pending, setPending] = useState(false);
   const [challenge, setChallenge] = useState<string | null>(null);
@@ -18,8 +16,10 @@ export function LoginForm() {
 
   function done() {
     notifyAuthChanged();
-    router.push("/compte");
-    router.refresh();
+    // Rechargement complet : le routeur de Next.js garde en mémoire les pages préchargées
+    // avant la connexion (où /compte redirigeait vers /connexion). On repart d'un état propre.
+    // eslint-disable-next-line @next/next/no-location-assign-relative-destination -- changement de session : rechargement complet voulu
+    window.location.assign("/compte");
   }
 
   async function onPassword(event: FormEvent<HTMLFormElement>) {

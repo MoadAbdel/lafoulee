@@ -11,7 +11,7 @@ export default function LoginPage() {
       <LoginForm />
       <p className="mt-6 text-sm">
         Pas encore de compte ?{" "}
-        <Link href="/inscription" className="font-semibold underline underline-offset-4">
+        <Link prefetch={false} href="/inscription" className="font-semibold underline underline-offset-4">
           Créer un compte
         </Link>
       </p>

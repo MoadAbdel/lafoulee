@@ -13,7 +13,7 @@ export default function ForgotPasswordPage() {
       </p>
       <ForgotPasswordForm />
       <p className="mt-6">
-        <Link href="/connexion" className="font-semibold underline underline-offset-4">
+        <Link prefetch={false} href="/connexion" className="font-semibold underline underline-offset-4">
           Retour à la connexion
         </Link>
       </p>

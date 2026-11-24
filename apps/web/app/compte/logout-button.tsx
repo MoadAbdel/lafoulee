@@ -1,11 +1,9 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { notifyAuthChanged, postJson } from "@/lib/client-api";
 
 export function LogoutButton() {
-  const router = useRouter();
   const [pending, setPending] = useState(false);
   return (
     <button
@@ -15,8 +13,9 @@ export function LogoutButton() {
         setPending(true);
         await postJson("/auth/logout");
         notifyAuthChanged();
-        router.push("/");
-        router.refresh();
+        // Rechargement complet : aucune page préchargée pendant la session ne doit resservir.
+        // eslint-disable-next-line @next/next/no-location-assign-relative-destination -- changement de session : rechargement complet voulu
+        window.location.assign("/");
       }}
       className="min-h-12 w-full border border-asphalte px-6 font-semibold"
     >

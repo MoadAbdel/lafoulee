@@ -39,6 +39,7 @@ async function Account() {
       </p>
       {user.role === "ADMIN" && (
         <Link
+          prefetch={false}
           href="/admin"
           className="mt-6 inline-block min-h-11 content-center bg-asphalte px-5 font-semibold text-craie"
         >
