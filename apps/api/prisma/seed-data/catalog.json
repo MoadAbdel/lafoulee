@@ -62,7 +62,9 @@
       "slug": "brooks-ghost-18",
       "name": "Ghost 18",
       "brand": "Brooks",
-      "categorySlugs": ["chaussures-route"],
+      "categorySlugs": [
+        "chaussures-route"
+      ],
       "priceCents": 15000,
       "shortDescription": "Chaussure de route polyvalente pour l'entraînement quotidien, avec un drop de 10 mm.",
       "description": "La Ghost est la chaussure d'entraînement de base chez Brooks. Cette 18e version garde un drop de 10 mm et une foulée facile. Elle convient aux sorties régulières sur route. Une version Gore-Tex existe en option.",
@@ -156,7 +158,9 @@
       "slug": "asics-gel-nimbus-28",
       "name": "Gel-Nimbus 28",
       "brand": "Asics",
-      "categorySlugs": ["chaussures-route"],
+      "categorySlugs": [
+        "chaussures-route"
+      ],
       "priceCents": 20000,
       "shortDescription": "Chaussure de route très amortie pour les longues sorties tranquilles.",
       "description": "La Gel-Nimbus est le modèle le plus amorti de la gamme Asics. Cette 28e version se porte pour les sorties longues à allure facile. Le prix conseillé en France est de 200 euros. On la trouve souvent moins chère chez les revendeurs.",
@@ -313,7 +317,13 @@
       "images": [
         {
           "url": "/catalogue/asics-gel-nimbus-28.jpg",
-          "alt": "Asics Gel-Nimbus 28, illustration du produit"
+          "alt": "Asics Gel-Nimbus 28, illustration du produit",
+          "color": "Bleu"
+        },
+        {
+          "url": "/catalogue/asics-gel-nimbus-28-vert.jpg",
+          "alt": "Asics Gel-Nimbus 28 coloris vert, illustration du produit",
+          "color": "Vert"
         }
       ]
     },
@@ -321,7 +331,9 @@
       "slug": "asics-gel-cumulus-28",
       "name": "Gel-Cumulus 28",
       "brand": "Asics",
-      "categorySlugs": ["chaussures-route"],
+      "categorySlugs": [
+        "chaussures-route"
+      ],
       "priceCents": 16000,
       "shortDescription": "Chaussure de route neutre et amortie pour l'entraînement courant.",
       "description": "La Gel-Cumulus sert à faire du volume sans chercher la vitesse. Elle a un drop de 8 mm et pèse environ 259 g en version homme. Son amorti est souple mais reste simple. Elle va bien aux coureurs réguliers.",
@@ -479,7 +491,13 @@
       "images": [
         {
           "url": "/catalogue/asics-gel-cumulus-28.jpg",
-          "alt": "Asics Gel-Cumulus 28, illustration du produit"
+          "alt": "Asics Gel-Cumulus 28, illustration du produit",
+          "color": "Bleu"
+        },
+        {
+          "url": "/catalogue/asics-gel-cumulus-28-vert.jpg",
+          "alt": "Asics Gel-Cumulus 28 coloris vert, illustration du produit",
+          "color": "Vert"
         }
       ]
     },
@@ -487,7 +505,9 @@
       "slug": "hoka-clifton-10",
       "name": "Clifton 10",
       "brand": "Hoka",
-      "categorySlugs": ["chaussures-route"],
+      "categorySlugs": [
+        "chaussures-route"
+      ],
       "priceCents": 16000,
       "shortDescription": "Chaussure de route légère et très amortie, avec un drop de 8 mm.",
       "description": "La Clifton est un modèle connu de Hoka pour le confort. Sur cette 10e version, le drop passe de 5 mm à 8 mm. Elle pèse 278 g selon la marque. Elle sert aux sorties faciles comme aux sorties longues.",
@@ -645,7 +665,13 @@
       "images": [
         {
           "url": "/catalogue/hoka-clifton-10.jpg",
-          "alt": "Hoka Clifton 10, illustration du produit"
+          "alt": "Hoka Clifton 10, illustration du produit",
+          "color": "Vert"
+        },
+        {
+          "url": "/catalogue/hoka-clifton-10-bleu.jpg",
+          "alt": "Hoka Clifton 10 coloris bleu, illustration du produit",
+          "color": "Bleu"
         }
       ]
     },
@@ -653,7 +679,9 @@
       "slug": "saucony-ride-19",
       "name": "Ride 19",
       "brand": "Saucony",
-      "categorySlugs": ["chaussures-route"],
+      "categorySlugs": [
+        "chaussures-route"
+      ],
       "priceCents": 16000,
       "shortDescription": "Chaussure de route polyvalente, drop de 8 mm, pour la plupart des sorties.",
       "description": "La Ride est une valeur sûre chez Saucony. Le talon fait 36 mm et l'avant-pied 28 mm, soit un drop de 8 mm. Le poids annoncé est de 255 g en version homme. Elle convient aussi bien aux sorties courtes qu'aux sorties longues.",
@@ -811,7 +839,13 @@
       "images": [
         {
           "url": "/catalogue/saucony-ride-19.jpg",
-          "alt": "Saucony Ride 19, illustration du produit"
+          "alt": "Saucony Ride 19, illustration du produit",
+          "color": "Gris"
+        },
+        {
+          "url": "/catalogue/saucony-ride-19-bleu.jpg",
+          "alt": "Saucony Ride 19 coloris bleu, illustration du produit",
+          "color": "Bleu"
         }
       ]
     },
@@ -819,7 +853,9 @@
       "slug": "nike-pegasus-42",
       "name": "Pegasus 42",
       "brand": "Nike",
-      "categorySlugs": ["chaussures-route"],
+      "categorySlugs": [
+        "chaussures-route"
+      ],
       "priceCents": 13999,
       "shortDescription": "Chaussure de route polyvalente de Nike, drop de 10 mm.",
       "description": "La Pegasus existe depuis de nombreuses années chez Nike. Cette 42e version a un drop de 10 mm. Elle sert pour l'entraînement de tous les jours. Le prix conseillé en France est de 139,99 euros.",
@@ -977,7 +1013,13 @@
       "images": [
         {
           "url": "/catalogue/nike-pegasus-42.jpg",
-          "alt": "Nike Pegasus 42, illustration du produit"
+          "alt": "Nike Pegasus 42, illustration du produit",
+          "color": "Noir"
+        },
+        {
+          "url": "/catalogue/nike-pegasus-42-blanc.jpg",
+          "alt": "Nike Pegasus 42 coloris blanc, illustration du produit",
+          "color": "Blanc"
         }
       ]
     },
@@ -985,7 +1027,9 @@
       "slug": "mizuno-wave-rider-30",
       "name": "Wave Rider 30",
       "brand": "Mizuno",
-      "categorySlugs": ["chaussures-route"],
+      "categorySlugs": [
+        "chaussures-route"
+      ],
       "priceCents": 16000,
       "shortDescription": "Chaussure de route neutre de Mizuno, drop de 8 mm, avec plaque Wave.",
       "description": "La Wave Rider est la chaussure d'entraînement historique de Mizuno. Elle a un drop de 8 mm et pèse environ 258 g. La plaque Wave donne de la stabilité à chaque pas. Elle plaît aux coureurs qui aiment une sensation ferme.",
@@ -1079,7 +1123,9 @@
       "slug": "new-balance-1080-v15",
       "name": "1080 v15",
       "brand": "New Balance",
-      "categorySlugs": ["chaussures-route"],
+      "categorySlugs": [
+        "chaussures-route"
+      ],
       "priceCents": 20000,
       "shortDescription": "Chaussure de route confortable de New Balance, drop de 6 mm.",
       "description": "La 1080 est le modèle le plus confortable de New Balance. La v15 est sortie en janvier 2026. Son drop est de 6 mm et son poids d'environ 261 g. Le prix conseillé est de 200 euros.",
@@ -1173,7 +1219,9 @@
       "slug": "adidas-adizero-boston-13",
       "name": "Adizero Boston 13",
       "brand": "Adidas",
-      "categorySlugs": ["chaussures-route"],
+      "categorySlugs": [
+        "chaussures-route"
+      ],
       "priceCents": 16000,
       "shortDescription": "Chaussure de route légère pour les sorties rapides, drop de 6 mm.",
       "description": "L'Adizero Boston est la chaussure rapide du quotidien chez Adidas. Elle a un drop de 6 mm et pèse environ 257 g. Elle convient aux séances de vitesse et aux courses sur route. Le prix conseillé est de 160 euros.",
@@ -1403,7 +1451,18 @@
       "images": [
         {
           "url": "/catalogue/adidas-adizero-boston-13.jpg",
-          "alt": "Adidas Adizero Boston 13, illustration du produit"
+          "alt": "Adidas Adizero Boston 13, illustration du produit",
+          "color": "Blanc"
+        },
+        {
+          "url": "/catalogue/adidas-adizero-boston-13-bleu.jpg",
+          "alt": "Adidas Adizero Boston 13 coloris bleu, illustration du produit",
+          "color": "Bleu"
+        },
+        {
+          "url": "/catalogue/adidas-adizero-boston-13-noir.jpg",
+          "alt": "Adidas Adizero Boston 13 coloris noir, illustration du produit",
+          "color": "Noir"
         }
       ]
     },
@@ -1411,7 +1470,9 @@
       "slug": "salomon-speedcross-6",
       "name": "Speedcross 6",
       "brand": "Salomon",
-      "categorySlugs": ["chaussures-trail"],
+      "categorySlugs": [
+        "chaussures-trail"
+      ],
       "priceCents": 15000,
       "shortDescription": "Chaussure de trail à gros crampons pour la boue, drop de 10 mm.",
       "description": "La Speedcross est faite pour les sols mous, gras et humides. Sa semelle Mud Contagrip mord bien dans la boue. Elle a un drop de 10 mm et pèse environ 288 g. Elle est moins à l'aise sur sol dur.",
@@ -1505,7 +1566,9 @@
       "slug": "hoka-speedgoat-6",
       "name": "Speedgoat 6",
       "brand": "Hoka",
-      "categorySlugs": ["chaussures-trail"],
+      "categorySlugs": [
+        "chaussures-trail"
+      ],
       "priceCents": 16000,
       "shortDescription": "Chaussure de trail amortie pour les longues distances, drop de 5 mm.",
       "description": "La Speedgoat est le modèle trail le plus connu de Hoka. La 6e version est plus légère que la 5e grâce à une semelle intermédiaire revue. Elle a un drop de 5 mm et pèse environ 278 g. Elle convient aux longs trails.",
@@ -1663,7 +1726,13 @@
       "images": [
         {
           "url": "/catalogue/hoka-speedgoat-6.jpg",
-          "alt": "Hoka Speedgoat 6, illustration du produit"
+          "alt": "Hoka Speedgoat 6, illustration du produit",
+          "color": "Vert"
+        },
+        {
+          "url": "/catalogue/hoka-speedgoat-6-rouge.jpg",
+          "alt": "Hoka Speedgoat 6 coloris rouge, illustration du produit",
+          "color": "Rouge"
         }
       ]
     },
@@ -1671,7 +1740,9 @@
       "slug": "saucony-peregrine-16",
       "name": "Peregrine 16",
       "brand": "Saucony",
-      "categorySlugs": ["chaussures-trail"],
+      "categorySlugs": [
+        "chaussures-trail"
+      ],
       "priceCents": 16000,
       "shortDescription": "Chaussure de trail accrocheuse, drop de 4 mm, pour sentiers variés.",
       "description": "La Peregrine est la chaussure de trail de Saucony. Elle a un drop de 4 mm, avec 32 mm au talon et 28 mm à l'avant. Son poids est de 271 g en version homme. Une version Gore-Tex existe aussi.",
@@ -1829,7 +1900,13 @@
       "images": [
         {
           "url": "/catalogue/saucony-peregrine-16.jpg",
-          "alt": "Saucony Peregrine 16, illustration du produit"
+          "alt": "Saucony Peregrine 16, illustration du produit",
+          "color": "Bleu"
+        },
+        {
+          "url": "/catalogue/saucony-peregrine-16-orange.jpg",
+          "alt": "Saucony Peregrine 16 coloris orange, illustration du produit",
+          "color": "Orange"
         }
       ]
     },
@@ -1837,7 +1914,9 @@
       "slug": "brooks-cascadia-19",
       "name": "Cascadia 19",
       "brand": "Brooks",
-      "categorySlugs": ["chaussures-trail"],
+      "categorySlugs": [
+        "chaussures-trail"
+      ],
       "priceCents": 15000,
       "shortDescription": "Chaussure de trail robuste de Brooks, drop de 6 mm.",
       "description": "La Cascadia est la chaussure de trail de Brooks pour les terrains difficiles. Elle a un drop de 6 mm et pèse environ 297 g en version homme. Elle est solide et bien protégée. Une version Gore-Tex existe aussi.",
@@ -1995,7 +2074,13 @@
       "images": [
         {
           "url": "/catalogue/brooks-cascadia-19.jpg",
-          "alt": "Brooks Cascadia 19, illustration du produit"
+          "alt": "Brooks Cascadia 19, illustration du produit",
+          "color": "Noir"
+        },
+        {
+          "url": "/catalogue/brooks-cascadia-19-beige.jpg",
+          "alt": "Brooks Cascadia 19 coloris beige, illustration du produit",
+          "color": "Beige"
         }
       ]
     },
@@ -2003,7 +2088,9 @@
       "slug": "altra-lone-peak-9",
       "name": "Lone Peak 9",
       "brand": "Altra",
-      "categorySlugs": ["chaussures-trail"],
+      "categorySlugs": [
+        "chaussures-trail"
+      ],
       "priceCents": 15000,
       "shortDescription": "Chaussure de trail à drop zéro et à avant-pied large.",
       "description": "La Lone Peak est le modèle trail phare d'Altra. Son drop est de 0 mm : le talon et l'avant-pied sont à la même hauteur. L'avant-pied est large pour laisser les orteils s'écarter. Le poids est d'environ 295 g en taille 42.",
@@ -2161,7 +2248,13 @@
       "images": [
         {
           "url": "/catalogue/altra-lone-peak-9.jpg",
-          "alt": "Altra Lone Peak 9, illustration du produit"
+          "alt": "Altra Lone Peak 9, illustration du produit",
+          "color": "Noir"
+        },
+        {
+          "url": "/catalogue/altra-lone-peak-9-gris.jpg",
+          "alt": "Altra Lone Peak 9 coloris gris, illustration du produit",
+          "color": "Gris"
         }
       ]
     },
@@ -2169,7 +2262,9 @@
       "slug": "la-sportiva-bushido-iii",
       "name": "Bushido III",
       "brand": "La Sportiva",
-      "categorySlugs": ["chaussures-trail"],
+      "categorySlugs": [
+        "chaussures-trail"
+      ],
       "priceCents": 17500,
       "shortDescription": "Chaussure de trail technique et stable pour terrains raides, drop de 6 mm.",
       "description": "La Bushido est la chaussure de trail technique de La Sportiva. Elle a un drop de 6 mm et pèse environ 300 g. Elle est stable sur les sentiers raides et pierreux. Le prix conseillé est de 175 euros.",
@@ -2327,7 +2422,13 @@
       "images": [
         {
           "url": "/catalogue/la-sportiva-bushido-iii.jpg",
-          "alt": "La Sportiva Bushido III, illustration du produit"
+          "alt": "La Sportiva Bushido III, illustration du produit",
+          "color": "Noir"
+        },
+        {
+          "url": "/catalogue/la-sportiva-bushido-iii-jaune.jpg",
+          "alt": "La Sportiva Bushido III coloris jaune, illustration du produit",
+          "color": "Jaune"
         }
       ]
     },
@@ -2335,7 +2436,9 @@
       "slug": "nike-pegasus-trail-5",
       "name": "Pegasus Trail 5",
       "brand": "Nike",
-      "categorySlugs": ["chaussures-trail"],
+      "categorySlugs": [
+        "chaussures-trail"
+      ],
       "priceCents": 13999,
       "shortDescription": "Chaussure de trail polyvalente de Nike, passe de la route au sentier.",
       "description": "La Pegasus Trail suit le confort de la Pegasus route. Elle est faite pour passer de la route au sentier facile. Le drop est de 9,5 mm selon Nike. Nike conseille de prendre une demi-pointure au-dessus.",
@@ -2493,7 +2596,13 @@
       "images": [
         {
           "url": "/catalogue/nike-pegasus-trail-5.jpg",
-          "alt": "Nike Pegasus Trail 5, illustration du produit"
+          "alt": "Nike Pegasus Trail 5, illustration du produit",
+          "color": "Bleu"
+        },
+        {
+          "url": "/catalogue/nike-pegasus-trail-5-rose.jpg",
+          "alt": "Nike Pegasus Trail 5 coloris rose, illustration du produit",
+          "color": "Rose"
         }
       ]
     },
@@ -2501,7 +2610,9 @@
       "slug": "kiprun-kipclimb",
       "name": "Kipclimb",
       "brand": "Kiprun",
-      "categorySlugs": ["chaussures-trail"],
+      "categorySlugs": [
+        "chaussures-trail"
+      ],
       "priceCents": 9999,
       "shortDescription": "Chaussure de trail Decathlon à crampons de 5 mm, drop de 6 mm.",
       "description": "La Kipclimb est une chaussure de trail abordable de la marque Kiprun. Ses crampons font 5 mm de haut. Le drop est de 6 mm. Elle taille petit : les acheteurs conseillent de prendre une pointure au-dessus.",
@@ -2731,7 +2842,18 @@
       "images": [
         {
           "url": "/catalogue/kiprun-kipclimb.jpg",
-          "alt": "Kiprun Kipclimb, illustration du produit"
+          "alt": "Kiprun Kipclimb, illustration du produit",
+          "color": "Beige"
+        },
+        {
+          "url": "/catalogue/kiprun-kipclimb-bleu.jpg",
+          "alt": "Kiprun Kipclimb coloris bleu, illustration du produit",
+          "color": "Bleu"
+        },
+        {
+          "url": "/catalogue/kiprun-kipclimb-noir.jpg",
+          "alt": "Kiprun Kipclimb coloris noir, illustration du produit",
+          "color": "Noir"
         }
       ]
     },
@@ -2739,7 +2861,9 @@
       "slug": "salomon-sense-ride-5",
       "name": "Sense Ride 5",
       "brand": "Salomon",
-      "categorySlugs": ["chaussures-trail"],
+      "categorySlugs": [
+        "chaussures-trail"
+      ],
       "priceCents": 13000,
       "shortDescription": "Chaussure de trail confortable pour sentiers roulants, drop de 8 mm.",
       "description": "La Sense Ride est la chaussure de trail d'entrée de gamme de Salomon. Son drop est de 8 mm. Le poids annoncé est d'environ 293 g. Elle suit bien le sentier roulant et la longue sortie.",
@@ -2897,7 +3021,13 @@
       "images": [
         {
           "url": "/catalogue/salomon-sense-ride-5.jpg",
-          "alt": "Salomon Sense Ride 5, illustration du produit"
+          "alt": "Salomon Sense Ride 5, illustration du produit",
+          "color": "Noir"
+        },
+        {
+          "url": "/catalogue/salomon-sense-ride-5-rouge.jpg",
+          "alt": "Salomon Sense Ride 5 coloris rouge, illustration du produit",
+          "color": "Rouge"
         }
       ]
     },
@@ -2905,7 +3035,9 @@
       "slug": "brooks-sherpa-5-short",
       "name": "Sherpa 5\" Short",
       "brand": "Brooks",
-      "categorySlugs": ["textile-homme"],
+      "categorySlugs": [
+        "textile-homme"
+      ],
       "priceCents": 5500,
       "shortDescription": "Short de running léger de 5 pouces avec slip intégré.",
       "description": "Le Sherpa est un short de course court de Brooks. La longueur est de 5 pouces, soit environ 13 cm. Il a un slip léger intégré. Les poches latérales sont petites : un téléphone n'y entre pas.",
@@ -2971,7 +3103,9 @@
       "slug": "salomon-sense-aero-seamless",
       "name": "Sense Aero Seamless",
       "brand": "Salomon",
-      "categorySlugs": ["textile-homme"],
+      "categorySlugs": [
+        "textile-homme"
+      ],
       "priceCents": 8500,
       "shortDescription": "Haut à manches longues sans couture en fibre recyclée.",
       "description": "Ce haut de Salomon n'a aucune couture, ce qui limite les frottements. Il est fait en fibre Evo recyclée. La coupe est ajustée au corps. Il sert pour le running et le trail.",
@@ -3038,7 +3172,9 @@
       "slug": "nike-dri-fit-uv-miler",
       "name": "Dri-FIT UV Miler",
       "brand": "Nike",
-      "categorySlugs": ["textile-homme"],
+      "categorySlugs": [
+        "textile-homme"
+      ],
       "priceCents": 3499,
       "shortDescription": "T-shirt de running en polyester avec logo réfléchissant.",
       "description": "Ce t-shirt court de Nike est fait pour courir par temps doux. Il est en 100 % polyester et se lave en machine. Le logo Swoosh est réfléchissant. Il coûte 34,99 euros en prix conseillé.",
@@ -3187,7 +3323,18 @@
       "images": [
         {
           "url": "/catalogue/nike-dri-fit-uv-miler.jpg",
-          "alt": "Nike Dri-FIT UV Miler, illustration du produit"
+          "alt": "Nike Dri-FIT UV Miler, illustration du produit",
+          "color": "Bleu"
+        },
+        {
+          "url": "/catalogue/nike-dri-fit-uv-miler-gris.jpg",
+          "alt": "Nike Dri-FIT UV Miler coloris gris, illustration du produit",
+          "color": "Gris"
+        },
+        {
+          "url": "/catalogue/nike-dri-fit-uv-miler-noir.jpg",
+          "alt": "Nike Dri-FIT UV Miler coloris noir, illustration du produit",
+          "color": "Noir"
         }
       ]
     },
@@ -3195,7 +3342,9 @@
       "slug": "asics-core-winter-tight",
       "name": "Core Winter Tight",
       "brand": "Asics",
-      "categorySlugs": ["textile-homme"],
+      "categorySlugs": [
+        "textile-homme"
+      ],
       "priceCents": 5500,
       "shortDescription": "Collant long thermique pour courir par temps froid.",
       "description": "Ce collant d'Asics est prévu pour l'hiver. Il couvre toute la jambe et garde la chaleur. Le prix conseillé est de 55 euros. On le trouve souvent moins cher chez les revendeurs.",
@@ -3261,7 +3410,9 @@
       "slug": "brooks-run-visible-2",
       "name": "Run Visible 2.0",
       "brand": "Brooks",
-      "categorySlugs": ["textile-homme"],
+      "categorySlugs": [
+        "textile-homme"
+      ],
       "priceCents": 15000,
       "shortDescription": "Veste réfléchissante de Brooks pour courir de nuit ou par temps gris.",
       "description": "La Run Visible 2.0 est une veste faite pour être vue. Elle a des zones réfléchissantes pour courir de nuit. Elle protège du vent. Le prix conseillé est de 150 euros.",
@@ -3364,7 +3515,13 @@
       "images": [
         {
           "url": "/catalogue/brooks-run-visible-2.jpg",
-          "alt": "Brooks Run Visible 2.0, illustration du produit"
+          "alt": "Brooks Run Visible 2.0, illustration du produit",
+          "color": "Blanc"
+        },
+        {
+          "url": "/catalogue/brooks-run-visible-2-orange.jpg",
+          "alt": "Brooks Run Visible 2.0 coloris orange, illustration du produit",
+          "color": "Orange"
         }
       ]
     },
@@ -3372,7 +3529,9 @@
       "slug": "kiprun-run-500-confort-2-en-1",
       "name": "Run 500 Confort 2 en 1",
       "brand": "Kiprun",
-      "categorySlugs": ["textile-homme"],
+      "categorySlugs": [
+        "textile-homme"
+      ],
       "priceCents": 2999,
       "shortDescription": "Short de running 2 en 1 avec cuissard intégré, à petit prix.",
       "description": "Ce short de Kiprun a un cuissard intégré sous le short. Il évite les frottements sur les cuisses. Il est fait pour courir tous les jours. Il existe en trois coloris.",
@@ -3438,7 +3597,9 @@
       "slug": "brooks-chaser-5-short-2",
       "name": "Chaser 5\" Short 2.0",
       "brand": "Brooks",
-      "categorySlugs": ["textile-femme"],
+      "categorySlugs": [
+        "textile-femme"
+      ],
       "priceCents": 5500,
       "shortDescription": "Short de running femme de 5 pouces.",
       "description": "Le Chaser est un short de course léger pour femme. La longueur est de 5 pouces. Le prix conseillé est de 55 euros. Brooks propose aussi une version 2 en 1.",
@@ -3541,7 +3702,13 @@
       "images": [
         {
           "url": "/catalogue/brooks-chaser-5-short-2.jpg",
-          "alt": "Brooks Chaser 5\" Short 2.0, illustration du produit"
+          "alt": "Brooks Chaser 5\" Short 2.0, illustration du produit",
+          "color": "Bleu"
+        },
+        {
+          "url": "/catalogue/brooks-chaser-5-short-2-rose.jpg",
+          "alt": "Brooks Chaser 5\" Short 2.0 coloris rose, illustration du produit",
+          "color": "Rose"
         }
       ]
     },
@@ -3549,7 +3716,9 @@
       "slug": "nike-swift-legging-7-8",
       "name": "Swift 7/8",
       "brand": "Nike",
-      "categorySlugs": ["textile-femme"],
+      "categorySlugs": [
+        "textile-femme"
+      ],
       "priceCents": 8499,
       "shortDescription": "Legging de running 7/8 taille haute avec poches et motifs réfléchissants.",
       "description": "Ce legging de Nike est coupé en 7/8, donc il s'arrête au-dessus de la cheville. La taille est haute et il a des poches. Des motifs réfléchissants sont placés sur les cuisses. Le tissu est Dri-FIT.",
@@ -3653,7 +3822,13 @@
       "images": [
         {
           "url": "/catalogue/nike-swift-legging-7-8.jpg",
-          "alt": "Nike Swift 7/8, illustration du produit"
+          "alt": "Nike Swift 7/8, illustration du produit",
+          "color": "Bleu"
+        },
+        {
+          "url": "/catalogue/nike-swift-legging-7-8-noir.jpg",
+          "alt": "Nike Swift 7/8 coloris noir, illustration du produit",
+          "color": "Noir"
         }
       ]
     },
@@ -3661,7 +3836,9 @@
       "slug": "salomon-bonatti-cross-wind-w",
       "name": "Bonatti Cross Wind W",
       "brand": "Salomon",
-      "categorySlugs": ["textile-femme"],
+      "categorySlugs": [
+        "textile-femme"
+      ],
       "priceCents": 9000,
       "shortDescription": "Veste coupe-vent légère pour femme, avec protection légère contre l'eau.",
       "description": "Cette veste de Salomon coupe le vent pendant la course. Elle est légère et se range facilement. Elle n'est pas imperméable : elle résiste seulement aux légères averses. Le prix conseillé est de 90 euros.",
@@ -3727,7 +3904,9 @@
       "slug": "compressport-feelfree-seamless-bra",
       "name": "FeelFree Seamless Bra",
       "brand": "Compressport",
-      "categorySlugs": ["textile-femme"],
+      "categorySlugs": [
+        "textile-femme"
+      ],
       "priceCents": 6000,
       "shortDescription": "Brassière sans couture pour le running.",
       "description": "Cette brassière de Compressport est tricotée sans couture. Elle limite les frottements sur la peau. Elle se porte pour courir. Le prix conseillé est de 60 euros.",
@@ -3830,7 +4009,13 @@
       "images": [
         {
           "url": "/catalogue/compressport-feelfree-seamless-bra.jpg",
-          "alt": "Compressport FeelFree Seamless Bra, illustration du produit"
+          "alt": "Compressport FeelFree Seamless Bra, illustration du produit",
+          "color": "Noir"
+        },
+        {
+          "url": "/catalogue/compressport-feelfree-seamless-bra-vert.jpg",
+          "alt": "Compressport FeelFree Seamless Bra coloris vert, illustration du produit",
+          "color": "Vert"
         }
       ]
     },
@@ -3838,7 +4023,9 @@
       "slug": "compressport-trail-racing-postural-ss-w",
       "name": "Trail Racing Postural SS Top W",
       "brand": "Compressport",
-      "categorySlugs": ["textile-femme"],
+      "categorySlugs": [
+        "textile-femme"
+      ],
       "priceCents": 9000,
       "shortDescription": "T-shirt de trail à manches courtes de la gamme Postural.",
       "description": "Ce haut de Compressport est pensé pour le trail. Il fait partie de la gamme Postural. Le prix conseillé est de 90 euros. On le trouve parfois autour de 54 à 70 euros chez les revendeurs.",
@@ -3904,7 +4091,9 @@
       "slug": "kiprun-run-900-ultra-2-en-1-w",
       "name": "Run 900 Ultra 2 en 1",
       "brand": "Kiprun",
-      "categorySlugs": ["textile-femme"],
+      "categorySlugs": [
+        "textile-femme"
+      ],
       "priceCents": 3999,
       "shortDescription": "Short 2 en 1 pour courir de longues distances, en route ou en trail.",
       "description": "Ce short de Kiprun a un cuissard de protection intégré. Il évite les frottements sur les cuisses. Il est prévu pour les longues distances, jusqu'au marathon et au trail. Il coûte 39,99 euros.",
@@ -4007,7 +4196,13 @@
       "images": [
         {
           "url": "/catalogue/kiprun-run-900-ultra-2-en-1-w.jpg",
-          "alt": "Kiprun Run 900 Ultra 2 en 1, illustration du produit"
+          "alt": "Kiprun Run 900 Ultra 2 en 1, illustration du produit",
+          "color": "Noir"
+        },
+        {
+          "url": "/catalogue/kiprun-run-900-ultra-2-en-1-w-marron.jpg",
+          "alt": "Kiprun Run 900 Ultra 2 en 1 coloris marron, illustration du produit",
+          "color": "Marron"
         }
       ]
     },
@@ -4015,7 +4210,9 @@
       "slug": "maurten-gel-100",
       "name": "Gel 100",
       "brand": "Maurten",
-      "categorySlugs": ["nutrition"],
+      "categorySlugs": [
+        "nutrition"
+      ],
       "priceCents": 4100,
       "shortDescription": "Boîte de 12 gels énergétiques de 40 g, 25 g de glucides chacun.",
       "description": "Ce gel de Maurten est une texture d'hydrogel, facile à avaler. Chaque gel de 40 g apporte 25 g de glucides. La boîte contient 12 gels. Il est prévu pour les courses longues.",
@@ -4046,7 +4243,9 @@
       "slug": "maurten-drink-mix-320",
       "name": "Drink Mix 320",
       "brand": "Maurten",
-      "categorySlugs": ["nutrition"],
+      "categorySlugs": [
+        "nutrition"
+      ],
       "priceCents": 4700,
       "shortDescription": "Boîte de 14 sachets de boisson énergétique, environ 80 g de glucides par sachet.",
       "description": "Ce mélange de Maurten se dilue dans l'eau pour faire une boisson énergétique. Un sachet se prépare dans 500 ml d'eau. Il apporte environ 80 g de glucides. La boîte contient 14 sachets.",
@@ -4077,7 +4276,9 @@
       "slug": "overstims-gel-antioxydant-citron",
       "name": "Gel Antioxydant Citron",
       "brand": "Overstims",
-      "categorySlugs": ["nutrition"],
+      "categorySlugs": [
+        "nutrition"
+      ],
       "priceCents": 250,
       "shortDescription": "Gel énergétique de 34 g au citron, 26 g de glucides.",
       "description": "Ce gel d'Overstims se prend pendant l'effort. Un gel de 34 g apporte 26 g de glucides, soit environ 100 kcal. Il a un goût de citron. Il se vend à l'unité ou en lot.",
@@ -4107,7 +4308,9 @@
       "slug": "naak-gel-ultra-energy-erable-sale",
       "name": "Gel Ultra Energy Érable Salé",
       "brand": "Naak",
-      "categorySlugs": ["nutrition"],
+      "categorySlugs": [
+        "nutrition"
+      ],
       "priceCents": 350,
       "shortDescription": "Gel énergétique de 57 g au sirop d'érable salé, 27 g de glucides.",
       "description": "Ce gel de Naak est fait à base de sirop d'érable salé. Un gel de 57 g apporte 27 g de glucides, dont 14 g de sucres. Il fournit environ 200 kcal. Il se prend pendant les sorties longues.",
@@ -4138,7 +4341,9 @@
       "slug": "naak-barre-ultra-energy-baies-noix",
       "name": "Barre Ultra Energy Baies et Noix",
       "brand": "Naak",
-      "categorySlugs": ["nutrition"],
+      "categorySlugs": [
+        "nutrition"
+      ],
       "priceCents": 325,
       "shortDescription": "Barre énergétique de 50 g aux baies et aux noix.",
       "description": "Cette barre de Naak se mange pendant l'effort long. Elle pèse 50 g et apporte environ 22 g de glucides. Elle a un goût de baies et de noix. Elle se glisse facilement dans une poche.",
@@ -4168,7 +4373,9 @@
       "slug": "garmin-forerunner-165",
       "name": "Forerunner 165",
       "brand": "Garmin",
-      "categorySlugs": ["accessoires"],
+      "categorySlugs": [
+        "accessoires"
+      ],
       "priceCents": 27900,
       "shortDescription": "Montre GPS de running à écran AMOLED, jusqu'à 11 jours d'autonomie.",
       "description": "La Forerunner 165 est une montre GPS pour la course à pied. Garmin annonce jusqu'à 11 jours en mode montre connectée. En mode GPS seul, l'autonomie va jusqu'à 19 heures. Le prix conseillé est de 279 euros, et de 329 euros pour la version Music.",
@@ -4208,7 +4415,18 @@
       "images": [
         {
           "url": "/catalogue/garmin-forerunner-165.jpg",
-          "alt": "Garmin Forerunner 165, illustration du produit"
+          "alt": "Garmin Forerunner 165, illustration du produit",
+          "color": "Noir"
+        },
+        {
+          "url": "/catalogue/garmin-forerunner-165-gris.jpg",
+          "alt": "Garmin Forerunner 165 coloris gris, illustration du produit",
+          "color": "Gris"
+        },
+        {
+          "url": "/catalogue/garmin-forerunner-165-violet.jpg",
+          "alt": "Garmin Forerunner 165 coloris violet, illustration du produit",
+          "color": "Violet"
         }
       ]
     },
@@ -4216,7 +4434,9 @@
       "slug": "petzl-actik-core",
       "name": "Actik Core",
       "brand": "Petzl",
-      "categorySlugs": ["accessoires"],
+      "categorySlugs": [
+        "accessoires"
+      ],
       "priceCents": 8000,
       "shortDescription": "Lampe frontale rechargeable de 625 lumens, 88 g.",
       "description": "L'Actik Core est une lampe frontale rechargeable pour courir de nuit. Elle éclaire jusqu'à 625 lumens. Elle dure 2 heures à pleine puissance, et jusqu'à 100 heures en mode économie. Elle pèse 88 g.",
@@ -4248,7 +4468,13 @@
       "images": [
         {
           "url": "/catalogue/petzl-actik-core.jpg",
-          "alt": "Petzl Actik Core, illustration du produit"
+          "alt": "Petzl Actik Core, illustration du produit",
+          "color": "Vert"
+        },
+        {
+          "url": "/catalogue/petzl-actik-core-noir.jpg",
+          "alt": "Petzl Actik Core coloris noir, illustration du produit",
+          "color": "Noir"
         }
       ]
     },
@@ -4256,7 +4482,9 @@
       "slug": "salomon-active-skin-8",
       "name": "Active Skin 8",
       "brand": "Salomon",
-      "categorySlugs": ["accessoires"],
+      "categorySlugs": [
+        "accessoires"
+      ],
       "priceCents": 11500,
       "shortDescription": "Gilet d'hydratation de 8 litres, livré avec deux flasques de 500 ml.",
       "description": "L'Active Skin 8 est un gilet près du corps pour le trail. Son volume est de 8 litres. Il est livré avec deux flasques souples de 500 ml. Il accepte aussi une poche à eau de 1,5 litre, vendue à part.",
@@ -4323,7 +4551,9 @@
       "slug": "compressport-pro-racing-socks-v4-run-low",
       "name": "Pro Racing Socks v4.0 Run Low",
       "brand": "Compressport",
-      "categorySlugs": ["accessoires"],
+      "categorySlugs": [
+        "accessoires"
+      ],
       "priceCents": 1800,
       "shortDescription": "Chaussettes basses de course, modèle Run Low.",
       "description": "Cette chaussette basse de Compressport est faite pour la course. Elle s'arrête sous la cheville. Le prix conseillé est de 18 euros. Elle existe en plusieurs coloris et en plusieurs tailles.",
@@ -4444,7 +4674,18 @@
       "images": [
         {
           "url": "/catalogue/compressport-pro-racing-socks-v4-run-low.jpg",
-          "alt": "Compressport Pro Racing Socks v4.0 Run Low, illustration du produit"
+          "alt": "Compressport Pro Racing Socks v4.0 Run Low, illustration du produit",
+          "color": "Blanc"
+        },
+        {
+          "url": "/catalogue/compressport-pro-racing-socks-v4-run-low-bleu.jpg",
+          "alt": "Compressport Pro Racing Socks v4.0 Run Low coloris bleu, illustration du produit",
+          "color": "Bleu"
+        },
+        {
+          "url": "/catalogue/compressport-pro-racing-socks-v4-run-low-noir.jpg",
+          "alt": "Compressport Pro Racing Socks v4.0 Run Low coloris noir, illustration du produit",
+          "color": "Noir"
         }
       ]
     },
@@ -4452,7 +4693,9 @@
       "slug": "kiprun-ceinture-porte-bidon-500-ml",
       "name": "Ceinture porte-bidon trail 500 ml",
       "brand": "Kiprun",
-      "categorySlugs": ["accessoires"],
+      "categorySlugs": [
+        "accessoires"
+      ],
       "priceCents": 1499,
       "shortDescription": "Ceinture de trail vendue avec un bidon de 500 ml.",
       "description": "Cette ceinture de Kiprun porte un bidon de 500 ml, fourni avec elle. Elle sert pour les sorties de trail sans sac. Elle coûte 14,99 euros.",

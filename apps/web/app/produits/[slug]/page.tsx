@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { formatPrice } from "@lafoulee/shared";
-import { ProductVisual } from "@/components/product-visual";
 import { getProduct } from "@/lib/catalog";
+import { ColorProvider, ProductImageByColor } from "./color-context";
 import { VariantPicker } from "./variant-picker";
 
 /**
@@ -42,6 +42,10 @@ export default async function ProductPage({ params }: PageProps<"/produits/[slug
 
   const prices = product.variants.map((variant) => variant.priceCents);
   const minPrice = Math.min(...prices);
+  // Coloris affiché d'abord : celui de la photo principale, sinon le premier coloris en vente.
+  const colors = product.variants.map((variant) => variant.color);
+  const initialColor =
+    product.images[0]?.color && colors.includes(product.images[0].color) ? product.images[0].color : (colors[0] ?? "");
   const inStock = product.variants.some((variant) => variant.totalAvailable > 0);
   const category = product.categories[0];
 
@@ -90,26 +94,22 @@ export default async function ProductPage({ params }: PageProps<"/produits/[slug
         </ol>
       </nav>
 
-      <div className="mt-6 grid gap-8 lg:grid-cols-2">
-        <ProductVisual
-          brand={product.brand}
-          name={product.name}
-          imageUrl={product.images[0]?.url ?? null}
-          imageAlt={product.images[0]?.alt ?? null}
-          priority
-        />
-        <div>
-          <p className="font-semibold uppercase tracking-wide text-foret">{product.brand}</p>
-          <h1 className="font-display tracking-tight text-5xl font-extrabold leading-none">{product.name}</h1>
-          <p className="mt-3 text-lg">{product.shortDescription}</p>
-          <p className="mt-4 text-2xl font-semibold">
-            {prices.every((price) => price === minPrice)
-              ? formatPrice(minPrice)
-              : `À partir de ${formatPrice(minPrice)}`}
-          </p>
-          <VariantPicker variants={product.variants} stores={product.stores} />
+      <ColorProvider initial={initialColor}>
+        <div className="mt-6 grid gap-8 lg:grid-cols-2">
+          <ProductImageByColor product={product} />
+          <div>
+            <p className="font-semibold uppercase tracking-wide text-foret">{product.brand}</p>
+            <h1 className="font-display tracking-tight text-5xl font-extrabold leading-none">{product.name}</h1>
+            <p className="mt-3 text-lg">{product.shortDescription}</p>
+            <p className="mt-4 text-2xl font-semibold">
+              {prices.every((price) => price === minPrice)
+                ? formatPrice(minPrice)
+                : `À partir de ${formatPrice(minPrice)}`}
+            </p>
+            <VariantPicker variants={product.variants} stores={product.stores} />
+          </div>
         </div>
-      </div>
+      </ColorProvider>
 
       <section aria-labelledby="titre-description" className="mt-12 grid gap-8 lg:grid-cols-2">
         <div>

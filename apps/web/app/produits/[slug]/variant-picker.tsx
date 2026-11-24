@@ -3,6 +3,7 @@
 import { useId, useMemo, useState } from "react";
 import { formatPrice, type StoreDto, type VariantDto } from "@lafoulee/shared";
 import { AddToCart } from "./add-to-cart";
+import { useColorContext } from "./color-context";
 
 /**
  * Choix du coloris puis de la pointure ou taille, et disponibilité par boutique (EF03).
@@ -11,7 +12,14 @@ import { AddToCart } from "./add-to-cart";
  */
 export function VariantPicker({ variants, stores }: { variants: VariantDto[]; stores: StoreDto[] }) {
   const colors = useMemo(() => [...new Set(variants.map((variant) => variant.color))], [variants]);
-  const [color, setColor] = useState(colors[0] ?? "");
+  // Coloris partagé avec la photo de la fiche (contexte) ; état local sinon.
+  const shared = useColorContext();
+  const [localColor, setLocalColor] = useState(colors[0] ?? "");
+  const color = shared && colors.includes(shared.color) ? shared.color : localColor;
+  const setColor = (value: string) => {
+    setLocalColor(value);
+    shared?.setColor(value);
+  };
   const sizes = variants.filter((variant) => variant.color === color);
   const [variantId, setVariantId] = useState<string | null>(null);
   const selected = sizes.find((variant) => variant.id === variantId) ?? null;

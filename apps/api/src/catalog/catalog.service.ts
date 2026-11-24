@@ -176,7 +176,7 @@ export class CatalogService {
         name: category.name,
         description: category.description,
       })),
-      images: product.images.map((image) => ({ url: image.blobUrl, alt: image.alt })),
+      images: product.images.map((image) => ({ url: image.blobUrl, alt: image.alt, color: image.color })),
       variants: product.variants.map((variant) => {
         const stocks = variant.stocks
           .map((stock) => ({ storeSlug: stock.store.slug, available: Math.max(0, stock.quantity - stock.reserved) }))
