@@ -71,6 +71,10 @@ jobs:
       - run: npm run db:deploy -w apps/api
       - run: npm run db:seed -w apps/api
       - run: npm run test:cov -w apps/api # unitaires + e2e, seuil de couverture 60 %
+      - name: Rapport de couverture pour SonarQube (chemins depuis la racine du dépôt)
+        run: sed -i 's#^SF:#SF:apps/api/#' apps/api/coverage/lcov.info
+      - uses: actions/upload-artifact@v7
+        with: { name: couverture-api, path: apps/api/coverage/lcov.info, retention-days: 7 }
 
   test-web:
     needs: quality
@@ -83,6 +87,26 @@ jobs:
       - run: npm rebuild esbuild prisma @prisma/engines # ...sauf les 3 paquets approuvés
       - run: npm run build -w @lafoulee/shared
       - run: npm run test:cov -w apps/web # seuil de couverture 60 %
+      - name: Rapport de couverture pour SonarQube (chemins depuis la racine du dépôt)
+        run: sed -i 's#^SF:#SF:apps/web/#' apps/web/coverage/lcov.info
+      - uses: actions/upload-artifact@v7
+        with: { name: couverture-web, path: apps/web/coverage/lcov.info, retention-days: 7 }
+
+  # Analyse SonarQube Cloud avec la couverture des tests (l'analyse automatique ne la lit pas).
+  sonar:
+    needs: [test-api, test-web]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    steps:
+      - uses: actions/checkout@v7
+        with: { fetch-depth: 0 } # historique complet : Sonar repère le nouveau code
+      - uses: actions/download-artifact@v8
+        with: { name: couverture-api, path: apps/api/coverage }
+      - uses: actions/download-artifact@v8
+        with: { name: couverture-web, path: apps/web/coverage }
+      - uses: SonarSource/sonarqube-scan-action@v8.5.1
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   build-web:
     needs: quality
