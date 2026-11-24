@@ -6,6 +6,7 @@
 // Lancement (depuis apps/api, clé NEON_API_KEY dans ../../.env.local) :
 //   node scripts/reset-prod-demo.mjs --confirmer
 import { execFileSync } from "node:child_process";
+import { createRequire } from "node:module";
 import pg from "pg";
 
 if (!process.argv.includes("--confirmer")) {
@@ -18,7 +19,11 @@ const res = await fetch(
   { headers: { authorization: `Bearer ${process.env.NEON_API_KEY}` } },
 );
 if (!res.ok) throw new Error(`API Neon : HTTP ${res.status}`);
-const { uri } = await res.json();
+const { uri: raw } = await res.json();
+// Mode SSL explicite (le plus strict) : évite l'avertissement de pg sur "sslmode=require".
+const url = new URL(raw);
+url.searchParams.set("sslmode", "verify-full");
+const uri = url.toString();
 
 const client = new pg.Client({ connectionString: uri });
 await client.connect();
@@ -38,9 +43,10 @@ await client.query("COMMIT");
 console.log(`comptes de test supprimés : ${removed.rowCount}`);
 await client.end();
 
-execFileSync("npx", ["prisma", "db", "seed"], {
+// La CLI Prisma est lancée directement avec node (pas de shell : aucun argument interprété).
+const prismaCli = createRequire(import.meta.url).resolve("prisma/build/index.js");
+execFileSync(process.execPath, [prismaCli, "db", "seed"], {
   stdio: "inherit",
-  shell: process.platform === "win32",
   env: { ...process.env, DATABASE_URL: uri },
 });
 
