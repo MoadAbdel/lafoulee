@@ -1,8 +1,13 @@
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "vitest/config";
 
 // Couverture globale (tests unitaires + e2e), seuil bloquant de 60 % (dossier, ENF05).
 export default defineConfig({
-  resolve: { tsconfigPaths: true },
+  resolve: {
+    tsconfigPaths: true,
+    // Les tests chargent le source du paquet partagé (pas dist/) : sa couverture est alors mesurée.
+    alias: { "@lafoulee/shared": fileURLToPath(new URL("../../packages/shared/src/index.ts", import.meta.url)) },
+  },
   test: {
     globals: true,
     root: "./",
