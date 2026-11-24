@@ -5,6 +5,10 @@
 // Les migrations doivent rester additives : l'ancien code tourne quelques instants
 // sur le nouveau schéma pendant le basculement.
 import { execFileSync } from "node:child_process";
+import { createRequire } from "node:module";
+
+// CLI Prisma lancée directement avec node : pas de shell, pas de recherche dans le PATH.
+const prismaCli = createRequire(import.meta.url).resolve("prisma/build/index.js");
 
 const target = process.env.VERCEL_ENV;
 if (target !== "preview" && target !== "production") {
@@ -23,9 +27,8 @@ console.log(`migrate-on-vercel : migrations sur l'environnement ${target}.`);
 const ATTEMPTS = 4;
 for (let attempt = 1; ; attempt++) {
   try {
-    execFileSync("npx", ["prisma", "migrate", "deploy"], {
+    execFileSync(process.execPath, [prismaCli, "migrate", "deploy"], {
       stdio: "inherit",
-      shell: process.platform === "win32",
       env: { ...process.env, DATABASE_URL: url },
     });
     break;
