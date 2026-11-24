@@ -1,0 +1,59 @@
+name: Instantané de la base
+# Sauvegarde hebdomadaire de la base de production par un instantané Neon (dossier, C9).
+# Les données ne quittent jamais Neon : pas d'export, pas d'artefact, pas de phrase de passe.
+# Le workflow ne reçoit que la clé de l'API Neon, et seulement depuis main.
+#
+# Offre gratuite de Neon : 1 instantané manuel, sans expiration, et pas d'instantané planifié.
+# Le workflow fait donc la rotation lui-même : il supprime l'ancien instantané, puis il crée
+# le nouveau. Pendant ces quelques secondes, la restauration à un instant (6 heures) reste possible.
+#
+# Restaurer (console Neon, Backup & restore, ou API) :
+#   - en vérifiant d'abord : "Multi-step restore" crée une branche à inspecter, puis on finalise ;
+#   - directement : "One-step restore" remplace la branche main (l'ancienne est gardée sous
+#     le nom "main (old)") ; l'adresse de connexion ne change pas.
+#   - sans instantané, à une heure précise des 6 dernières heures : "Restore" avec la date.
+on:
+  schedule:
+    - cron: "0 2 * * 0" # chaque dimanche à 2 h UTC
+  workflow_dispatch: # lancement manuel
+
+permissions: {}
+
+concurrency:
+  group: instantane-base
+  cancel-in-progress: false
+
+jobs:
+  instantane:
+    # Seulement depuis main : une branche modifiée ne peut pas utiliser la clé Neon.
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      NEON_API: https://console.neon.tech/api/v2/projects/fancy-leaf-62592713 # projet lafoulee-db (pas un secret)
+      NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+    steps:
+      - name: Vérifier la clé
+        run: test -n "$NEON_API_KEY" || { echo "::error::Secret NEON_API_KEY absent"; exit 1; }
+
+      - name: Remplacer l'instantané de la semaine
+        run: |
+          set -euo pipefail
+          neon() { curl -fsS -H "Authorization: Bearer $NEON_API_KEY" -H "Accept: application/json" "$@"; }
+          branche=$(neon "$NEON_API/branches" | jq -r '.branches[] | select(.default) | .id')
+          test -n "$branche" || { echo "::error::Branche par défaut introuvable"; exit 1; }
+
+          # 1. Supprimer les instantanés précédents (limite de 1 sur l'offre gratuite).
+          for id in $(neon "$NEON_API/snapshots" | jq -r '.snapshots[].id'); do
+            neon -X DELETE "$NEON_API/snapshots/$id" > /dev/null
+            echo "Ancien instantané supprimé : $id"
+          done
+
+          # 2. Créer le nouvel instantané de la branche main.
+          nom="hebdo-$(date -u +%F)"
+          id=$(neon -X POST "$NEON_API/branches/$branche/snapshot?name=$nom" | jq -r '.snapshot.id')
+          test -n "$id" && test "$id" != "null" || { echo "::error::Création de l'instantané refusée"; exit 1; }
+
+          # 3. Vérifier qu'il est bien listé.
+          neon "$NEON_API/snapshots" | jq -e --arg id "$id" '.snapshots[] | select(.id == $id)' > /dev/null
+          echo "Instantané créé et vérifié : $nom ($id)" | tee -a "$GITHUB_STEP_SUMMARY"
