@@ -32,6 +32,7 @@ export async function getProducts(query: ProductListQuery): Promise<ProductListD
   if (query.q) params.set("q", query.q);
   if (query.categorie) params.set("categorie", query.categorie);
   if (query.tri) params.set("tri", query.tri);
+  if (query.boutique) params.set("boutique", query.boutique);
   const list = await getJson<ProductListDto>(`/products?${params.toString()}`);
   return list ?? { items: [], page: query.page, pageSize: 12, total: 0, totalPages: 1 };
 }

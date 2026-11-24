@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { productListQuerySchema, type ProductListQuery } from "@lafoulee/shared";
 import { CatalogSkeleton } from "@/components/catalog-skeleton";
 import { ProductCard } from "@/components/product-card";
-import { getCategories, getProducts } from "@/lib/catalog";
+import { getCategories, getProducts, getStores } from "@/lib/catalog";
 
 export const metadata: Metadata = {
   title: "Catalogue",
@@ -27,6 +27,7 @@ function parseQuery(search: Search): ProductListQuery {
     categorie: first(search.categorie) || undefined,
     page: first(search.page) ?? 1,
     tri: first(search.tri) || undefined,
+    boutique: first(search.boutique) || undefined,
   });
   return parsed.success ? parsed.data : { page: 1 };
 }
@@ -37,6 +38,7 @@ function href(query: ProductListQuery, changes: Partial<ProductListQuery>): stri
   if (next.q) params.set("q", next.q);
   if (next.categorie) params.set("categorie", next.categorie);
   if (next.tri) params.set("tri", next.tri);
+  if (next.boutique) params.set("boutique", next.boutique);
   if (next.page > 1) params.set("page", String(next.page));
   const qs = params.toString();
   return qs ? `/produits?${qs}` : "/produits";
@@ -54,7 +56,8 @@ export default function ProductsPage({ searchParams }: PageProps<"/produits">) {
 
 async function Catalog({ searchParams }: { searchParams: Promise<Search> }) {
   const query = parseQuery(await searchParams);
-  const [list, categories] = await Promise.all([getProducts(query), getCategories()]);
+  const [list, categories, stores] = await Promise.all([getProducts(query), getCategories(), getStores()]);
+  const store = stores.find((item) => item.slug === query.boutique);
   const current = categories.find((category) => category.slug === query.categorie);
   const title = query.q ? `Résultats pour « ${query.q} »` : (current?.name ?? "Tout le catalogue");
 
@@ -87,6 +90,21 @@ async function Catalog({ searchParams }: { searchParams: Promise<Search> }) {
           {query.q && <input type="hidden" name="q" value={query.q} />}
           {query.categorie && <input type="hidden" name="categorie" value={query.categorie} />}
           <label className="flex flex-col text-sm font-semibold">
+            Disponible à
+            <select
+              name="boutique"
+              defaultValue={query.boutique ?? ""}
+              className="mt-1 min-h-11 border border-asphalte/40 bg-white px-2 font-normal"
+            >
+              <option value="">Toutes les boutiques</option>
+              {stores.map((item) => (
+                <option key={item.slug} value={item.slug}>
+                  {item.name.replace(/^La Foulée\s*/, "")}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="flex flex-col text-sm font-semibold">
             Trier par
             <select
               name="tri"
@@ -108,6 +126,7 @@ async function Catalog({ searchParams }: { searchParams: Promise<Search> }) {
 
       <p role="status" className="mt-6 text-sm text-asphalte/80">
         {list.total} produit{list.total > 1 ? "s" : ""}
+        {store && ` disponible${list.total > 1 ? "s" : ""} tout de suite à ${store.name.replace(/^La Foulée\s*/, "")}`}
       </p>
 
       {list.items.length === 0 ? (

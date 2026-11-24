@@ -18,6 +18,11 @@ export const productListQuerySchema = z.object({
     .optional(),
   page: z.coerce.number().int().min(1).max(500).default(1),
   tri: z.enum(PRODUCT_SORTS).optional(),
+  /** Seulement les produits disponibles tout de suite dans cette boutique (slug). */
+  boutique: z
+    .string()
+    .regex(/^[a-z0-9-]{1,60}$/)
+    .optional(),
 });
 export type ProductListQuery = z.infer<typeof productListQuerySchema>;
 
