@@ -6,7 +6,7 @@
 const productCard = {
   type: "object",
   properties: {
-    slug: { type: "string", example: "altivo-pulse-3" },
+    slug: { type: "string", example: "brooks-ghost-18" },
     name: { type: "string" },
     brand: { type: "string" },
     shortDescription: { type: "string" },

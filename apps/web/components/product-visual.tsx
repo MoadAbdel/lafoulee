@@ -11,9 +11,20 @@ interface Props {
 }
 
 /**
- * Visuel produit. Les photos arrivent avec l'upload du back-office (Vercel Blob).
- * En attendant, une vignette typographique sobre : pas d'image factice.
+ * Visuel produit : la photo (Wikimedia Commons sous licence libre, ou envoyée depuis le
+ * back-office dans Vercel Blob). Sans photo, une vignette typographique : jamais d'image factice.
  */
+/**
+ * Couleur de la vignette sans photo : rouge, cobalt ou encre selon le produit (toujours la
+ * même pour un produit donné). Texte blanc : contraste de 4,7:1 à 19,2:1.
+ */
+const TONES = ["bg-balise", "bg-foret", "bg-asphalte"] as const;
+function toneOf(key: string): string {
+  let hash = 0;
+  for (const char of key) hash = (hash * 31 + char.charCodeAt(0)) >>> 0;
+  return TONES[hash % TONES.length]!;
+}
+
 export function ProductVisual({ brand, name, imageUrl, imageAlt, priority, compact }: Props) {
   if (imageUrl) {
     return (
@@ -32,9 +43,9 @@ export function ProductVisual({ brand, name, imageUrl, imageAlt, priority, compa
   return (
     <div
       aria-hidden="true"
-      className={`flex aspect-[4/3] flex-col justify-end bg-foret text-craie ${compact ? "p-2" : "p-4"}`}
+      className={`flex aspect-[4/3] flex-col justify-end text-craie ${toneOf(brand + name)} ${compact ? "p-2" : "p-4"}`}
     >
-      <span className="text-xs font-semibold uppercase tracking-widest text-craie/80">{brand}</span>
+      <span className="text-xs font-semibold uppercase tracking-widest text-craie">{brand}</span>
       <span className={`font-display font-extrabold leading-none tracking-tight ${compact ? "text-base" : "text-4xl"}`}>
         {name}
       </span>

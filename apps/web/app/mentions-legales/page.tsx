@@ -1,5 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import photoCreditsData from "@/lib/photo-credits.json";
+
+interface PhotoCredit {
+  product: string;
+  author: string;
+  licence: string;
+  licenceUrl: string;
+  source: string;
+}
+
+/** Crédits des photos produits (Wikimedia Commons), générés avec le catalogue. */
+const photoCredits = photoCreditsData as PhotoCredit[];
 
 export const metadata: Metadata = { title: "Mentions légales" };
 
@@ -47,6 +59,19 @@ export default function LegalPage() {
             </a>
             , passée en noir et blanc et fondue dans le rouge de l&apos;affiche.
           </li>
+          {photoCredits.map((credit) => (
+            <li key={credit.source}>
+              {credit.product} :{" "}
+              <a href={credit.source} className="underline underline-offset-4" rel="noopener">
+                {credit.author}
+              </a>
+              ,{" "}
+              <a href={credit.licenceUrl} className="underline underline-offset-4" rel="license noopener">
+                {credit.licence}
+              </a>
+              .
+            </li>
+          ))}
         </ul>
       </section>
     </article>

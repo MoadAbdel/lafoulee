@@ -4,7 +4,7 @@
       "url": [
         "http://localhost:3000/",
         "http://localhost:3000/produits",
-        "http://localhost:3000/produits/altivo-carbone-x",
+        "http://localhost:3000/produits/salomon-speedcross-6",
         "http://localhost:3000/boutiques"
       ],
       "numberOfRuns": 1,
