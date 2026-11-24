@@ -1,0 +1,28 @@
+name: Nettoyage Neon
+# Chaque Preview Vercel crée une branche de base Neon "preview/<branche git>".
+# L'offre gratuite limite le nombre de branches : on supprime celle de la PR à sa fermeture.
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: read
+
+jobs:
+  delete-preview-branch:
+    runs-on: ubuntu-latest
+    env:
+      NEON_API: https://console.neon.tech/api/v2/projects/fancy-leaf-62592713 # projet lafoulee-db (pas un secret)
+      BRANCH: preview/${{ github.head_ref }}
+      NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+    steps:
+      - name: Supprimer la branche Neon de la PR
+        run: |
+          id=$(curl -fsS -H "Authorization: Bearer $NEON_API_KEY" "$NEON_API/branches" \
+            | jq -r --arg name "$BRANCH" '.branches[] | select(.name == $name and (.default | not)) | .id')
+          if [ -z "$id" ]; then
+            echo "Aucune branche Neon $BRANCH : rien à supprimer."
+            exit 0
+          fi
+          curl -fsS -X DELETE -H "Authorization: Bearer $NEON_API_KEY" "$NEON_API/branches/$id" > /dev/null
+          echo "Branche Neon $BRANCH ($id) supprimée."
