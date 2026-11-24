@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { postJson } from "@/lib/client-api";
+import { notifyAuthChanged, postJson } from "@/lib/client-api";
 
 export function LogoutButton() {
   const router = useRouter();
@@ -14,6 +14,7 @@ export function LogoutButton() {
       onClick={async () => {
         setPending(true);
         await postJson("/auth/logout");
+        notifyAuthChanged();
         router.push("/");
         router.refresh();
       }}

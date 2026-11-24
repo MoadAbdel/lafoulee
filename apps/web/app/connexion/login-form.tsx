@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import type { LoginResult } from "@lafoulee/shared";
 import { buttonClass, FormErrors, inputClass } from "@/components/form-errors";
-import { postJson } from "@/lib/client-api";
+import { notifyAuthChanged, postJson } from "@/lib/client-api";
 
 /** Connexion en une étape (clients) ou deux étapes avec code TOTP (administrateurs). */
 export function LoginForm() {
@@ -16,6 +16,7 @@ export function LoginForm() {
   const [resent, setResent] = useState(false);
 
   function done() {
+    notifyAuthChanged();
     router.push("/compte");
     router.refresh();
   }
@@ -73,7 +74,8 @@ export function LoginForm() {
             pattern="[0-9]{6}"
             maxLength={7}
             required
-            autoFocus
+            // Le champ arrive à la place du mot de passe : on y place le focus (lecteurs d'écran, clavier).
+            ref={(input) => input?.focus()}
             aria-describedby="code-aide"
             className={`${inputClass} text-2xl tracking-widest`}
           />

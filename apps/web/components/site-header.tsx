@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { MAIN_NAV } from "@/lib/nav";
+import { AccountLink } from "./account-link";
 import { CartBadge } from "./cart-badge";
 
 /** En-tête statique : logo, recherche (formulaire GET, fonctionne sans JavaScript), navigation. */
@@ -27,9 +28,7 @@ export function SiteHeader() {
           </button>
         </form>
         <div className="ml-auto flex items-center gap-5 sm:ml-0">
-          <Link href="/compte" className="min-h-11 content-center font-semibold underline-offset-4 hover:underline">
-            Mon compte
-          </Link>
+          <AccountLink />
           <CartBadge />
         </div>
       </div>
