@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Barlow_Condensed } from "next/font/google";
 import { ConsentBanner } from "@/components/consent-banner";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
@@ -42,6 +44,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         <SiteFooter />
         <ConsentBanner />
+        {/* Mesure d'audience et Core Web Vitals sans cookie ni identifiant (C20) : pas de consentement requis. */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

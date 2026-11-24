@@ -1,23 +1,46 @@
-import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, Put, Query, Req } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Param,
+  ParseUUIDPipe,
+  Patch,
+  Post,
+  Put,
+  Query,
+  Req,
+} from "@nestjs/common";
 import type { Request } from "express";
 import { z } from "zod";
 import {
   adminOrderQuerySchema,
   adminProductQuerySchema,
   apiKeyCreateSchema,
+  categoryCreateSchema,
+  categoryUpdateSchema,
+  imageUploadQuerySchema,
   orderStatusUpdateSchema,
+  productCreateSchema,
   productUpdateSchema,
   stockUpdateSchema,
+  variantCreateSchema,
   type AdminOrderQuery,
   type AdminProductQuery,
   type ApiKeyCreateInput,
+  type CategoryCreateInput,
+  type CategoryUpdateInput,
+  type ProductCreateInput,
   type ProductUpdateInput,
   type StockUpdateInput,
+  type VariantCreateInput,
 } from "@lafoulee/shared";
 import type { AuditContext } from "../audit/audit.service.js";
 import { clientIp, CurrentUser, Roles, type AuthUser } from "../common/decorators.js";
 import { ApiKeysService } from "../partner/api-keys.service.js";
 import { AdminService } from "./admin.service.js";
+import { CatalogAdminService } from "./catalog-admin.service.js";
 
 const pageSchema = z.object({ page: z.coerce.number().int().min(1).max(1000).default(1) });
 
@@ -31,6 +54,7 @@ export class AdminController {
   constructor(
     private readonly admin: AdminService,
     private readonly apiKeys: ApiKeysService,
+    private readonly catalogAdmin: CatalogAdminService,
   ) {}
 
   private context(user: AuthUser, req: Request): AuditContext {
@@ -72,14 +96,89 @@ export class AdminController {
     return this.admin.getProduct(id);
   }
 
+  @Post("products")
+  createProduct(
+    @Body({ schema: productCreateSchema }) body: ProductCreateInput,
+    @CurrentUser() user: AuthUser,
+    @Req() req: Request,
+  ) {
+    return this.catalogAdmin.createProduct(this.context(user, req), body);
+  }
+
   @Patch("products/:id")
-  updateProduct(
+  async updateProduct(
     @Param("id", new ParseUUIDPipe()) id: string,
     @Body({ schema: productUpdateSchema }) body: ProductUpdateInput,
     @CurrentUser() user: AuthUser,
     @Req() req: Request,
   ) {
-    return this.admin.updateProduct(this.context(user, req), id, body);
+    const categoryIds = body.categorySlugs ? await this.catalogAdmin.categoryIds(body.categorySlugs) : undefined;
+    return this.admin.updateProduct(this.context(user, req), id, body, categoryIds);
+  }
+
+  @Post("products/:id/variants")
+  createVariant(
+    @Param("id", new ParseUUIDPipe()) id: string,
+    @Body({ schema: variantCreateSchema }) body: VariantCreateInput,
+    @CurrentUser() user: AuthUser,
+    @Req() req: Request,
+  ) {
+    return this.catalogAdmin.createVariant(this.context(user, req), id, body);
+  }
+
+  /** Photo envoyée en binaire (Content-Type image/...), texte alternatif dans l'adresse. */
+  @Post("products/:id/images")
+  addImage(
+    @Param("id", new ParseUUIDPipe()) id: string,
+    @Query({ schema: imageUploadQuerySchema }) query: { alt: string },
+    @CurrentUser() user: AuthUser,
+    @Req() req: Request,
+  ) {
+    return this.catalogAdmin.addImage(this.context(user, req), id, req.body, query.alt);
+  }
+
+  @Delete("products/:id/images/:imageId")
+  removeImage(
+    @Param("id", new ParseUUIDPipe()) id: string,
+    @Param("imageId", new ParseUUIDPipe()) imageId: string,
+    @CurrentUser() user: AuthUser,
+    @Req() req: Request,
+  ) {
+    return this.catalogAdmin.removeImage(this.context(user, req), id, imageId);
+  }
+
+  @Get("categories")
+  categories() {
+    return this.catalogAdmin.listCategories();
+  }
+
+  @Post("categories")
+  createCategory(
+    @Body({ schema: categoryCreateSchema }) body: CategoryCreateInput,
+    @CurrentUser() user: AuthUser,
+    @Req() req: Request,
+  ) {
+    return this.catalogAdmin.createCategory(this.context(user, req), body);
+  }
+
+  @Patch("categories/:id")
+  updateCategory(
+    @Param("id", new ParseUUIDPipe()) id: string,
+    @Body({ schema: categoryUpdateSchema }) body: CategoryUpdateInput,
+    @CurrentUser() user: AuthUser,
+    @Req() req: Request,
+  ) {
+    return this.catalogAdmin.updateCategory(this.context(user, req), id, body);
+  }
+
+  @Delete("categories/:id")
+  @HttpCode(204)
+  async deleteCategory(
+    @Param("id", new ParseUUIDPipe()) id: string,
+    @CurrentUser() user: AuthUser,
+    @Req() req: Request,
+  ) {
+    await this.catalogAdmin.deleteCategory(this.context(user, req), id);
   }
 
   @Put("stocks")

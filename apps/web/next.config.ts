@@ -18,6 +18,8 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
   poweredByHeader: false,
+  // Photos produits stockées dans Vercel Blob (EA03), optimisées par next/image.
+  images: { remotePatterns: [{ protocol: "https", hostname: "*.public.blob.vercel-storage.com" }] },
   turbopack: {
     rules: {
       "*.css": {

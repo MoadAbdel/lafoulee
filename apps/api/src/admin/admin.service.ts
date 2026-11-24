@@ -230,7 +230,11 @@ export class AdminService {
     const [product, stores] = await Promise.all([
       this.prisma.product.findUnique({
         where: { id },
-        include: { variants: { orderBy: { position: "asc" }, include: { stocks: { include: { store: true } } } } },
+        include: {
+          variants: { orderBy: { position: "asc" }, include: { stocks: { include: { store: true } } } },
+          categories: { include: { category: { select: { slug: true } } } },
+          images: { orderBy: { position: "asc" } },
+        },
       }),
       this.prisma.store.findMany({ orderBy: { name: "asc" }, select: { slug: true, name: true } }),
     ]);
@@ -244,6 +248,8 @@ export class AdminService {
       description: product.description,
       priceCents: product.priceCents,
       status: product.status,
+      categorySlugs: product.categories.map((link) => link.category.slug),
+      images: product.images.map((image) => ({ id: image.id, url: image.blobUrl, alt: image.alt })),
       stores,
       variants: product.variants.map((variant) => ({
         id: variant.id,
@@ -260,14 +266,30 @@ export class AdminService {
   }
 
   /** Modification d'un produit (EA03) : publication, archivage, prix, textes. */
-  async updateProduct(context: AuditContext, id: string, input: ProductUpdateInput): Promise<AdminProductDetailDto> {
-    const before = await this.prisma.product.findUnique({ where: { id } });
+  async updateProduct(
+    context: AuditContext,
+    id: string,
+    input: ProductUpdateInput,
+    categoryIds?: string[],
+  ): Promise<AdminProductDetailDto> {
+    const before = await this.prisma.product.findUnique({
+      where: { id },
+      include: { categories: { include: { category: { select: { slug: true } } } } },
+    });
     if (!before) throw new NotFoundException("Produit introuvable.");
-    await this.prisma.product.update({ where: { id }, data: input });
+    const { categorySlugs: _categorySlugs, ...fields } = input;
+    const previous = { ...before, categorySlugs: before.categories.map((link) => link.category.slug) };
+    await this.prisma.$transaction(async (tx) => {
+      await tx.product.update({ where: { id }, data: fields });
+      if (categoryIds) {
+        await tx.productCategory.deleteMany({ where: { productId: id } });
+        await tx.productCategory.createMany({ data: categoryIds.map((categoryId) => ({ productId: id, categoryId })) });
+      }
+    });
     const changes = Object.fromEntries(
       Object.keys(input).map((key) => [
         key,
-        { from: before[key as keyof typeof before], to: input[key as keyof ProductUpdateInput] },
+        { from: previous[key as keyof typeof previous], to: input[key as keyof ProductUpdateInput] },
       ]),
     ) as Prisma.InputJsonValue;
     await this.audit.record(context, "product.update", "product", id, changes);

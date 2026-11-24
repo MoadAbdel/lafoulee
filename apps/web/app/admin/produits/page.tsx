@@ -11,7 +11,15 @@ const STATUS = { DRAFT: "Brouillon", PUBLISHED: "Publié", ARCHIVED: "Archivé" 
 export default function AdminProductsPage({ searchParams }: PageProps<"/admin/produits">) {
   return (
     <>
-      <h1 className="font-display text-4xl font-bold uppercase">Produits et stocks</h1>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h1 className="font-display text-4xl font-bold uppercase">Produits et stocks</h1>
+        <Link
+          href="/admin/produits/nouveau"
+          className="min-h-11 content-center bg-balise px-5 font-semibold text-craie"
+        >
+          Nouveau produit
+        </Link>
+      </div>
       <Suspense fallback={<p className="mt-4">Chargement des produits...</p>}>
         <Products searchParams={searchParams} />
       </Suspense>

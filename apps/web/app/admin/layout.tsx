@@ -14,6 +14,7 @@ const NAV = [
   { href: "/admin", label: "Tableau de bord" },
   { href: "/admin/commandes", label: "Commandes" },
   { href: "/admin/produits", label: "Produits et stocks" },
+  { href: "/admin/categories", label: "Catégories" },
   { href: "/admin/rgpd", label: "Demandes RGPD" },
   { href: "/admin/cles-api", label: "Clés API" },
   { href: "/admin/journal", label: "Journal d'audit" },
