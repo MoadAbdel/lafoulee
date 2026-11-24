@@ -28,7 +28,7 @@ const FILTERS: (AdminOrderQuery["statut"] | undefined)[] = [
 export default function AdminOrdersPage({ searchParams }: PageProps<"/admin/commandes">) {
   return (
     <>
-      <h1 className="font-display text-4xl font-bold uppercase">Commandes</h1>
+      <h1 className="font-display tracking-tight text-4xl font-extrabold">Commandes</h1>
       <Suspense fallback={<p className="mt-4">Chargement des commandes...</p>}>
         <Orders searchParams={searchParams} />
       </Suspense>

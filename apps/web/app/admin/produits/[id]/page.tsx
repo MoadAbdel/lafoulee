@@ -29,7 +29,7 @@ async function Product({ params }: { params: Promise<{ id: string }> }) {
   ]);
   return (
     <div className="mt-2 space-y-8">
-      <h1 className="font-display text-4xl font-bold uppercase">
+      <h1 className="font-display tracking-tight text-4xl font-extrabold">
         {product.brand} {product.name}
       </h1>
       <ProductEditor product={product} categories={categories} />

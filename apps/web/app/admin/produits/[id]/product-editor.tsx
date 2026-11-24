@@ -72,7 +72,7 @@ export function ProductEditor({
       noValidate
       className="space-y-4 border border-asphalte/15 bg-white p-4"
     >
-      <h2 className="font-display text-2xl font-bold uppercase">Fiche</h2>
+      <h2 className="font-display tracking-tight text-2xl font-extrabold">Fiche</h2>
       <FormErrors messages={errors} />
       <div className="grid gap-4 sm:grid-cols-2">
         <div>

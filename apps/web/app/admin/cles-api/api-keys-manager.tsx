@@ -58,7 +58,7 @@ export function ApiKeysManager({ keys }: { keys: ApiKeyDto[] }) {
       )}
 
       <form onSubmit={create} noValidate className="space-y-3 border border-asphalte/15 bg-white p-4">
-        <h2 className="font-display text-2xl font-bold uppercase">Nouvelle clé</h2>
+        <h2 className="font-display tracking-tight text-2xl font-extrabold">Nouvelle clé</h2>
         <div>
           <label htmlFor="key-name" className="font-semibold">
             Partenaire

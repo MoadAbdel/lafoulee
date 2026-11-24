@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "Créer un compte", robots: { index: 
 export default function RegisterPage() {
   return (
     <div className="mx-auto max-w-md px-4 py-12">
-      <h1 className="font-display text-4xl font-bold uppercase">Créer un compte</h1>
+      <h1 className="font-display tracking-tight text-4xl font-extrabold">Créer un compte</h1>
       <p className="mt-2 text-asphalte/80">
         Un compte sert à suivre vos commandes. Vous pouvez aussi commander sans compte.
       </p>

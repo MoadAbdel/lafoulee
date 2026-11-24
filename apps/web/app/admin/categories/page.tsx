@@ -10,7 +10,7 @@ export const metadata: Metadata = { title: "Catégories" };
 export default function CategoriesPage() {
   return (
     <>
-      <h1 className="font-display text-4xl font-bold uppercase">Catégories</h1>
+      <h1 className="font-display tracking-tight text-4xl font-extrabold">Catégories</h1>
       <p className="mt-2 text-asphalte/80">
         L&apos;ordre fixe leur place dans le catalogue. Une catégorie qui contient des produits ne peut pas être
         supprimée.

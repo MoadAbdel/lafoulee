@@ -7,6 +7,8 @@ import { chooseAvailableSize, openProductInStock, refuseCookies } from "./helper
  * sur les pages clés, y compris avec le bandeau de consentement ouvert.
  */
 async function expectNoSeriousViolations(page: import("@playwright/test").Page, label: string) {
+  // Les animations d'entrée (fondu) faussent la mesure du contraste : on analyse l'état final.
+  await page.waitForFunction(() => document.getAnimations().every((animation) => animation.playState !== "running"));
   const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"]).analyze();
   const serious = results.violations.filter(
     (violation) => violation.impact === "serious" || violation.impact === "critical",
@@ -31,6 +33,7 @@ test.describe("Accessibilité (axe-core)", () => {
     ["connexion", "/connexion"],
     ["inscription", "/inscription"],
     ["confidentialité", "/confidentialite"],
+    ["mentions légales", "/mentions-legales"],
     ["demande RGPD", "/confidentialite/demande"],
     ["panier vide", "/panier"],
   ] as const) {

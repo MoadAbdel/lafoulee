@@ -45,7 +45,7 @@ export function VariantForm({ productId }: { productId: string }) {
       aria-labelledby="titre-variante"
       className="space-y-3 border border-asphalte/15 bg-white p-4"
     >
-      <h2 id="titre-variante" className="font-display text-2xl font-bold uppercase">
+      <h2 id="titre-variante" className="font-display tracking-tight text-2xl font-extrabold">
         Ajouter une taille
       </h2>
       <FormErrors messages={errors} />

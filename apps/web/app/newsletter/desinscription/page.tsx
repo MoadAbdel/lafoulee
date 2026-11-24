@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: "Désinscription de la newsletter", r
 export default function UnsubscribePage() {
   return (
     <div className="mx-auto max-w-md px-4 py-12">
-      <h1 className="font-display text-4xl font-bold uppercase">Désinscription</h1>
+      <h1 className="font-display tracking-tight text-4xl font-extrabold">Désinscription</h1>
       <LinkConfirmation
         endpoint="/newsletter/unsubscribe"
         fields={[

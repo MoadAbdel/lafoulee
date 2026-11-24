@@ -147,7 +147,7 @@ export function CategoryManager({ categories }: { categories: AdminCategoryDto[]
         aria-labelledby="titre-nouvelle-categorie"
         className="space-y-3 border border-asphalte/15 bg-white p-4"
       >
-        <h2 id="titre-nouvelle-categorie" className="font-display text-2xl font-bold uppercase">
+        <h2 id="titre-nouvelle-categorie" className="font-display tracking-tight text-2xl font-extrabold">
           Nouvelle catégorie
         </h2>
         <div className="grid gap-3 sm:grid-cols-[1fr_6rem]">

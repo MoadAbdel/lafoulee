@@ -45,7 +45,12 @@ export function ConsentBanner() {
       className="fixed inset-x-0 bottom-0 z-20 border-t-4 border-balise bg-white shadow-lg"
     >
       <div className="mx-auto max-w-4xl space-y-3 px-4 py-4">
-        <h2 id="titre-consentement" ref={heading} tabIndex={-1} className="font-display text-2xl font-bold uppercase">
+        <h2
+          id="titre-consentement"
+          ref={heading}
+          tabIndex={-1}
+          className="font-display tracking-tight text-2xl font-extrabold"
+        >
           Vos choix sur les cookies
         </h2>
         <p className="text-sm">

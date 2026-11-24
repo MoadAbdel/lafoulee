@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Barlow_Condensed } from "next/font/google";
+import { Schibsted_Grotesk } from "next/font/google";
 import { ConsentBanner } from "@/components/consent-banner";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -7,12 +7,8 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
-// Police des titres, auto-hébergée par next/font (aucun appel à Google côté visiteur).
-const barlow = Barlow_Condensed({
-  variable: "--font-barlow-condensed",
-  subsets: ["latin"],
-  weight: ["600", "700"],
-});
+// Police unique (grotesque suisse, variable), auto-hébergée par next/font : aucun appel à Google côté visiteur.
+const schibsted = Schibsted_Grotesk({ variable: "--font-schibsted", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -30,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" className={`${barlow.variable} h-full antialiased`}>
+    <html lang="fr" className={`${schibsted.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col font-sans">
         <a
           href="#contenu"

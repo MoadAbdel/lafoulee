@@ -12,7 +12,7 @@ export default function AdminProductsPage({ searchParams }: PageProps<"/admin/pr
   return (
     <>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="font-display text-4xl font-bold uppercase">Produits et stocks</h1>
+        <h1 className="font-display tracking-tight text-4xl font-extrabold">Produits et stocks</h1>
         <Link
           href="/admin/produits/nouveau"
           className="min-h-11 content-center bg-balise px-5 font-semibold text-craie"

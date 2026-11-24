@@ -1,16 +1,18 @@
 @import "tailwindcss";
 
-/* Charte La Foulée (dossier, C14). Contrastes : asphalte sur craie 14,8:1,
-   craie sur orange 5,1:1, craie sur vert 6,8:1. */
+/* Charte La Foulée, direction "affiche suisse" (dossier, C14). Contrastes mesurés :
+   encre sur blanc 19,2:1 ; blanc sur rouge 4,7:1 ; rouge sur blanc 4,7:1 ; blanc sur cobalt 7,7:1.
+   Les noms historiques des couleurs sont gardés : craie = fond, asphalte = encre,
+   balise = rouge d'affiche, foret = cobalt. */
 @theme {
-  --color-craie: #f4f2ee;
-  --color-asphalte: #1c1f22;
-  --color-foret: #2f5d46;
-  --color-balise: #b4400b;
-  /* Orange pour fond sombre : 5,8:1 sur asphalte (l'orange principal n'y fait que 2,9:1). */
-  --color-balise-clair: #ea7a3c;
-  --font-display: var(--font-barlow-condensed), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --color-craie: #ffffff;
+  --color-asphalte: #0f0f0f;
+  --color-foret: #1c3fd6;
+  --color-balise: #e2231a;
+  --color-balise-clair: #ff6b5e;
+  --color-papier: #f0efec;
+  --font-display: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-schibsted), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 html {
@@ -29,5 +31,26 @@ html {
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Accueil : l'en-tête prend la couleur de l'affiche (pas de JavaScript : sélecteur :has). */
+body:has([data-affiche]) .site-header {
+  background: var(--color-balise);
+  color: #fff;
+  border-color: transparent;
+}
+body:has([data-affiche]) .site-header :focus-visible {
+  outline-color: #fff;
+}
+
+@keyframes entree {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }

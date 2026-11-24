@@ -10,7 +10,7 @@ export const metadata: Metadata = { title: "Confirmation de l'email", robots: { 
 export default function VerifyEmailPage() {
   return (
     <div className="mx-auto max-w-md px-4 py-12">
-      <h1 className="font-display text-4xl font-bold uppercase">Confirmation de l&apos;email</h1>
+      <h1 className="font-display tracking-tight text-4xl font-extrabold">Confirmation de l&apos;email</h1>
       <VerifyEmail />
     </div>
   );

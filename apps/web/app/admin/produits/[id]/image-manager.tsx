@@ -63,7 +63,7 @@ export function ImageManager({ product }: { product: AdminProductDetailDto }) {
 
   return (
     <section aria-labelledby="titre-photos" className="space-y-3 border border-asphalte/15 bg-white p-4">
-      <h2 id="titre-photos" className="font-display text-2xl font-bold uppercase">
+      <h2 id="titre-photos" className="font-display tracking-tight text-2xl font-extrabold">
         Photos
       </h2>
       <FormErrors messages={errors} />

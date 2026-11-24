@@ -32,7 +32,7 @@ export function MyData() {
 
   return (
     <section aria-labelledby="titre-donnees" className="mt-10">
-      <h2 id="titre-donnees" className="font-display text-3xl font-bold uppercase">
+      <h2 id="titre-donnees" className="font-display tracking-tight text-3xl font-extrabold">
         Mes données
       </h2>
       <p className="mt-2 text-asphalte/80">
@@ -57,7 +57,7 @@ export function MyData() {
       </div>
       <dialog ref={dialog} aria-labelledby="titre-suppression" className="max-w-md p-6 backdrop:bg-asphalte/60">
         <form onSubmit={remove} noValidate className="space-y-4">
-          <h3 id="titre-suppression" className="font-display text-2xl font-bold uppercase">
+          <h3 id="titre-suppression" className="font-display tracking-tight text-2xl font-extrabold">
             Supprimer mon compte ?
           </h3>
           <p>Cette action est définitive. Saisissez votre mot de passe pour confirmer.</p>

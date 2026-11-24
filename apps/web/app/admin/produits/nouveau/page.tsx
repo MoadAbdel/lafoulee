@@ -13,7 +13,7 @@ export default function NewProductPage() {
       <Link href="/admin/produits" className="text-sm underline underline-offset-4">
         Retour aux produits
       </Link>
-      <h1 className="mt-2 font-display text-4xl font-bold uppercase">Nouveau produit</h1>
+      <h1 className="mt-2 font-display tracking-tight text-4xl font-extrabold">Nouveau produit</h1>
       <p className="mt-2 text-asphalte/80">
         Le produit est créé en brouillon. Ajoutez ensuite ses tailles, son stock et ses photos, puis publiez-le.
       </p>

@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: "Confirmation de votre demande", robo
 export default function PrivacyConfirmPage() {
   return (
     <div className="mx-auto max-w-md px-4 py-12">
-      <h1 className="font-display text-4xl font-bold uppercase">Vos données</h1>
+      <h1 className="font-display tracking-tight text-4xl font-extrabold">Vos données</h1>
       <LinkConfirmation
         endpoint="/privacy/requests/confirm"
         fields={[{ name: "token", pattern: "[A-Za-z0-9_-]{43}" }]}

@@ -37,7 +37,7 @@ export function StockGrid({ product }: { product: AdminProductDetailDto }) {
 
   return (
     <section aria-labelledby="titre-stock" className="space-y-3 border border-asphalte/15 bg-white p-4">
-      <h2 id="titre-stock" className="font-display text-2xl font-bold uppercase">
+      <h2 id="titre-stock" className="font-display tracking-tight text-2xl font-extrabold">
         Stock par boutique
       </h2>
       <FormErrors messages={errors} />

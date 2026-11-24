@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: "Inscription à la newsletter", robot
 export default function NewsletterConfirmPage() {
   return (
     <div className="mx-auto max-w-md px-4 py-12">
-      <h1 className="font-display text-4xl font-bold uppercase">Newsletter</h1>
+      <h1 className="font-display tracking-tight text-4xl font-extrabold">Newsletter</h1>
       <LinkConfirmation
         endpoint="/newsletter/confirm"
         fields={[{ name: "token", pattern: "[A-Za-z0-9_-]{43}" }]}

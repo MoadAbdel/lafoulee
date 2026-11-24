@@ -7,7 +7,7 @@ export function SiteFooter() {
     <footer className="mt-16 bg-asphalte text-craie">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="font-display text-2xl font-bold uppercase">La Foulée</p>
+          <p className="font-display tracking-tight text-2xl font-extrabold">La Foulée</p>
           <p className="mt-2 text-sm text-craie/80">
             Boutiques de course à pied à Lyon : Croix-Rousse, Part-Dieu et Gerland. Retrait gratuit en boutique.
           </p>

@@ -29,7 +29,9 @@ async function Account() {
   const { user } = session;
   return (
     <>
-      <h1 className="font-display text-4xl font-bold uppercase">Bonjour{user.firstName ? ` ${user.firstName}` : ""}</h1>
+      <h1 className="font-display tracking-tight text-4xl font-extrabold">
+        Bonjour{user.firstName ? ` ${user.firstName}` : ""}
+      </h1>
       <dl className="mt-6 grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 border border-asphalte/15 bg-white p-4">
         <dt className="font-semibold">Email</dt>
         <dd>{user.email}</dd>
@@ -66,7 +68,7 @@ const STATUS_LABELS: Record<OrderDto["status"], string> = {
 function OrderHistory({ orders }: { orders: OrderDto[] }) {
   return (
     <section aria-labelledby="titre-commandes" className="mt-8">
-      <h2 id="titre-commandes" className="font-display text-3xl font-bold uppercase">
+      <h2 id="titre-commandes" className="font-display tracking-tight text-3xl font-extrabold">
         Mes commandes
       </h2>
       {orders.length === 0 ? (

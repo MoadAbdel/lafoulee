@@ -6,9 +6,9 @@ import { CartBadge } from "./cart-badge";
 /** En-tête statique : logo, recherche (formulaire GET, fonctionne sans JavaScript), navigation. */
 export function SiteHeader() {
   return (
-    <header className="border-b border-asphalte/15 bg-craie">
+    <header className="site-header border-b-[3px] border-asphalte bg-craie">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-3 px-4 py-3">
-        <Link href="/" className="font-display text-3xl font-bold uppercase leading-none tracking-tight">
+        <Link href="/" className="font-display text-3xl font-extrabold leading-none tracking-tight">
           La Foulée
         </Link>
         <form action="/produits" role="search" className="order-last flex w-full sm:order-none sm:ml-auto sm:w-auto">
@@ -32,13 +32,13 @@ export function SiteHeader() {
           <CartBadge />
         </div>
       </div>
-      <nav aria-label="Catégories" className="border-t border-asphalte/10">
+      <nav aria-label="Catégories" className="border-t border-current/15">
         <ul className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-2">
           {MAIN_NAV.map((item) => (
             <li key={item.href}>
               <Link
                 href={item.href}
-                className="block min-h-11 content-center whitespace-nowrap px-3 font-display text-lg font-semibold uppercase tracking-wide hover:text-balise"
+                className="block min-h-11 content-center whitespace-nowrap px-3 font-display tracking-tight text-lg font-bold hover:underline hover:decoration-2 hover:underline-offset-8"
               >
                 {item.label}
               </Link>

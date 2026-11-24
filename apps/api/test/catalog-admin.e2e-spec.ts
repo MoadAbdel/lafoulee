@@ -55,7 +55,11 @@ describe("Catalogue du back-office (e2e, EA03)", () => {
   });
 
   beforeEach(() => resetRateLimits(t.redis));
-  afterAll(() => t.app.close());
+  afterAll(async () => {
+    // Les produits de test ne doivent pas rester dans le catalogue (base locale partagée avec le site).
+    await t.prisma.product.deleteMany({ where: { slug: { endsWith: stamp } } });
+    await t.app.close();
+  });
 
   it("catégories : création, lien construit, modification, doublon refusé, suppression bloquée si non vide", async () => {
     const name = `Récup ${stamp}`;
