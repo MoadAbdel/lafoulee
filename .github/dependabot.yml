@@ -6,7 +6,7 @@ updates:
     # Délai avant de proposer une version toute neuve : un paquet piégé est souvent retiré en quelques jours.
     cooldown: { default-days: 3 }
     ignore:
-      # Les types suivent la version de Node utilisée en production (24), pas la dernière.
+      # Les types suivent la version LTS de Node utilisée en production (26), pas la version impaire suivante.
       - dependency-name: "@types/node"
         update-types: ["version-update:semver-major"]
     groups:

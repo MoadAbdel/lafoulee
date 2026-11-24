@@ -8,7 +8,7 @@ Projet fil rouge de la certification Développeur Full Stack (RNCP 38606).
 
 ## Démarrer en local
 
-Prérequis : Node.js 24, Docker Desktop.
+Prérequis : Node.js 26 (LTS), Docker Desktop.
 
 ```bash
 npm ci
