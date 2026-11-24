@@ -18,8 +18,13 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
   poweredByHeader: false,
-  // Photos produits stockées dans Vercel Blob (EA03), optimisées par next/image.
-  images: { remotePatterns: [{ protocol: "https", hostname: "*.public.blob.vercel-storage.com" }] },
+  // Images servies telles quelles. Avec Vercel Services (bêta), l'optimiseur /_next/image
+  // n'est pas disponible sur le service web : il répondait 404 en production. Les photos
+  // sont déjà préparées pour le web (JPEG de 1000 px, 55 Ko en moyenne).
+  images: {
+    unoptimized: true,
+    remotePatterns: [{ protocol: "https", hostname: "*.public.blob.vercel-storage.com" }],
+  },
   turbopack: {
     rules: {
       "*.css": {
