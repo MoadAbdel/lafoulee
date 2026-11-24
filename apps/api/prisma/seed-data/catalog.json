@@ -145,7 +145,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/brooks-ghost-18.jpg",
+          "alt": "Brooks Ghost 18, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "asics-gel-nimbus-28",
@@ -305,7 +310,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/asics-gel-nimbus-28.jpg",
+          "alt": "Asics Gel-Nimbus 28, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "asics-gel-cumulus-28",
@@ -466,7 +476,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/asics-gel-cumulus-28.jpg",
+          "alt": "Asics Gel-Cumulus 28, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "hoka-clifton-10",
@@ -627,7 +642,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/hoka-clifton-10.jpg",
+          "alt": "Hoka Clifton 10, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "saucony-ride-19",
@@ -788,7 +808,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/saucony-ride-19.jpg",
+          "alt": "Saucony Ride 19, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "nike-pegasus-42",
@@ -949,7 +974,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/nike-pegasus-42.jpg",
+          "alt": "Nike Pegasus 42, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "mizuno-wave-rider-30",
@@ -1038,7 +1068,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/mizuno-wave-rider-30.jpg",
+          "alt": "Mizuno Wave Rider 30, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "new-balance-1080-v15",
@@ -1127,7 +1162,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/new-balance-1080-v15.jpg",
+          "alt": "New Balance 1080 v15, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "adidas-adizero-boston-13",
@@ -1360,7 +1400,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/adidas-adizero-boston-13.jpg",
+          "alt": "Adidas Adizero Boston 13, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "salomon-speedcross-6",
@@ -1452,7 +1497,7 @@
       "images": [
         {
           "url": "/catalogue/salomon-speedcross-6.jpg",
-          "alt": "Salomon Speedcross 6"
+          "alt": "Salomon Speedcross 6, illustration du produit"
         }
       ]
     },
@@ -1615,7 +1660,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/hoka-speedgoat-6.jpg",
+          "alt": "Hoka Speedgoat 6, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "saucony-peregrine-16",
@@ -1776,7 +1826,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/saucony-peregrine-16.jpg",
+          "alt": "Saucony Peregrine 16, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "brooks-cascadia-19",
@@ -1937,7 +1992,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/brooks-cascadia-19.jpg",
+          "alt": "Brooks Cascadia 19, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "altra-lone-peak-9",
@@ -2098,7 +2158,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/altra-lone-peak-9.jpg",
+          "alt": "Altra Lone Peak 9, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "la-sportiva-bushido-iii",
@@ -2259,7 +2324,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/la-sportiva-bushido-iii.jpg",
+          "alt": "La Sportiva Bushido III, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "nike-pegasus-trail-5",
@@ -2420,7 +2490,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/nike-pegasus-trail-5.jpg",
+          "alt": "Nike Pegasus Trail 5, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "kiprun-kipclimb",
@@ -2653,7 +2728,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/kiprun-kipclimb.jpg",
+          "alt": "Kiprun Kipclimb, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "salomon-sense-ride-5",
@@ -2814,7 +2894,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/salomon-sense-ride-5.jpg",
+          "alt": "Salomon Sense Ride 5, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "brooks-sherpa-5-short",
@@ -2875,7 +2960,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/brooks-sherpa-5-short.jpg",
+          "alt": "Brooks Sherpa 5\" Short, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "salomon-sense-aero-seamless",
@@ -2937,7 +3027,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/salomon-sense-aero-seamless.jpg",
+          "alt": "Salomon Sense Aero Seamless, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "nike-dri-fit-uv-miler",
@@ -3089,7 +3184,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/nike-dri-fit-uv-miler.jpg",
+          "alt": "Nike Dri-FIT UV Miler, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "asics-core-winter-tight",
@@ -3150,7 +3250,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/asics-core-winter-tight.jpg",
+          "alt": "Asics Core Winter Tight, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "brooks-run-visible-2",
@@ -3256,7 +3361,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/brooks-run-visible-2.jpg",
+          "alt": "Brooks Run Visible 2.0, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "kiprun-run-500-confort-2-en-1",
@@ -3317,7 +3427,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/kiprun-run-500-confort-2-en-1.jpg",
+          "alt": "Kiprun Run 500 Confort 2 en 1, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "brooks-chaser-5-short-2",
@@ -3423,7 +3538,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/brooks-chaser-5-short-2.jpg",
+          "alt": "Brooks Chaser 5\" Short 2.0, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "nike-swift-legging-7-8",
@@ -3530,7 +3650,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/nike-swift-legging-7-8.jpg",
+          "alt": "Nike Swift 7/8, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "salomon-bonatti-cross-wind-w",
@@ -3591,7 +3716,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/salomon-bonatti-cross-wind-w.jpg",
+          "alt": "Salomon Bonatti Cross Wind W, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "compressport-feelfree-seamless-bra",
@@ -3697,7 +3827,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/compressport-feelfree-seamless-bra.jpg",
+          "alt": "Compressport FeelFree Seamless Bra, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "compressport-trail-racing-postural-ss-w",
@@ -3758,7 +3893,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/compressport-trail-racing-postural-ss-w.jpg",
+          "alt": "Compressport Trail Racing Postural SS Top W, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "kiprun-run-900-ultra-2-en-1-w",
@@ -3864,7 +4004,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/kiprun-run-900-ultra-2-en-1-w.jpg",
+          "alt": "Kiprun Run 900 Ultra 2 en 1, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "maurten-gel-100",
@@ -3890,7 +4035,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/maurten-gel-100.jpg",
+          "alt": "Maurten Gel 100, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "maurten-drink-mix-320",
@@ -3916,7 +4066,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/maurten-drink-mix-320.jpg",
+          "alt": "Maurten Drink Mix 320, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "overstims-gel-antioxydant-citron",
@@ -3941,7 +4096,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/overstims-gel-antioxydant-citron.jpg",
+          "alt": "Overstims Gel Antioxydant Citron, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "naak-gel-ultra-energy-erable-sale",
@@ -3967,7 +4127,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/naak-gel-ultra-energy-erable-sale.jpg",
+          "alt": "Naak Gel Ultra Energy Érable Salé, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "naak-barre-ultra-energy-baies-noix",
@@ -3992,7 +4157,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/naak-barre-ultra-energy-baies-noix.jpg",
+          "alt": "Naak Barre Ultra Energy Baies et Noix, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "garmin-forerunner-165",
@@ -4038,7 +4208,7 @@
       "images": [
         {
           "url": "/catalogue/garmin-forerunner-165.jpg",
-          "alt": "Garmin Forerunner 165"
+          "alt": "Garmin Forerunner 165, illustration du produit"
         }
       ]
     },
@@ -4075,7 +4245,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/petzl-actik-core.jpg",
+          "alt": "Petzl Actik Core, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "salomon-active-skin-8",
@@ -4137,7 +4312,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/salomon-active-skin-8.jpg",
+          "alt": "Salomon Active Skin 8, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "compressport-pro-racing-socks-v4-run-low",
@@ -4261,7 +4441,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/compressport-pro-racing-socks-v4-run-low.jpg",
+          "alt": "Compressport Pro Racing Socks v4.0 Run Low, illustration du produit"
+        }
+      ]
     },
     {
       "slug": "kiprun-ceinture-porte-bidon-500-ml",
@@ -4286,7 +4471,12 @@
           }
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/catalogue/kiprun-ceinture-porte-bidon-500-ml.jpg",
+          "alt": "Kiprun Ceinture porte-bidon trail 500 ml, illustration du produit"
+        }
+      ]
     }
   ]
 }
