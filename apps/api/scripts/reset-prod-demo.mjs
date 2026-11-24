@@ -7,6 +7,7 @@
 //   node scripts/reset-prod-demo.mjs --confirmer
 import { execFileSync } from "node:child_process";
 import { createRequire } from "node:module";
+import { delimiter, resolve } from "node:path";
 import pg from "pg";
 
 if (!process.argv.includes("--confirmer")) {
@@ -45,9 +46,12 @@ await client.end();
 
 // La CLI Prisma est lancée directement avec node (pas de shell : aucun argument interprété).
 const prismaCli = createRequire(import.meta.url).resolve("prisma/build/index.js");
+// Le seed lance "tsx" : on ajoute les outils du projet au PATH, comme le ferait npm.
+const bins = [resolve("node_modules/.bin"), resolve("../../node_modules/.bin")];
+const pathKey = Object.keys(process.env).find((key) => key.toUpperCase() === "PATH") ?? "PATH";
 execFileSync(process.execPath, [prismaCli, "db", "seed"], {
   stdio: "inherit",
-  env: { ...process.env, DATABASE_URL: uri },
+  env: { ...process.env, [pathKey]: [...bins, process.env[pathKey]].join(delimiter), DATABASE_URL: uri },
 });
 
 const check = new pg.Client({ connectionString: uri });
