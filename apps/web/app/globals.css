@@ -22,11 +22,11 @@ html {
   color: var(--color-asphalte);
 }
 
-/* Petits écrans (320 px) : un mot long dans un grand titre se coupe au lieu de déborder. */
+/* Petits écrans (320 px) : un mot plus long que la ligne se coupe au lieu de déborder.
+   Pas de césure automatique : elle coupait des mots qui tenaient sur la ligne suivante. */
 h1,
 h2 {
   overflow-wrap: break-word;
-  hyphens: auto;
 }
 
 :focus-visible {
