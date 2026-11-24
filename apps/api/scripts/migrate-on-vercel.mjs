@@ -19,8 +19,20 @@ if (!url) {
 }
 
 console.log(`migrate-on-vercel : migrations sur l'environnement ${target}.`);
-execFileSync("npx", ["prisma", "migrate", "deploy"], {
-  stdio: "inherit",
-  shell: process.platform === "win32",
-  env: { ...process.env, DATABASE_URL: url },
-});
+// Neon met la base en veille : le premier essai peut échouer le temps du réveil (P1001).
+const ATTEMPTS = 4;
+for (let attempt = 1; ; attempt++) {
+  try {
+    execFileSync("npx", ["prisma", "migrate", "deploy"], {
+      stdio: "inherit",
+      shell: process.platform === "win32",
+      env: { ...process.env, DATABASE_URL: url },
+    });
+    break;
+  } catch (error) {
+    if (attempt === ATTEMPTS) throw error;
+    const wait = attempt * 5;
+    console.log(`migrate-on-vercel : essai ${attempt} échoué, nouvel essai dans ${wait} s.`);
+    await new Promise((resolve) => setTimeout(resolve, wait * 1000));
+  }
+}
