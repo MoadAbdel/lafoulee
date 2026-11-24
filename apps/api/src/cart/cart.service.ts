@@ -104,7 +104,9 @@ export class CartService {
         ),
     );
     const pickupStoreSlugs =
-      perStore.length === 0 ? [] : [...perStore[0]!].filter((slug) => perStore.every((set) => set.has(slug))).sort();
+      perStore.length === 0
+        ? []
+        : [...perStore[0]!].filter((slug) => perStore.every((set) => set.has(slug))).sort((a, b) => a.localeCompare(b));
     return {
       lines,
       itemCount: lines.reduce((sum, line) => sum + line.quantity, 0),
