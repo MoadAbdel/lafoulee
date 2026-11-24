@@ -39,6 +39,11 @@ export function RegisterForm() {
           Si l&apos;adresse {sentTo} n&apos;a pas encore de compte, vous allez recevoir un lien de confirmation, valable
           24 heures.
         </p>
+        <p className="mt-3">
+          <strong>Conseil :</strong> une fois connecté, activez la double authentification dans « Mon compte ». Un code
+          de votre téléphone vous sera demandé en plus du mot de passe : votre compte reste protégé même si ce mot de
+          passe est dérobé.
+        </p>
       </div>
     );
   }

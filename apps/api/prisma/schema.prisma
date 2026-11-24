@@ -60,6 +60,8 @@ model RefreshToken {
 enum EmailTokenPurpose {
   VERIFY_EMAIL
   GDPR_REQUEST
+  PASSWORD_RESET
+  EMAIL_CHANGE
 }
 
 model EmailToken {

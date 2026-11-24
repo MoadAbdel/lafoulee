@@ -57,3 +57,50 @@ export interface SessionUser {
 }
 
 export type LoginResult = { status: "OK"; user: SessionUser } | { status: "TOTP_REQUIRED"; challenge: string };
+
+const totpCode = z.string().regex(/^\d{6}$/, { error: "Le code contient 6 chiffres." });
+const currentPassword = z.string().min(1, { error: "Saisissez votre mot de passe actuel." }).max(128);
+
+/** Mot de passe oublié : la réponse est la même que le compte existe ou non. */
+export const forgotPasswordSchema = z.strictObject({ email: emailSchema });
+
+export const resetPasswordSchema = z.strictObject({
+  token: tokenSchema.shape.token,
+  newPassword: passwordSchema,
+});
+export type ResetPasswordInput = z.infer<typeof resetPasswordSchema>;
+
+export const profileUpdateSchema = z.strictObject({
+  firstName: z.string().trim().min(1, { error: "Le prénom est vide." }).max(60).nullable(),
+});
+export type ProfileUpdateInput = z.infer<typeof profileUpdateSchema>;
+
+export const passwordChangeSchema = z
+  .strictObject({ currentPassword, newPassword: passwordSchema })
+  .refine((value) => value.currentPassword !== value.newPassword, {
+    error: "Le nouveau mot de passe doit être différent de l'actuel.",
+    path: ["newPassword"],
+  });
+export type PasswordChangeInput = z.infer<typeof passwordChangeSchema>;
+
+export const emailChangeSchema = z.strictObject({ newEmail: emailSchema, currentPassword });
+export type EmailChangeInput = z.infer<typeof emailChangeSchema>;
+
+export const twoFactorSetupSchema = z.strictObject({ currentPassword });
+export const twoFactorEnableSchema = z.strictObject({ code: totpCode });
+export const twoFactorDisableSchema = z.strictObject({ currentPassword, code: totpCode });
+
+/** Informations du compte, pour la page "Mon compte". */
+export interface AccountProfileDto {
+  email: string;
+  firstName: string | null;
+  role: UserRole;
+  twoFactorEnabled: boolean;
+  createdAt: string;
+}
+
+/** Début d'activation de la double authentification : QR code et clé à saisir à la main. */
+export interface TwoFactorSetupDto {
+  qrSvg: string;
+  secret: string;
+}

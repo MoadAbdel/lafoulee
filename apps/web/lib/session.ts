@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import type { OrderDto, SessionUser } from "@lafoulee/shared";
+import type { AccountProfileDto, OrderDto, SessionUser } from "@lafoulee/shared";
 import { apiUrl } from "./api";
 
 export type SessionState =
@@ -26,4 +26,12 @@ export async function getMyOrders(): Promise<OrderDto[]> {
   if (!access) return [];
   const res = await fetch(apiUrl("/me/orders"), { headers: { cookie: `lf_at=${access}` }, cache: "no-store" });
   return res.ok ? ((await res.json()) as OrderDto[]) : [];
+}
+
+/** Informations du compte connecté (page "Mon compte"). */
+export async function getAccountProfile(): Promise<AccountProfileDto | null> {
+  const access = (await cookies()).get("lf_at")?.value;
+  if (!access) return null;
+  const res = await fetch(apiUrl("/me/profile"), { headers: { cookie: `lf_at=${access}` }, cache: "no-store" });
+  return res.ok ? ((await res.json()) as AccountProfileDto) : null;
 }

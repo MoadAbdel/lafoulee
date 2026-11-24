@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import type { LoginResult } from "@lafoulee/shared";
@@ -122,6 +123,11 @@ export function LoginForm() {
           required
           className={inputClass}
         />
+        <p className="mt-1 text-sm">
+          <Link href="/mot-de-passe-oublie" className="underline underline-offset-4">
+            Mot de passe oublié ?
+          </Link>
+        </p>
       </div>
       <button type="submit" disabled={pending} className={buttonClass}>
         {pending ? "Connexion..." : "Se connecter"}
