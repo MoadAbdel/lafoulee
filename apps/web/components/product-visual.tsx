@@ -28,13 +28,13 @@ function toneOf(key: string): string {
 export function ProductVisual({ brand, name, imageUrl, imageAlt, priority, compact }: Props) {
   if (imageUrl) {
     return (
-      <div className="relative aspect-[4/3] bg-craie">
+      <div className="relative aspect-[4/3] bg-papier">
         <Image
           src={imageUrl}
           alt={imageAlt ?? `${brand} ${name}`}
           fill
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className="object-contain p-4"
+          className="object-contain"
           priority={priority}
         />
       </div>

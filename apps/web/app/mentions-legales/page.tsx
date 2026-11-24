@@ -44,8 +44,12 @@ export default function LegalPage() {
       <section>
         <h2 className="font-display tracking-tight text-3xl font-extrabold">Crédits photos</h2>
         <p>
-          Photographies sous licence libre, issues de Wikimedia Commons et reproduites dans le respect de leur licence
-          (citation de l&apos;auteur et de la licence) :
+          Photos des produits : illustrations générées par intelligence artificielle (Higgsfield), dans un même cadre de
+          studio, sans logo ni marque. Elles montrent le type et les coloris du produit ; elles ne sont pas des photos
+          officielles des marques et n&apos;ont pas de valeur contractuelle.
+        </p>
+        <p>
+          Photographies sous licence libre, issues de Wikimedia Commons (citation de l&apos;auteur et de la licence) :
         </p>
         <ul className="list-disc space-y-1 pl-6">
           <li>
