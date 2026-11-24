@@ -70,10 +70,10 @@ export class CartService {
   /** Recalcule le panier depuis la base : un produit retiré du catalogue disparaît du panier. */
   async toDto(items: CartItems): Promise<CartDto> {
     const ids = Object.keys(items);
-    if (ids.length === 0) return { lines: [], itemCount: 0, subtotalCents: 0 };
+    if (ids.length === 0) return { lines: [], itemCount: 0, subtotalCents: 0, pickupStoreSlugs: [] };
     const variants = await this.prisma.productVariant.findMany({
       where: { id: { in: ids }, product: { status: "PUBLISHED" } },
-      include: { product: true, stocks: true },
+      include: { product: true, stocks: { include: { store: { select: { slug: true } } } } },
     });
     const lines: CartLineDto[] = variants
       .map((variant) => {
@@ -93,10 +93,25 @@ export class CartService {
         };
       })
       .sort((a, b) => a.productName.localeCompare(b.productName) || a.size.localeCompare(b.size));
+    // Retrait : une boutique n'est proposée que si elle a toutes les lignes en quantité suffisante
+    // (la réservation à la commande reste la vérification qui fait foi).
+    const perStore = variants.map(
+      (variant) =>
+        new Set(
+          variant.stocks
+            .filter((stock) => stock.quantity - stock.reserved >= (items[variant.id] ?? 0))
+            .map((stock) => stock.store.slug),
+        ),
+    );
+    const pickupStoreSlugs =
+      perStore.length === 0
+        ? []
+        : [...perStore[0]!].filter((slug) => perStore.every((set) => set.has(slug))).sort((a, b) => a.localeCompare(b));
     return {
       lines,
       itemCount: lines.reduce((sum, line) => sum + line.quantity, 0),
       subtotalCents: lines.reduce((sum, line) => sum + line.lineTotalCents, 0),
+      pickupStoreSlugs,
     };
   }
 }

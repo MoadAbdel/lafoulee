@@ -8,6 +8,7 @@ const cartWith = (quantity: number) => ({
   lines: quantity ? [{ variantId: "v1", quantity }] : [],
   itemCount: quantity,
   subtotalCents: 0,
+  pickupStoreSlugs: [],
 });
 
 describe("AddToCart et compteur du panier", () => {

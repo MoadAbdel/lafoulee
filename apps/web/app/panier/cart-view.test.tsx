@@ -21,6 +21,7 @@ const cart = (lines: CartLineDto[]): CartDto => ({
   lines,
   itemCount: lines.reduce((sum, item) => sum + item.quantity, 0),
   subtotalCents: lines.reduce((sum, item) => sum + item.lineTotalCents, 0),
+  pickupStoreSlugs: [],
 });
 
 describe("CartView (EF04)", () => {
