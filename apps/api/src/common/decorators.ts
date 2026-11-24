@@ -23,9 +23,19 @@ export const CurrentUser = createParamDecorator((_data: unknown, ctx: ExecutionC
   return ctx.switchToHttp().getRequest<AuthenticatedRequest>().user;
 });
 
-/** Adresse IP du client (Vercel renseigne x-forwarded-for). */
+/**
+ * Adresse IP du client, pour les limites de débit. On lit les en-têtes que Vercel écrit
+ * lui-même (le client ne peut pas les imposer), jamais le premier élément de X-Forwarded-For,
+ * qu'un client peut remplir à sa guise. En local et en CI : l'adresse de la connexion.
+ */
 export function clientIp(req: Request): string {
-  const forwarded = req.headers["x-forwarded-for"];
-  const first = (Array.isArray(forwarded) ? forwarded[0] : forwarded)?.split(",")[0]?.trim();
-  return first || req.socket.remoteAddress || "inconnue";
+  const header = (name: string) => {
+    const value = req.headers[name];
+    return (Array.isArray(value) ? value[0] : value)?.split(",")[0]?.trim();
+  };
+  if (process.env.VERCEL) {
+    const ip = header("x-vercel-forwarded-for") || header("x-real-ip");
+    if (ip) return ip;
+  }
+  return req.socket.remoteAddress || "inconnue";
 }

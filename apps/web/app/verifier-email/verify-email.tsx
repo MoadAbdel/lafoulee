@@ -32,7 +32,11 @@ export function VerifyEmail() {
     return (
       <div role="status" className="mt-6 border-l-4 border-foret bg-white p-4">
         <p className="font-semibold">Votre adresse est confirmée.</p>
-        <Link href="/connexion" className="mt-2 inline-block font-semibold underline underline-offset-4">
+        <Link
+          prefetch={false}
+          href="/connexion"
+          className="mt-2 inline-block font-semibold underline underline-offset-4"
+        >
           Se connecter
         </Link>
       </div>

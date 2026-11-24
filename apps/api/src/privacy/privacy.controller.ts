@@ -60,6 +60,7 @@ export class PrivacyController {
   @HttpCode(202)
   async request(@Body({ schema: privacyRequestSchema }) body: PrivacyRequestInput, @Req() req: Request) {
     await this.rateLimit.consume("privacy-request", clientIp(req), 3, "10 m");
+    await this.rateLimit.consume("privacy-request-email", body.email, 3, "24 h");
     await this.privacy.requestByEmail(body);
     return { status: "CONFIRMATION_SENT" };
   }
@@ -76,6 +77,7 @@ export class PrivacyController {
   @HttpCode(202)
   async subscribe(@Body({ schema: newsletterSchema }) body: { email: string }, @Req() req: Request) {
     await this.rateLimit.consume("newsletter", clientIp(req), 5, "10 m");
+    await this.rateLimit.consume("newsletter-email", body.email, 3, "24 h");
     await this.privacy.subscribe(body.email);
     return { status: "CONFIRMATION_SENT" };
   }

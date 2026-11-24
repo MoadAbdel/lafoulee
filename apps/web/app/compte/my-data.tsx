@@ -1,13 +1,11 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useRef, useState, type FormEvent } from "react";
 import { FormErrors, inputClass } from "@/components/form-errors";
 import { notifyAuthChanged, postJson } from "@/lib/client-api";
 
 /** Droits RGPD du client connecté (EF11) : export immédiat et suppression du compte. */
 export function MyData() {
-  const router = useRouter();
   const dialog = useRef<HTMLDialogElement>(null);
   const [errors, setErrors] = useState<string[]>([]);
   const [pending, setPending] = useState(false);
@@ -23,8 +21,8 @@ export function MyData() {
     if (result.ok) {
       dialog.current?.close();
       notifyAuthChanged();
-      router.push("/?compte=supprime");
-      router.refresh();
+      // eslint-disable-next-line @next/next/no-location-assign-relative-destination -- changement de session : rechargement complet voulu
+      window.location.assign("/?compte=supprime");
     } else {
       setErrors(result.error.messages);
     }

@@ -216,7 +216,7 @@ export function Checkout() {
                 <input id="email" name="email" type="email" autoComplete="email" className={inputClass} />
                 <p className="mt-1 text-sm text-asphalte/80">
                   Commande sans compte possible.{" "}
-                  <Link href="/connexion" className="underline underline-offset-4">
+                  <Link prefetch={false} href="/connexion" className="underline underline-offset-4">
                     Se connecter
                   </Link>
                 </p>

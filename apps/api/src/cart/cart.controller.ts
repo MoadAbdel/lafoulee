@@ -3,7 +3,8 @@ import type { Request, Response } from "express";
 import { cartItemSchema, type CartDto, type CartItemInput } from "@lafoulee/shared";
 import { ENV, type Env } from "../config/env.js";
 import { randomToken } from "../common/crypto.js";
-import { Public } from "../common/decorators.js";
+import { clientIp, Public } from "../common/decorators.js";
+import { RateLimitService } from "../redis/rate-limit.service.js";
 import { CART_TTL_SECONDS, CartService } from "./cart.service.js";
 
 export const CART_COOKIE = "lf_cart";
@@ -20,6 +21,7 @@ export class CartController {
   constructor(
     @Inject(ENV) private readonly config: Env,
     private readonly cart: CartService,
+    private readonly rateLimit: RateLimitService,
   ) {}
 
   @Get()
@@ -33,6 +35,7 @@ export class CartController {
     @Req() req: Request,
     @Res({ passthrough: true }) res: Response,
   ): Promise<CartDto> {
+    await this.rateLimit.consume("cart", clientIp(req), 60, "1 m");
     let cartId = readCartId(req);
     if (!cartId) {
       cartId = randomToken();

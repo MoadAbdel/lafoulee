@@ -39,6 +39,7 @@ async function Account() {
       </p>
       {user.role === "ADMIN" && (
         <Link
+          prefetch={false}
           href="/admin"
           className="mt-6 inline-block min-h-11 content-center bg-asphalte px-5 font-semibold text-craie"
         >
@@ -46,7 +47,14 @@ async function Account() {
         </Link>
       )}
       <OrderHistory orders={await getMyOrders()} />
-      {profile && <AccountSettings profile={profile} />}
+      {profile ? (
+        <AccountSettings profile={profile} />
+      ) : (
+        <p role="alert" className="mt-8 border-l-4 border-balise bg-white p-3">
+          Les réglages du compte (email, mot de passe, double authentification) n&apos;ont pas pu être chargés.
+          Rechargez la page dans un instant.
+        </p>
+      )}
       {user.role !== "ADMIN" && <MyData />}
       <div className="mt-8 max-w-xs">
         <LogoutButton />

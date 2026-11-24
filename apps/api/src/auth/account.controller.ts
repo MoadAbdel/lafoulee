@@ -53,7 +53,8 @@ export class AccountController {
     @Res({ passthrough: true }) res: Response,
   ): Promise<void> {
     await this.rateLimit.consume("account-password", user.id, 5, "15 m");
-    const session = await this.account.changePassword(user.id, body);
+    await this.account.changePassword(user.id, body);
+    const session = await this.account.freshSession(user.id);
     setSessionCookies(res, session.accessToken, session.refreshToken, this.config.APP_ORIGIN.startsWith("https://"));
   }
 

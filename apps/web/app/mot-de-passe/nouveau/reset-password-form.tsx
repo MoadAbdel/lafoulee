@@ -43,7 +43,7 @@ export function ResetPasswordForm() {
     return (
       <p role="status" className="mt-6 border-l-4 border-foret bg-white p-3">
         Votre mot de passe est changé.{" "}
-        <Link href="/connexion" className="font-semibold underline underline-offset-4">
+        <Link prefetch={false} href="/connexion" className="font-semibold underline underline-offset-4">
           Connectez-vous
         </Link>{" "}
         avec le nouveau.

@@ -113,4 +113,21 @@ describe("Catalogue (e2e)", () => {
     expect(res.headers["x-content-type-options"]).toBe("nosniff");
     expect(res.headers["x-powered-by"]).toBeUndefined();
   });
+
+  it("filtre par boutique : seulement les produits avec du stock libre dans cette boutique", async () => {
+    const store = await t.prisma.store.findFirstOrThrow({ orderBy: { slug: "asc" } });
+    const all = (await http().get("/api/v1/products?page=1").expect(200)).body as ProductListDto;
+    const filtered = (await http().get(`/api/v1/products?boutique=${store.slug}`).expect(200)).body as ProductListDto;
+    expect(filtered.total).toBeGreaterThan(0);
+    expect(filtered.total).toBeLessThanOrEqual(all.total);
+    for (const item of filtered.items) {
+      const free = await t.prisma.stock.findFirst({
+        where: { storeId: store.id, variant: { product: { slug: item.slug } }, quantity: { gt: 0 } },
+      });
+      expect(free, item.slug).not.toBeNull();
+    }
+    // Une boutique inconnue ne renvoie rien ; un slug mal formé est refusé.
+    expect(((await http().get("/api/v1/products?boutique=inconnue").expect(200)).body as ProductListDto).total).toBe(0);
+    await http().get("/api/v1/products?boutique=..%2Fetc").expect(400);
+  });
 });

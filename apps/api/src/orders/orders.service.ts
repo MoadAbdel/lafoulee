@@ -87,7 +87,7 @@ export class OrdersService {
     }
 
     // Libère d'abord les paiements abandonnés : leur stock redevient disponible.
-    await this.expireAbandoned(20);
+    await this.expireAbandoned(3); // quelques commandes seulement : la tâche de nuit fait le reste
 
     const totals = computeTotals(cart.subtotalCents, input.fulfillment);
     const accessToken = randomToken();

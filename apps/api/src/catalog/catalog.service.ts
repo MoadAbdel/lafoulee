@@ -59,7 +59,7 @@ export class CatalogService {
   }
 
   listProducts(query: ProductListQuery): Promise<ProductListDto> {
-    const key = `products:${query.categorie ?? ""}:${query.q ?? ""}:${query.tri ?? ""}:${query.page}`;
+    const key = `products:${query.categorie ?? ""}:${query.q ?? ""}:${query.tri ?? ""}:${query.boutique ?? ""}:${query.page}`;
     return this.cache.getOrSet(CATALOG_CACHE, key, 60, () => this.loadProducts(query));
   }
 
@@ -75,6 +75,14 @@ export class CatalogService {
         WHERE pc.product_id = p.id AND c.slug = ${query.categorie})`);
     }
     if (tsQuery) conditions.push(Prisma.sql`p.search_vector @@ to_tsquery('fr_unaccent', ${tsQuery})`);
+    if (query.boutique) {
+      // Au moins une taille avec du stock libre (hors réservations des paiements en cours) dans la boutique.
+      conditions.push(Prisma.sql`EXISTS (
+        SELECT 1 FROM product_variants v
+        JOIN stocks s ON s.variant_id = v.id
+        JOIN stores st ON st.id = s.store_id
+        WHERE v.product_id = p.id AND st.slug = ${query.boutique} AND s.quantity - s.reserved > 0)`);
+    }
 
     const orderBy = {
       pertinence: tsQuery
