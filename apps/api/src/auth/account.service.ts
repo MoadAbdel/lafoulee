@@ -17,7 +17,7 @@ import type {
 } from "@lafoulee/shared";
 import { ENV, type Env } from "../config/env.js";
 import { randomToken, sha256 } from "../common/crypto.js";
-import type { EmailTokenPurpose, User } from "../generated/prisma/client.js";
+import { Prisma, type EmailTokenPurpose, type User } from "../generated/prisma/client.js";
 import { MailService } from "../mail/mail.service.js";
 import { PrismaService } from "../prisma/prisma.service.js";
 import { AuthService, type IssuedSession } from "./auth.service.js";
@@ -113,6 +113,17 @@ export class AccountService {
     return { ...record, userId: record.userId };
   }
 
+  /**
+   * Annule les liens encore valables d'un compte (changement d'email, réinitialisation).
+   * Appelé dès que le mot de passe ou l'email change : un lien demandé avant ne doit plus servir.
+   */
+  private async invalidatePendingLinks(userId: string): Promise<void> {
+    await this.prisma.emailToken.updateMany({
+      where: { userId, purpose: { in: ["EMAIL_CHANGE", "PASSWORD_RESET"] }, usedAt: null },
+      data: { usedAt: new Date() },
+    });
+  }
+
   private async revokeAllSessions(userId: string): Promise<void> {
     await this.prisma.refreshToken.updateMany({
       where: { userId, revokedAt: null },
@@ -146,6 +157,7 @@ export class AccountService {
       data: { passwordHash: await this.passwords.hash(input.newPassword) },
     });
     await this.revokeAllSessions(userId);
+    await this.invalidatePendingLinks(userId);
     await this.notify(user.email, "Votre mot de passe a été modifié", [
       "Le mot de passe de votre compte La Foulée vient d'être modifié. Vos autres appareils ont été déconnectés.",
       "Si vous n'êtes pas à l'origine de ce changement, utilisez « Mot de passe oublié » sur la page de connexion.",
@@ -194,13 +206,22 @@ export class AccountService {
     const record = await this.consumeToken(token, "EMAIL_CHANGE");
     const newEmail = (record.metadata as { newEmail?: string } | null)?.newEmail;
     if (!newEmail) throw new ForbiddenException("Ce lien est invalide ou a expiré.");
-    if (await this.prisma.user.findUnique({ where: { email: newEmail } })) {
-      throw new ForbiddenException("Cette adresse est déjà utilisée par un autre compte.");
+    try {
+      await this.prisma.user.update({
+        where: { id: record.userId },
+        data: { email: newEmail, emailVerifiedAt: new Date() },
+      });
+    } catch (error) {
+      // Adresse prise entre la demande et la confirmation : contrainte d'unicité de la base.
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
+        throw new ForbiddenException("Cette adresse est déjà utilisée par un autre compte.");
+      }
+      throw error;
     }
-    await this.prisma.user.update({
-      where: { id: record.userId },
-      data: { email: newEmail, emailVerifiedAt: new Date() },
-    });
+    // Un lien envoyé à l'ancienne adresse (réinitialisation) ne doit plus servir, et les
+    // sessions ouvertes sont fermées : la connexion se fait désormais avec la nouvelle adresse.
+    await this.invalidatePendingLinks(record.userId);
+    await this.revokeAllSessions(record.userId);
   }
 
   /** Mot de passe oublié : réponse identique dans tous les cas ; lien valable 1 heure. */
@@ -228,6 +249,7 @@ export class AccountService {
       data: { passwordHash: await this.passwords.hash(input.newPassword) },
     });
     await this.revokeAllSessions(user.id);
+    await this.invalidatePendingLinks(user.id);
     await this.notify(user.email, "Votre mot de passe a été réinitialisé", [
       "Le mot de passe de votre compte La Foulée vient d'être réinitialisé. Tous vos appareils ont été déconnectés.",
     ]);

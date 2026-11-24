@@ -172,4 +172,77 @@ describe("Sécurité du compte (e2e)", () => {
       .body as LoginResult;
     expect(plain.status).toBe("OK");
   });
+
+  it("revue : un changement de mot de passe annule un changement d'email en attente (compte détourné)", async () => {
+    const { cookie } = await customer();
+    const attacker = uniqueEmail("pirate");
+    await http()
+      .post("/api/v1/me/email")
+      .set("Cookie", cookie)
+      .send({ newEmail: attacker, currentPassword: PASSWORD })
+      .expect(202);
+    const token = tokenFromMail(t.mails.find((m) => m.to === attacker));
+    const changed = await http()
+      .post("/api/v1/me/password")
+      .set("Cookie", cookie)
+      .send({ currentPassword: PASSWORD, newPassword: NEW_PASSWORD })
+      .expect(204);
+    expect(changed.status).toBe(204);
+    await http().post("/api/v1/auth/email-change/confirm").send({ token }).expect(403);
+  });
+
+  it("revue : après un changement d'email, un lien de réinitialisation envoyé à l'ancienne adresse ne sert plus", async () => {
+    const { email, cookie } = await customer();
+    await http().post("/api/v1/auth/password/forgot").send({ email }).expect(202);
+    const resetToken = tokenFromMail(t.mails.findLast((m) => m.to === email));
+    const newEmail = uniqueEmail("nouvelle");
+    await http()
+      .post("/api/v1/me/email")
+      .set("Cookie", cookie)
+      .send({ newEmail, currentPassword: PASSWORD })
+      .expect(202);
+    await http()
+      .post("/api/v1/auth/email-change/confirm")
+      .send({ token: tokenFromMail(t.mails.find((m) => m.to === newEmail)) })
+      .expect(200);
+    await http().post("/api/v1/auth/password/reset").send({ token: resetToken, newPassword: NEW_PASSWORD }).expect(403);
+    const refreshOnly = cookie.split("; ").find((c) => c.startsWith("lf_rt="))!;
+    await http().post("/api/v1/auth/refresh").set("Cookie", refreshOnly).expect(401); // sessions fermées
+  });
+
+  it("revue : adresse prise entre la demande et la confirmation : 403 clair, pas d'erreur 500", async () => {
+    const { cookie } = await customer();
+    const newEmail = uniqueEmail("prise");
+    await http()
+      .post("/api/v1/me/email")
+      .set("Cookie", cookie)
+      .send({ newEmail, currentPassword: PASSWORD })
+      .expect(202);
+    const token = tokenFromMail(t.mails.find((m) => m.to === newEmail));
+    await t.prisma.user.create({ data: { email: newEmail, passwordHash: "x", emailVerifiedAt: new Date() } });
+    const res = await http().post("/api/v1/auth/email-change/confirm").send({ token }).expect(403);
+    expect(res.body.message).toContain("déjà utilisée");
+  });
+
+  it("revue : codes de double authentification limités par compte, même depuis plusieurs adresses IP", async () => {
+    const { email, cookie } = await customer();
+    const setup = (
+      await http().post("/api/v1/me/2fa/setup").set("Cookie", cookie).send({ currentPassword: PASSWORD }).expect(201)
+    ).body as TwoFactorSetupDto;
+    const code = await generate({ secret: setup.secret });
+    await http().post("/api/v1/me/2fa/enable").set("Cookie", cookie).send({ code }).expect(201);
+    const statuses: number[] = [];
+    for (let i = 0; i < 6; i++) {
+      const step1 = (await http().post("/api/v1/auth/login").send({ email, password: PASSWORD }).expect(200))
+        .body as LoginResult;
+      const challenge = step1.status === "TOTP_REQUIRED" ? step1.challenge : "";
+      const res = await http()
+        .post("/api/v1/auth/login/totp")
+        .set("X-Forwarded-For", `203.0.113.${i + 1}`)
+        .send({ challenge, code: "000000" });
+      statuses.push(res.status);
+    }
+    expect(statuses.slice(0, 5).every((status) => status === 401)).toBe(true);
+    expect(statuses[5]).toBe(429);
+  });
 });

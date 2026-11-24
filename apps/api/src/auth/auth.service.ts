@@ -10,6 +10,7 @@ import { PasswordService } from "./password.service.js";
 import { TokenService } from "./token.service.js";
 import { TotpService } from "./totp.service.js";
 import { REFRESH_TTL_SECONDS } from "./cookies.js";
+import { RateLimitService } from "../redis/rate-limit.service.js";
 
 const VERIFY_EMAIL_TTL_MS = 24 * 3600 * 1000;
 
@@ -34,6 +35,7 @@ export class AuthService {
     private readonly tokens: TokenService,
     private readonly totp: TotpService,
     private readonly mail: MailService,
+    private readonly rateLimit: RateLimitService,
   ) {}
 
   /**
@@ -141,6 +143,8 @@ export class AuthService {
     } catch {
       throw new UnauthorizedException("Session de connexion expirée. Recommencez.");
     }
+    // 5 essais par compte et par 5 minutes, quel que soit le nombre d'adresses IP utilisées.
+    await this.rateLimit.consume("login-totp-user", userId, 5, "5 m");
     const user = await this.prisma.user.findUnique({ where: { id: userId } });
     if (!user?.totpSecretEnc || user.anonymizedAt || !(await this.totp.check(user.id, user.totpSecretEnc, code))) {
       throw new UnauthorizedException("Code incorrect.");

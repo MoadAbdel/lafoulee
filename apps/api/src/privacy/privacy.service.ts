@@ -143,7 +143,9 @@ export class PrivacyService {
     });
     await tx.order.updateMany({ where: { guestEmail: email }, data: { guestEmail: null } });
     await tx.newsletterSubscription.deleteMany({ where: { email } });
-    await tx.emailToken.deleteMany({ where: { email } });
+    // Les liens EMAIL_CHANGE portent la NOUVELLE adresse d'un autre compte : ils ne sont pas
+    // des données de cette personne et ne sont pas effacés ici.
+    await tx.emailToken.deleteMany({ where: { email, purpose: { not: "EMAIL_CHANGE" } } });
   }
 
   /**

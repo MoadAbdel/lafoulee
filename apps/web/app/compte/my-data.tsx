@@ -21,7 +21,6 @@ export function MyData() {
     if (result.ok) {
       dialog.current?.close();
       notifyAuthChanged();
-      notifyAuthChanged();
       // eslint-disable-next-line @next/next/no-location-assign-relative-destination -- changement de session : rechargement complet voulu
       window.location.assign("/?compte=supprime");
     } else {
