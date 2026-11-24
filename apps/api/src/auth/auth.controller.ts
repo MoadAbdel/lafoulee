@@ -111,6 +111,16 @@ export class AuthController {
   me(@CurrentUser() user: AuthUser): Promise<SessionUser> {
     return this.auth.me(user.id);
   }
+
+  /**
+   * État de la session pour l'en-tête du site : toujours 200, user null pour un
+   * visiteur. Évite une erreur 401 dans la console à chaque page (bonnes pratiques).
+   */
+  @Public()
+  @Get("session")
+  async session(@CurrentUser() user: AuthUser | undefined): Promise<{ user: SessionUser | null }> {
+    return { user: user ? await this.auth.me(user.id) : null };
+  }
 }
 
 function readCookie(req: Request, name: string): string | undefined {
