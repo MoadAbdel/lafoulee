@@ -89,7 +89,7 @@ export function OrderConfirmation() {
       </div>
 
       <section aria-labelledby="titre-detail">
-        <h2 id="titre-detail" className="font-display text-2xl font-bold uppercase">
+        <h2 id="titre-detail" className="font-display tracking-tight text-2xl font-extrabold">
           Détail
         </h2>
         <ul className="mt-2 divide-y divide-asphalte/10 border border-asphalte/15 bg-white">

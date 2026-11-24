@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function StoresPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-10">
-      <h1 className="font-display text-5xl font-bold uppercase">Nos boutiques</h1>
+      <h1 className="font-display tracking-tight text-5xl font-extrabold">Nos boutiques</h1>
       <p className="mt-2 max-w-2xl">
         Retrait gratuit de vos commandes, essayage et analyse de foulée par des vendeurs coureurs.
       </p>
@@ -71,7 +71,7 @@ async function Stores() {
               dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
             />
             <div>
-              <h2 className="font-display text-3xl font-bold uppercase">{store.name}</h2>
+              <h2 className="font-display tracking-tight text-3xl font-extrabold">{store.name}</h2>
               <p className="mt-2">{address}</p>
               <p className="text-asphalte/80">{store.openingHours}</p>
               <a

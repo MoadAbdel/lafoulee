@@ -12,7 +12,7 @@ const TYPES = { ACCESS: "Copie des données", DELETION: "Effacement" } as const;
 export default function GdprRequestsPage() {
   return (
     <>
-      <h1 className="font-display text-4xl font-bold uppercase">Demandes RGPD</h1>
+      <h1 className="font-display tracking-tight text-4xl font-extrabold">Demandes RGPD</h1>
       <p className="mt-2 text-asphalte/80">
         Délai légal : un mois. Une copie part par email en pièce jointe ; un effacement anonymise les commandes et
         efface l&apos;inscription à la newsletter.

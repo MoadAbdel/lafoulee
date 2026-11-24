@@ -7,7 +7,7 @@ import { STATUS_LABELS } from "./status-labels";
 export default function AdminDashboardPage() {
   return (
     <>
-      <h1 className="font-display text-4xl font-bold uppercase">Tableau de bord</h1>
+      <h1 className="font-display tracking-tight text-4xl font-extrabold">Tableau de bord</h1>
       <Suspense fallback={<p className="mt-4">Chargement des chiffres...</p>}>
         <Dashboard />
       </Suspense>
@@ -31,7 +31,7 @@ async function Dashboard() {
         {tiles.map((tile) => (
           <div key={tile.label} className="border border-asphalte/15 bg-white p-4">
             <dt className="text-sm text-asphalte/80">{tile.label}</dt>
-            <dd className="mt-1 font-display text-3xl font-bold">
+            <dd className="mt-1 font-display tracking-tight text-3xl font-extrabold">
               {tile.href ? (
                 <Link href={tile.href} className="underline-offset-4 hover:underline">
                   {tile.value}
@@ -45,7 +45,7 @@ async function Dashboard() {
       </dl>
 
       <section aria-labelledby="titre-a-traiter">
-        <h2 id="titre-a-traiter" className="font-display text-2xl font-bold uppercase">
+        <h2 id="titre-a-traiter" className="font-display tracking-tight text-2xl font-extrabold">
           Commandes à traiter
         </h2>
         {data.recentOrders.length === 0 ? (
@@ -91,7 +91,7 @@ async function Dashboard() {
       </section>
 
       <section aria-labelledby="titre-stocks">
-        <h2 id="titre-stocks" className="font-display text-2xl font-bold uppercase">
+        <h2 id="titre-stocks" className="font-display tracking-tight text-2xl font-extrabold">
           Stocks bas {data.lowStockCount > data.lowStock.length && `(20 premiers sur ${data.lowStockCount})`}
         </h2>
         <ul className="mt-2 divide-y divide-asphalte/10 border border-asphalte/15 bg-white text-sm">

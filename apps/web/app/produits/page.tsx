@@ -60,7 +60,7 @@ async function Catalog({ searchParams }: { searchParams: Promise<Search> }) {
 
   return (
     <>
-      <h1 className="font-display text-4xl font-bold uppercase sm:text-5xl">{title}</h1>
+      <h1 className="font-display tracking-tight text-4xl font-extrabold sm:text-5xl">{title}</h1>
       {current && !query.q && <p className="mt-2 max-w-2xl text-asphalte/80">{current.description}</p>}
 
       <div className="mt-6 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">

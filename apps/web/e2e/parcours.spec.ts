@@ -6,7 +6,7 @@ test.describe("Parcours visiteur", () => {
     const csp = watchCspViolations(page);
     await page.goto("/");
     await refuseCookies(page);
-    await expect(page.getByRole("heading", { level: 1 })).toContainText("Essayez en boutique");
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("Chaussures et équipement de running");
     await page.getByRole("searchbox", { name: "Rechercher un produit" }).fill("trail");
     await page.getByRole("button", { name: "Rechercher" }).click();
     await expect(page.getByRole("heading", { level: 1 })).toContainText("trail");

@@ -9,7 +9,7 @@ export const metadata: Metadata = { title: "Clés API" };
 export default function AdminApiKeysPage() {
   return (
     <>
-      <h1 className="font-display text-4xl font-bold uppercase">Clés API partenaires</h1>
+      <h1 className="font-display tracking-tight text-4xl font-extrabold">Clés API partenaires</h1>
       <p className="mt-2 max-w-2xl text-asphalte/80">
         Les partenaires (clubs, organisateurs de courses) lisent le catalogue avec une clé. Documentation :{" "}
         <a href="/api/v1/partner/openapi.json" className="underline underline-offset-4">

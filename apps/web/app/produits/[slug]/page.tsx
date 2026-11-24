@@ -100,7 +100,7 @@ export default async function ProductPage({ params }: PageProps<"/produits/[slug
         />
         <div>
           <p className="font-semibold uppercase tracking-wide text-foret">{product.brand}</p>
-          <h1 className="font-display text-5xl font-bold uppercase leading-none">{product.name}</h1>
+          <h1 className="font-display tracking-tight text-5xl font-extrabold leading-none">{product.name}</h1>
           <p className="mt-3 text-lg">{product.shortDescription}</p>
           <p className="mt-4 text-2xl font-semibold">
             {prices.every((price) => price === minPrice)
@@ -113,14 +113,14 @@ export default async function ProductPage({ params }: PageProps<"/produits/[slug
 
       <section aria-labelledby="titre-description" className="mt-12 grid gap-8 lg:grid-cols-2">
         <div>
-          <h2 id="titre-description" className="font-display text-3xl font-bold uppercase">
+          <h2 id="titre-description" className="font-display tracking-tight text-3xl font-extrabold">
             Description
           </h2>
           <p className="mt-3 leading-relaxed">{product.description}</p>
         </div>
         {Object.keys(product.attributes).length > 0 && (
           <div>
-            <h2 className="font-display text-3xl font-bold uppercase">Caractéristiques</h2>
+            <h2 className="font-display tracking-tight text-3xl font-extrabold">Caractéristiques</h2>
             <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-6 gap-y-2">
               {Object.entries(product.attributes).map(([key, value]) => (
                 <div key={key} className="contents">

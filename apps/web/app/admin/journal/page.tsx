@@ -26,7 +26,7 @@ const ACTIONS: Record<string, string> = {
 export default function AuditPage({ searchParams }: PageProps<"/admin/journal">) {
   return (
     <>
-      <h1 className="font-display text-4xl font-bold uppercase">Journal d&apos;audit</h1>
+      <h1 className="font-display tracking-tight text-4xl font-extrabold">Journal d&apos;audit</h1>
       <p className="mt-2 text-asphalte/80">Chaque action d&apos;un administrateur, conservée un an.</p>
       <Suspense fallback={<p className="mt-4">Chargement du journal...</p>}>
         <Journal searchParams={searchParams} />

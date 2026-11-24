@@ -52,21 +52,21 @@ export default function PrivacyPage() {
   return (
     <article className="mx-auto max-w-3xl space-y-8 px-4 py-10 leading-relaxed">
       <header>
-        <h1 className="font-display text-5xl font-bold uppercase">Politique de confidentialité</h1>
+        <h1 className="font-display tracking-tight text-5xl font-extrabold">Politique de confidentialité</h1>
         <p className="mt-2 text-sm text-asphalte/80">
           Mise à jour : novembre 2026. La Foulée est une enseigne fictive (projet de démonstration).
         </p>
       </header>
 
       <section aria-labelledby="responsable">
-        <h2 id="responsable" className="font-display text-3xl font-bold uppercase">
+        <h2 id="responsable" className="font-display tracking-tight text-3xl font-extrabold">
           Responsable du traitement
         </h2>
         <p>La Foulée, 42 rue d&apos;Austerlitz, 69004 Lyon. Contact pour vos données : le formulaire ci-dessous.</p>
       </section>
 
       <section aria-labelledby="traitements">
-        <h2 id="traitements" className="font-display text-3xl font-bold uppercase">
+        <h2 id="traitements" className="font-display tracking-tight text-3xl font-extrabold">
           Données, finalités et durées
         </h2>
         <div className="mt-3 overflow-x-auto">
@@ -104,7 +104,7 @@ export default function PrivacyPage() {
       </section>
 
       <section aria-labelledby="destinataires">
-        <h2 id="destinataires" className="font-display text-3xl font-bold uppercase">
+        <h2 id="destinataires" className="font-display tracking-tight text-3xl font-extrabold">
           Sous-traitants
         </h2>
         <ul className="list-inside list-disc">
@@ -120,7 +120,7 @@ export default function PrivacyPage() {
       </section>
 
       <section aria-labelledby="cookies">
-        <h2 id="cookies" className="font-display text-3xl font-bold uppercase">
+        <h2 id="cookies" className="font-display tracking-tight text-3xl font-extrabold">
           Cookies
         </h2>
         <p>
@@ -134,7 +134,7 @@ export default function PrivacyPage() {
       </section>
 
       <section aria-labelledby="droits">
-        <h2 id="droits" className="font-display text-3xl font-bold uppercase">
+        <h2 id="droits" className="font-display tracking-tight text-3xl font-extrabold">
           Vos droits
         </h2>
         <p>
