@@ -16,7 +16,7 @@ export default function HomePage() {
       <section data-affiche className="relative isolate -mt-px overflow-hidden bg-balise text-craie">
         <p
           aria-hidden="true"
-          className="pointer-events-none absolute -left-[1.5vw] top-[2vh] m-0 select-none text-[31vw] font-black leading-[0.78] tracking-[-0.075em] motion-safe:animate-[entree_0.9s_cubic-bezier(.2,.7,.2,1)_both]"
+          className="pointer-events-none absolute -left-[1.5vw] top-[calc(2vh+0.26em)] m-0 select-none text-[31vw] font-black leading-[0.78] tracking-[-0.075em] motion-safe:animate-[entree_0.9s_cubic-bezier(.2,.7,.2,1)_both]"
         >
           Courir
         </p>
