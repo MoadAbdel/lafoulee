@@ -52,6 +52,12 @@ export const getJson = <T>(path: string) => apiRequest<T>("GET", path);
 export const putJson = <T>(path: string, body: unknown) => apiRequest<T>("PUT", path, body);
 export const deleteJson = (path: string) => apiRequest<void>("DELETE", path);
 
+/** Connexion ou déconnexion : le lien de compte de l'en-tête se met à jour. */
+export const AUTH_EVENT = "lafoulee:session";
+export function notifyAuthChanged(): void {
+  window.dispatchEvent(new Event(AUTH_EVENT));
+}
+
 /** Prévient les composants (compteur du panier) qu'un changement a eu lieu. */
 export const CART_EVENT = "lafoulee:panier";
 export function notifyCartChanged(): void {

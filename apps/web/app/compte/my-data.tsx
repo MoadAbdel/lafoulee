@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useRef, useState, type FormEvent } from "react";
 import { FormErrors, inputClass } from "@/components/form-errors";
-import { postJson } from "@/lib/client-api";
+import { notifyAuthChanged, postJson } from "@/lib/client-api";
 
 /** Droits RGPD du client connecté (EF11) : export immédiat et suppression du compte. */
 export function MyData() {
@@ -22,6 +22,7 @@ export function MyData() {
     setPending(false);
     if (result.ok) {
       dialog.current?.close();
+      notifyAuthChanged();
       router.push("/?compte=supprime");
       router.refresh();
     } else {

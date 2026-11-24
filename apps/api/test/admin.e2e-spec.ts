@@ -298,7 +298,11 @@ describe("Back-office et API partenaires (e2e)", () => {
     it("C27 description OpenAPI publique, qui couvre toutes les routes partenaires", async () => {
       const res = await http().get("/api/v1/partner/openapi.json").expect(200);
       expect(res.body.openapi).toBe("3.1.0");
-      expect(Object.keys(OPENAPI_DOCUMENT.paths).sort()).toEqual(["/products", "/products/{slug}", "/stores"]);
+      expect(Object.keys(OPENAPI_DOCUMENT.paths).sort((a, b) => a.localeCompare(b))).toEqual([
+        "/products",
+        "/products/{slug}",
+        "/stores",
+      ]);
     });
   });
 });
