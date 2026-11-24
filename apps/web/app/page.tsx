@@ -1,21 +1,27 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
+import { FREE_SHIPPING_THRESHOLD_CENTS } from "@lafoulee/shared";
 import { CatalogSummary, Departments } from "@/components/home-departments";
 
 /**
- * Accueil, direction "affiche suisse" : une affiche rouge (le mot Courir et un
- * sprinteur), puis la grille des rayons en photos et un bandeau vers les boutiques.
+ * Accueil, direction "affiche suisse" : une affiche rouge (le mot Essayez, l'atout des
+ * boutiques, et un sprinteur), puis la grille des rayons en photos et un bandeau vers les boutiques.
  */
 export default function HomePage() {
   return (
     <>
-      <section data-affiche className="relative isolate -mt-px overflow-hidden bg-balise text-craie">
+      <section
+        data-affiche
+        className="relative isolate -mt-px flex min-h-[calc(100svh-7.5rem)] flex-col overflow-hidden bg-balise text-craie"
+      >
+        {/* Le grand mot est dans le flux : sa taille dépend de la largeur ET de la hauteur de
+            l'écran, donc il ne recouvre jamais le texte (écrans larges et peu hauts compris). */}
         <p
           aria-hidden="true"
-          className="pointer-events-none absolute -left-[1.5vw] top-[calc(2vh+0.26em)] m-0 select-none text-[31vw] font-black leading-[0.78] tracking-[-0.075em] motion-safe:animate-[entree_0.9s_cubic-bezier(.2,.7,.2,1)_both]"
+          className="pointer-events-none -ml-[1.5vw] mb-0 mt-0 select-none whitespace-nowrap pt-[0.2em] text-[min(25.5vw,44svh)] font-black leading-[0.78] tracking-[-0.075em] motion-safe:animate-[entree_0.9s_cubic-bezier(.2,.7,.2,1)_both]"
         >
-          Courir
+          Essayez
         </p>
         <Image
           src="/visuels/sprint.jpg"
@@ -24,22 +30,27 @@ export default function HomePage() {
           height={1067}
           priority
           sizes="(min-width: 768px) 46vw, 90vw"
-          className="absolute bottom-0 right-[4vw] -z-10 h-[72%] w-[90vw] object-cover object-[30%_50%] mix-blend-multiply contrast-125 md:h-[88%] md:w-[46vw]"
+          className="absolute bottom-0 right-[4vw] -z-10 h-[60%] w-[90vw] object-cover object-[30%_50%] mix-blend-multiply contrast-125 md:h-[88%] md:w-[46vw]"
         />
-        <div className="relative mx-auto grid min-h-[calc(100svh-7.5rem)] max-w-6xl grid-cols-12 items-end gap-4 px-4 pb-10 pt-[38vw] md:pt-[24vw]">
-          <div className="col-span-12 md:col-span-6 motion-safe:animate-[entree_0.9s_0.2s_cubic-bezier(.2,.7,.2,1)_both]">
-            <h1 className="max-w-[18ch] text-3xl font-bold leading-[1.04] tracking-tight sm:text-4xl">
-              Chaussures et équipement de running, trois boutiques à Lyon
+        <div className="relative mx-auto mt-auto w-full max-w-6xl px-4 pb-10 pt-6">
+          <div className="md:max-w-[50%] motion-safe:animate-[entree_0.9s_0.2s_cubic-bezier(.2,.7,.2,1)_both]">
+            <h1 className="max-w-[20ch] text-3xl font-bold leading-[1.04] tracking-tight sm:text-4xl">
+              Votre prochaine paire, essayée sur tapis avant de l&apos;acheter.
             </h1>
             <p className="mt-4 max-w-[44ch] text-lg leading-snug">
-              Essai sur tapis et analyse de foulée en boutique. Commande en ligne, retrait gratuit.
+              Un vendeur coureur regarde votre foulée et vous fait essayer les modèles qui vous vont. Dans nos 3
+              boutiques de Lyon.
             </p>
             <Link
               href="/produits?categorie=chaussures-route"
               className="mt-6 inline-flex min-h-12 items-center gap-3 bg-craie px-6 font-bold text-asphalte transition-transform hover:translate-x-1 active:scale-[0.97]"
             >
-              Voir les chaussures <span aria-hidden="true">&rarr;</span>
+              Voir les chaussures de route <span aria-hidden="true">&rarr;</span>
             </Link>
+            <p className="mt-3 text-[0.95rem]">
+              Ou commandez en ligne : retrait gratuit, livraison offerte dès {FREE_SHIPPING_THRESHOLD_CENTS / 100}
+              &nbsp;€.
+            </p>
           </div>
         </div>
       </section>
