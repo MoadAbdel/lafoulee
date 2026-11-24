@@ -14,15 +14,8 @@ export default defineConfig({
     coverage: {
       provider: "v8",
       include: ["app/**/*.{ts,tsx}", "components/**/*.tsx", "lib/**/*.ts", "proxy.ts"],
-      // Pages serveur asynchrones et données : couvertes par les tests e2e de l'API et Playwright.
-      exclude: [
-        "**/*.test.*",
-        "app/**/page.tsx",
-        "app/layout.tsx",
-        "app/not-found.tsx",
-        "lib/catalog.ts",
-        "lib/session.ts",
-      ],
+      // Pages serveur asynchrones : couvertes par les tests Playwright (mêmes exclusions dans SonarQube).
+      exclude: ["**/*.test.*", "app/**/page.tsx", "app/layout.tsx", "app/not-found.tsx"],
       reporter: ["text-summary", "text", "lcov"],
       thresholds: { lines: 60, branches: 60, functions: 60, statements: 60 },
     },
