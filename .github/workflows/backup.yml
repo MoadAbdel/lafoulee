@@ -1,0 +1,95 @@
+name: Sauvegarde
+# Sauvegarde hebdomadaire de la base de production (dossier, C9 et C22).
+# 1. l'adresse de la base est demandée à l'API Neon au moment de l'exécution (rien n'est stocké) ;
+# 2. pg_dump au format personnalisé ;
+# 3. restauration d'essai dans une base vide : une sauvegarde jamais restaurée ne prouve rien ;
+# 4. chiffrement AES-256 (clé dérivée PBKDF2) puis conservation 8 semaines en artefact.
+#
+# Restaurer une sauvegarde :
+#   openssl enc -d -aes-256-cbc -pbkdf2 -iter 600000 -in lafoulee-AAAA-MM-JJ.dump.enc \
+#     -out lafoulee.dump -pass env:BACKUP_PASSPHRASE
+#   pg_restore --clean --if-exists --no-owner --no-privileges -d "$DATABASE_URL" lafoulee.dump
+on:
+  schedule:
+    - cron: "0 2 * * 0" # chaque dimanche à 2 h UTC
+  workflow_dispatch:
+  pull_request:
+    paths: [.github/workflows/backup.yml] # une PR qui modifie la sauvegarde l'exécute
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sauvegarde
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      restore: # base vide pour la restauration d'essai
+        image: postgres:18-alpine
+        env: { POSTGRES_USER: test, POSTGRES_PASSWORD: test, POSTGRES_DB: test }
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U test" --health-interval 5s --health-retries 10
+    env:
+      NEON_API: https://console.neon.tech/api/v2/projects/fancy-leaf-62592713 # projet lafoulee-db (pas un secret)
+      NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+      BACKUP_PASSPHRASE: ${{ secrets.BACKUP_PASSPHRASE }}
+      RESTORE_URL: postgresql://test:test@localhost:5432/test
+    steps:
+      - name: Secrets présents
+        run: |
+          test -n "$NEON_API_KEY" || { echo "::error::Secret NEON_API_KEY absent"; exit 1; }
+          test ${#BACKUP_PASSPHRASE} -ge 32 || { echo "::error::Secret BACKUP_PASSPHRASE absent ou trop court"; exit 1; }
+
+      - name: Client PostgreSQL 18 (même version que Neon)
+        run: |
+          sudo install -d /usr/share/postgresql-common/pgdg
+          sudo curl -fsSo /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc https://www.postgresql.org/media/keys/ACCC4CF8.asc
+          echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" \
+            | sudo tee /etc/apt/sources.list.d/pgdg.list > /dev/null
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq postgresql-client-18
+          pg_dump --version
+
+      - name: Adresse de la base (demandée à Neon, masquée dans les journaux)
+        run: |
+          uri=$(curl -fsS -H "Authorization: Bearer $NEON_API_KEY" \
+            "$NEON_API/connection_uri?database_name=neondb&role_name=neondb_owner&pooled=false" | jq -r .uri)
+          echo "::add-mask::$uri"
+          echo "::add-mask::$(echo "$uri" | sed -E 's#^[^:]+://[^:]+:([^@]+)@.*#\1#')"
+          echo "DATABASE_URL=$uri" >> "$GITHUB_ENV"
+
+      - name: Export
+        run: |
+          file="lafoulee-$(date -u +%Y-%m-%d).dump"
+          pg_dump --format=custom --no-owner --no-privileges --file="$file" "$DATABASE_URL"
+          echo "FILE=$file" >> "$GITHUB_ENV"
+          ls -l "$file"
+
+      - name: Restauration d'essai dans une base vide
+        run: |
+          pg_restore --no-owner --no-privileges --exit-on-error --dbname="$RESTORE_URL" "$FILE"
+          psql "$RESTORE_URL" -v ON_ERROR_STOP=1 -tA -F ' : ' -c "
+            SELECT 'migrations', count(*) FROM _prisma_migrations
+            UNION ALL SELECT 'produits', count(*) FROM products
+            UNION ALL SELECT 'stocks', count(*) FROM stocks
+            UNION ALL SELECT 'commandes', count(*) FROM orders
+            UNION ALL SELECT 'comptes', count(*) FROM users;"
+          test "$(psql "$RESTORE_URL" -tAc 'SELECT count(*) FROM products')" -gt 0
+
+      - name: Chiffrement
+        run: |
+          openssl enc -aes-256-cbc -pbkdf2 -iter 600000 -salt -in "$FILE" -out "$FILE.enc" -pass env:BACKUP_PASSPHRASE
+          shred -u "$FILE"
+          sha256sum "$FILE.enc"
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: sauvegarde-${{ github.run_id }}
+          path: lafoulee-*.dump.enc
+          retention-days: 56 # 8 semaines
+          if-no-files-found: error
