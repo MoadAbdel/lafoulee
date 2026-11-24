@@ -31,10 +31,9 @@ export class JwtAuthGuard implements CanActivate {
     // Route publique : la session est lue si elle existe (ex. commande d'un client
     // connecté), mais n'est jamais exigée. Un jeton invalide est simplement ignoré.
     if (isPublic) {
-      if (token) {
-        const claims = await this.tokens.verifyAccess(token).catch(() => null);
-        if (claims) req.user = { id: claims.sub, role: claims.role };
-      }
+      // Pas de condition sur la présence du cookie : la vérification du jeton décide seule.
+      const claims = await this.tokens.verifyAccess(token ?? "").catch(() => null);
+      if (claims) req.user = { id: claims.sub, role: claims.role };
       return true;
     }
 

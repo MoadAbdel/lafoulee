@@ -32,7 +32,8 @@ export class ApiKeyGuard implements CanActivate {
     const req = context.switchToHttp().getRequest<Request>();
     const header = req.headers.authorization ?? "";
     const raw = header.startsWith("Bearer ") ? header.slice(7).trim() : "";
-    const key = raw ? await this.keys.authenticate(raw) : null;
+    // authenticate refuse lui-même une clé vide ou mal formée : pas de raccourci ici.
+    const key = await this.keys.authenticate(raw);
     if (!key) throw new UnauthorizedException("Clé API absente, invalide ou révoquée.");
 
     const scope = this.reflector.getAllAndOverride<ApiScope | undefined>(REQUIRED_SCOPE, [

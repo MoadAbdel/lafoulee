@@ -33,9 +33,11 @@ export class CartService {
   }
 
   async setQuantity(cartId: string, variantId: string, quantity: number): Promise<CartDto> {
-    const items = await this.getItems(cartId);
+    // Map plutôt qu'objet : un identifiant reçu du client ne peut pas écrire une propriété
+    // spéciale (__proto__, constructor...) de l'objet du panier.
+    const lines = new Map(Object.entries(await this.getItems(cartId)));
     if (quantity === 0) {
-      delete items[variantId];
+      lines.delete(variantId);
     } else {
       const variant = await this.prisma.productVariant.findFirst({
         where: { id: variantId, product: { status: "PUBLISHED" } },
@@ -44,8 +46,9 @@ export class CartService {
       if (!variant) throw new NotFoundException("Produit introuvable.");
       const available = variant.stocks.reduce((sum, stock) => sum + Math.max(0, stock.quantity - stock.reserved), 0);
       if (available === 0) throw new BadRequestException("Cette taille est en rupture de stock.");
-      items[variantId] = Math.min(quantity, available, MAX_QUANTITY_PER_LINE);
+      lines.set(variantId, Math.min(quantity, available, MAX_QUANTITY_PER_LINE));
     }
+    const items: CartItems = Object.fromEntries(lines);
     await this.save(cartId, items);
     return this.toDto(items);
   }
