@@ -32,7 +32,12 @@ async function pickSize(page: Page): Promise<boolean> {
   for (let index = 0; index < count; index++) {
     const size = sizes.nth(index);
     if (await size.isEnabled()) {
-      await size.check({ force: true }); // le bouton radio natif est masqué visuellement (libellé cliquable)
+      // Le bouton radio natif est masqué visuellement (libellé cliquable). Un clic arrivé avant
+      // l'hydratation de React est annulé par celle-ci : on recommence jusqu'à ce qu'il tienne.
+      await expect(async () => {
+        await size.check({ force: true });
+        await expect(size).toBeChecked({ timeout: 500 });
+      }).toPass({ timeout: 10_000 });
       return true;
     }
   }
