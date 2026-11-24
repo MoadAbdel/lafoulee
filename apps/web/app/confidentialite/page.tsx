@@ -69,7 +69,7 @@ export default function PrivacyPage() {
         <h2 id="traitements" className="font-display tracking-tight text-3xl font-extrabold">
           Données, finalités et durées
         </h2>
-        <div className="mt-3 overflow-x-auto">
+        <div className="mt-3 max-w-[calc(100vw-2rem)] overflow-x-auto">
           <table className="w-full border border-asphalte/15 bg-white text-left text-sm">
             <thead className="bg-craie">
               <tr>

@@ -23,7 +23,7 @@ export function SiteHeader() {
             type="search"
             placeholder="Chaussure, gel, frontale..."
             maxLength={80}
-            className="min-h-11 w-full border border-asphalte/40 bg-white px-3 sm:w-64"
+            className="min-h-11 w-full border border-asphalte/40 bg-white px-3 text-asphalte placeholder:text-asphalte/60 sm:w-64"
           />
           <button type="submit" className="min-h-11 bg-asphalte px-4 font-semibold text-craie">
             Rechercher
@@ -35,12 +35,12 @@ export function SiteHeader() {
         </div>
       </div>
       <nav aria-label="Catégories" className="border-t border-current/15">
-        <ul className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-2">
+        <ul className="mx-auto flex max-w-6xl flex-wrap gap-x-1 px-2 sm:flex-nowrap sm:overflow-x-auto">
           {MAIN_NAV.map((item) => (
             <li key={item.href}>
               <Link
                 href={item.href}
-                className="block min-h-11 content-center whitespace-nowrap px-3 font-display tracking-tight text-lg font-bold hover:underline hover:decoration-2 hover:underline-offset-8"
+                className="block min-h-11 content-center whitespace-nowrap px-2 font-display text-base font-bold tracking-tight sm:px-3 sm:text-lg hover:underline hover:decoration-2 hover:underline-offset-8"
               >
                 {item.label}
               </Link>

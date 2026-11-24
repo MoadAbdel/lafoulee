@@ -13,7 +13,7 @@ export default function HomePage() {
     <>
       <section
         data-affiche
-        className="relative isolate -mt-px flex min-h-[calc(100svh-7.5rem)] flex-col overflow-hidden bg-balise text-craie"
+        className="relative isolate -mt-px flex flex-col overflow-hidden bg-balise text-craie md:min-h-[calc(100svh-7.5rem)]"
       >
         {/* Le grand mot est dans le flux : sa taille dépend de la largeur ET de la hauteur de
             l'écran, donc il ne recouvre jamais le texte (écrans larges et peu hauts compris). */}
@@ -30,7 +30,7 @@ export default function HomePage() {
           height={1067}
           priority
           sizes="(min-width: 768px) 46vw, 90vw"
-          className="absolute bottom-0 right-[4vw] -z-10 h-[60%] w-[90vw] object-cover object-[30%_50%] mix-blend-multiply contrast-125 md:h-[88%] md:w-[46vw]"
+          className="-z-10 -mt-[4vw] h-[36svh] w-full object-cover object-[30%_45%] mix-blend-multiply contrast-125 md:absolute md:bottom-0 md:right-[4vw] md:mt-0 md:h-[88%] md:w-[46vw]"
         />
         <div className="relative mx-auto mt-auto w-full max-w-6xl px-4 pb-10 pt-6">
           <div className="md:max-w-[50%] motion-safe:animate-[entree_0.9s_0.2s_cubic-bezier(.2,.7,.2,1)_both]">

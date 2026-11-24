@@ -86,7 +86,7 @@ async function Catalog({ searchParams }: { searchParams: Promise<Search> }) {
             ))}
           </ul>
         </nav>
-        <form action="/produits" className="flex items-end gap-2">
+        <form action="/produits" className="flex flex-wrap items-end gap-2">
           {query.q && <input type="hidden" name="q" value={query.q} />}
           {query.categorie && <input type="hidden" name="categorie" value={query.categorie} />}
           <label className="flex flex-col text-sm font-semibold">
