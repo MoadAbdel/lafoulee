@@ -43,9 +43,16 @@ export class TotpService {
   async confirmEnrollment(userId: string, code: string): Promise<string | null> {
     const key = redisKey("totp-setup", userId);
     const secretEnc = await this.redis.get<string>(key);
-    if (!secretEnc || !(await this.check(userId, secretEnc, code))) return null;
+    // Code vérifié sans le marquer comme utilisé : la personne peut se reconnecter tout de suite
+    // avec le même code (l'anti-rejeu protège la connexion, pas l'activation).
+    if (!secretEnc || !(await this.isValid(secretEnc, code))) return null;
     await this.redis.del(key);
     return secretEnc;
+  }
+
+  private async isValid(secretEnc: string, code: string): Promise<boolean> {
+    const secret = decrypt(secretEnc, this.config.TOTP_ENC_KEY);
+    return (await verify({ secret, token: code, epochTolerance: 30 })).valid;
   }
 
   async check(userId: string, secretEnc: string, code: string): Promise<boolean> {
