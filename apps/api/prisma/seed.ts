@@ -1,6 +1,8 @@
 /**
- * Jeu de démonstration : 3 boutiques, 6 catégories, 40 produits et leurs variantes.
+ * Catalogue : 3 boutiques, 6 catégories, 40 vrais produits du commerce, leurs variantes
+ * et leurs photos (licences libres, crédits dans les mentions légales).
  * Idempotent : peut être relancé sans créer de doublons (upsert sur les slugs et SKU).
+ * Les produits absents du fichier sont supprimés, ou archivés s'ils figurent dans une commande.
  * Lancement : npx prisma db seed (depuis apps/api).
  */
 import { readFileSync } from "node:fs";
@@ -20,6 +22,7 @@ interface SeedData {
     description: string;
     attributes: Record<string, string>;
     variants: { size: string; color: string; stock: Record<string, number> }[];
+    images?: { url: string; alt: string }[];
   }[];
 }
 
@@ -76,6 +79,18 @@ async function main() {
       data: item.categorySlugs.map((slug) => ({ productId: product.id, categoryId: categoryIds.get(slug)! })),
     });
 
+    await prisma.productImage.deleteMany({ where: { productId: product.id } });
+    if (item.images?.length) {
+      await prisma.productImage.createMany({
+        data: item.images.map((image, position) => ({
+          productId: product.id,
+          blobUrl: image.url,
+          alt: image.alt,
+          position,
+        })),
+      });
+    }
+
     for (const [position, variant] of item.variants.entries()) {
       const sku = `${item.slug}-${slugify(variant.size)}-${slugify(variant.color)}`.toUpperCase();
       const savedVariant = await prisma.productVariant.upsert({
@@ -92,6 +107,18 @@ async function main() {
         });
       }
     }
+  }
+
+  // Anciens produits (absents du fichier) : supprimés, ou archivés si une commande les cite.
+  const keep = data.products.map((item) => item.slug);
+  const obsolete = await prisma.product.findMany({
+    where: { slug: { notIn: keep } },
+    select: { id: true, slug: true, variants: { select: { _count: { select: { orderLines: true } } } } },
+  });
+  for (const old of obsolete) {
+    const ordered = old.variants.some((variant) => variant._count.orderLines > 0);
+    if (ordered) await prisma.product.update({ where: { id: old.id }, data: { status: "ARCHIVED" } });
+    else await prisma.product.delete({ where: { id: old.id } });
   }
 
   const [products, variants, stocks] = await Promise.all([

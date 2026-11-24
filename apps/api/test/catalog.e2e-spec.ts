@@ -74,7 +74,7 @@ describe("Catalogue (e2e)", () => {
 
   it("le stock réservé n'est pas compté comme disponible", async () => {
     const variant = await t.prisma.productVariant.findFirstOrThrow({
-      where: { stocks: { some: { quantity: { gte: 2 } } } },
+      where: { product: { status: "PUBLISHED" }, stocks: { some: { quantity: { gte: 2 } } } },
       include: { product: true, stocks: { include: { store: true } } },
     });
     const stock = variant.stocks.find((s) => s.quantity >= 2)!;
