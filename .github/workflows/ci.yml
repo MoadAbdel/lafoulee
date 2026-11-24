@@ -72,7 +72,8 @@ jobs:
       - run: npm run db:seed -w apps/api
       - run: npm run test:cov -w apps/api # unitaires + e2e, seuil de couverture 60 %
       - name: Rapport de couverture pour SonarQube (chemins depuis la racine du dépôt)
-        run: sed -i 's#^SF:#SF:apps/api/#' apps/api/coverage/lcov.info
+        # Chemins ramenés à la racine du dépôt (le paquet partagé est en ../../packages).
+        run: sed -i -e 's#^SF:#SF:apps/api/#' -e 's#^SF:apps/api/../../#SF:#' apps/api/coverage/lcov.info
       - uses: actions/upload-artifact@v7
         with: { name: couverture-api, path: apps/api/coverage/lcov.info, retention-days: 7 }
 

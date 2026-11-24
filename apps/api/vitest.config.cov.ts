@@ -12,7 +12,9 @@ export default defineConfig({
     hookTimeout: 30000,
     coverage: {
       provider: "v8",
-      include: ["src/**/*.ts"],
+      // Le paquet partagé (schémas Zod, règles de prix) est exécuté par ces tests : on le mesure ici.
+      include: ["src/**/*.ts", "../../packages/shared/src/**/*.ts"],
+      allowExternal: true,
       exclude: ["src/generated/**", "src/main.ts", "src/**/*.module.ts", "src/**/*.spec.ts"],
       reporter: ["text-summary", "text", "lcov"],
       thresholds: { lines: 60, branches: 60, functions: 60, statements: 60 },
