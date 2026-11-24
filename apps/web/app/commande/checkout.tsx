@@ -44,7 +44,9 @@ export function Checkout() {
         return;
       }
       setContext({ cart: cart.data, stores: stores.data, user: me.ok ? me.data : null });
-      setStoreSlug((current) => current || stores.data[0]?.slug || "");
+      const pickup = stores.data.filter((store) => cart.data.pickupStoreSlugs.includes(store.slug));
+      setStoreSlug((current) => (pickup.some((store) => store.slug === current) ? current : (pickup[0]?.slug ?? "")));
+      if (pickup.length === 0) setFulfillment("DELIVERY"); // aucune boutique n'a tout le panier
     });
   }, []);
 
@@ -107,8 +109,11 @@ export function Checkout() {
                   name="fulfillment"
                   checked={fulfillment === "PICKUP"}
                   onChange={() => setFulfillment("PICKUP")}
+                  disabled={context.cart.pickupStoreSlugs.length === 0}
                 />
-                Retrait gratuit en boutique
+                {context.cart.pickupStoreSlugs.length === 0
+                  ? "Retrait en boutique indisponible : aucune boutique n'a tout le panier en stock"
+                  : "Retrait gratuit en boutique"}
               </label>
               <label className="flex min-h-11 items-center gap-3 border border-asphalte/30 bg-white px-3">
                 <input
@@ -132,11 +137,15 @@ export function Checkout() {
                   onChange={(event) => setStoreSlug(event.target.value)}
                   className={inputClass}
                 >
-                  {context.stores.map((store) => (
-                    <option key={store.slug} value={store.slug}>
-                      {store.name}, {store.address} ({store.openingHours})
-                    </option>
-                  ))}
+                  {context.stores.map((store) => {
+                    const available = context.cart.pickupStoreSlugs.includes(store.slug);
+                    return (
+                      <option key={store.slug} value={store.slug} disabled={!available}>
+                        {store.name}, {store.address}
+                        {available ? ` (${store.openingHours})` : " : pas tout le panier en stock"}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
             ) : (

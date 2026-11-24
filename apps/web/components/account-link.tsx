@@ -32,9 +32,19 @@ export function AccountLink() {
       </Link>
     );
   }
-  return (
-    <Link prefetch={false} href={user.role === "ADMIN" ? "/admin" : "/compte"} className={className}>
-      {user.role === "ADMIN" ? "Back-office" : "Mon compte"}
+  const compte = (
+    <Link prefetch={false} href="/compte" className={className}>
+      Mon compte
     </Link>
+  );
+  if (user.role !== "ADMIN") return compte;
+  // Administrateur : le back-office et son propre compte (mot de passe, 2FA, données).
+  return (
+    <>
+      <Link prefetch={false} href="/admin" className={className}>
+        Back-office
+      </Link>
+      {compte}
+    </>
   );
 }

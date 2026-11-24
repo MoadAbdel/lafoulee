@@ -43,6 +43,8 @@ export interface CartDto {
   lines: CartLineDto[];
   itemCount: number;
   subtotalCents: number;
+  /** Boutiques où tout le panier est disponible tout de suite : seules proposées pour le retrait. */
+  pickupStoreSlugs: string[];
 }
 
 export const addressSchema = z.strictObject({

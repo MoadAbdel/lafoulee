@@ -24,6 +24,7 @@ const cart: CartDto = {
   ],
   itemCount: 2,
   subtotalCents: 5000,
+  pickupStoreSlugs: ["croix-rousse", "gerland"],
 };
 const stores = [
   {
@@ -117,5 +118,28 @@ describe("Checkout (EF05, EF06)", () => {
     await user.type(await screen.findByLabelText("Email pour la confirmation"), "lea@exemple.fr");
     await user.click(screen.getByRole("button", { name: "Continuer vers le paiement" }));
     expect(await screen.findByRole("alert")).toHaveTextContent("Stock insuffisant");
+  });
+
+  it("retrait : une boutique sans tout le panier est désactivée ; aucune : livraison imposée", async () => {
+    mockFetch({
+      "/api/v1/cart": { body: { ...cart, pickupStoreSlugs: ["gerland"] } },
+      "/api/v1/stores": { body: stores },
+      "/api/v1/auth/me": { status: 401 },
+    });
+    render(<Checkout />);
+    const croix = await screen.findByRole("option", { name: /Croix-Rousse.*pas tout le panier en stock/ });
+    expect(croix).toBeDisabled();
+    expect(screen.getByRole("combobox", { name: "Boutique de retrait" })).toHaveValue("gerland");
+  });
+
+  it("aucune boutique n'a tout le panier : retrait désactivé, livraison choisie", async () => {
+    mockFetch({
+      "/api/v1/cart": { body: { ...cart, pickupStoreSlugs: [] } },
+      "/api/v1/stores": { body: stores },
+      "/api/v1/auth/me": { status: 401 },
+    });
+    render(<Checkout />);
+    expect(await screen.findByRole("radio", { name: /Retrait en boutique indisponible/ })).toBeDisabled();
+    expect(screen.getByRole("radio", { name: "Livraison à domicile" })).toBeChecked();
   });
 });
