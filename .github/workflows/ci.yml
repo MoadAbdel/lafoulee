@@ -104,7 +104,7 @@ jobs:
         with: { name: couverture-api, path: apps/api/coverage }
       - uses: actions/download-artifact@v8
         with: { name: couverture-web, path: apps/web/coverage }
-      - uses: SonarSource/sonarqube-scan-action@v8.5.1
+      - uses: SonarSource/sonarqube-scan-action@70bad232163b09d998ea0707ee80c0ec80798c16 # v8.5.1
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
