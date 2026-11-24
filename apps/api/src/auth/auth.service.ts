@@ -102,7 +102,10 @@ export class AuthService {
     ]);
   }
 
-  /** Étape 1 de la connexion. Un administrateur doit ensuite fournir son code TOTP. */
+  /**
+   * Étape 1 de la connexion. Un compte avec double authentification (obligatoire pour
+   * un administrateur, facultative pour un client) doit ensuite fournir son code TOTP.
+   */
   async login(input: LoginInput): Promise<{ result: LoginResult; session?: IssuedSession }> {
     const user = await this.prisma.user.findUnique({ where: { email: input.email } });
     const passwordOk = await this.passwords.verify(user?.passwordHash ?? null, input.password);
@@ -116,21 +119,21 @@ export class AuthService {
         message: "Confirmez d'abord votre adresse email.",
       });
     }
-    if (user.role === "ADMIN") {
-      if (!user.totpSecretEnc) {
-        throw new ForbiddenException({
-          statusCode: 403,
-          code: "TOTP_NOT_ENROLLED",
-          message: "Double authentification non configurée.",
-        });
-      }
+    if (user.role === "ADMIN" && !user.totpSecretEnc) {
+      throw new ForbiddenException({
+        statusCode: 403,
+        code: "TOTP_NOT_ENROLLED",
+        message: "Double authentification non configurée.",
+      });
+    }
+    if (user.totpSecretEnc) {
       return { result: { status: "TOTP_REQUIRED", challenge: await this.tokens.signTotpChallenge(user.id) } };
     }
     const session = await this.issueSession(user);
     return { result: { status: "OK", user: session.user }, session };
   }
 
-  /** Étape 2 (administrateurs) : défi signé + code TOTP. */
+  /** Étape 2 : défi signé + code TOTP. La connexion d'un administrateur est journalisée. */
   async loginTotp(challenge: string, code: string, ip: string): Promise<IssuedSession> {
     let userId: string;
     try {
@@ -139,12 +142,14 @@ export class AuthService {
       throw new UnauthorizedException("Session de connexion expirée. Recommencez.");
     }
     const user = await this.prisma.user.findUnique({ where: { id: userId } });
-    if (!user?.totpSecretEnc || user.role !== "ADMIN" || !(await this.totp.check(user.id, user.totpSecretEnc, code))) {
+    if (!user?.totpSecretEnc || user.anonymizedAt || !(await this.totp.check(user.id, user.totpSecretEnc, code))) {
       throw new UnauthorizedException("Code incorrect.");
     }
-    await this.prisma.auditLog.create({
-      data: { actorId: user.id, action: "admin.login", entity: "user", entityId: user.id, ip },
-    });
+    if (user.role === "ADMIN") {
+      await this.prisma.auditLog.create({
+        data: { actorId: user.id, action: "admin.login", entity: "user", entityId: user.id, ip },
+      });
+    }
     return this.issueSession(user);
   }
 
@@ -193,6 +198,11 @@ export class AuthService {
     const user = await this.prisma.user.findUnique({ where: { id: userId } });
     if (!user || user.anonymizedAt) throw new UnauthorizedException("Session invalide.");
     return toSessionUser(user);
+  }
+
+  /** Session neuve (par exemple après un changement de mot de passe). */
+  startSession(user: User): Promise<IssuedSession> {
+    return this.issueSession(user);
   }
 
   private async issueSession(user: User, familyId: string = randomUUID()): Promise<IssuedSession> {

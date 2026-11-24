@@ -3,7 +3,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { formatPrice, type OrderDto } from "@lafoulee/shared";
-import { getMyOrders, getSession } from "@/lib/session";
+import { getAccountProfile, getMyOrders, getSession } from "@/lib/session";
+import { AccountSettings } from "./account-settings";
 import { LogoutButton } from "./logout-button";
 import { MyData } from "./my-data";
 import { RefreshSession } from "./refresh-session";
@@ -27,17 +28,15 @@ async function Account() {
   if (session.status === "expired") return <RefreshSession />;
 
   const { user } = session;
+  const profile = await getAccountProfile();
   return (
     <>
       <h1 className="font-display tracking-tight text-4xl font-extrabold">
         Bonjour{user.firstName ? ` ${user.firstName}` : ""}
       </h1>
-      <dl className="mt-6 grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 border border-asphalte/15 bg-white p-4">
-        <dt className="font-semibold">Email</dt>
-        <dd>{user.email}</dd>
-        <dt className="font-semibold">Profil</dt>
-        <dd>{user.role === "ADMIN" ? "Administrateur" : "Client"}</dd>
-      </dl>
+      <p className="mt-2 text-asphalte/80">
+        {user.email} : compte {user.role === "ADMIN" ? "administrateur" : "client"}
+      </p>
       {user.role === "ADMIN" && (
         <Link
           href="/admin"
@@ -47,6 +46,7 @@ async function Account() {
         </Link>
       )}
       <OrderHistory orders={await getMyOrders()} />
+      {profile && <AccountSettings profile={profile} />}
       {user.role !== "ADMIN" && <MyData />}
       <div className="mt-8 max-w-xs">
         <LogoutButton />

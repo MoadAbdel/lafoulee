@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { LogoutButton } from "@/app/compte/logout-button";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { getSession } from "@/lib/session";
@@ -38,6 +39,9 @@ export default function AdminLayout({ children }: LayoutProps<"/admin">) {
             </li>
           ))}
         </ul>
+        <div className="mt-4 lg:max-w-56">
+          <LogoutButton />
+        </div>
       </nav>
       <div className="min-w-0 flex-1">
         <Suspense fallback={<p>Chargement...</p>}>
