@@ -137,8 +137,8 @@ export class AccountService {
     return this.profile(userId);
   }
 
-  /** Nouveau mot de passe : les autres appareils sont déconnectés, celui-ci reçoit une session neuve. */
-  async changePassword(userId: string, input: PasswordChangeInput): Promise<IssuedSession> {
+  /** Nouveau mot de passe : toutes les sessions sont fermées (le contrôleur en rouvre une pour cet appareil). */
+  async changePassword(userId: string, input: PasswordChangeInput): Promise<void> {
     const user = await this.activeUser(userId);
     await this.requirePassword(user, input.currentPassword);
     await this.prisma.user.update({
@@ -150,6 +150,13 @@ export class AccountService {
       "Le mot de passe de votre compte La Foulée vient d'être modifié. Vos autres appareils ont été déconnectés.",
       "Si vous n'êtes pas à l'origine de ce changement, utilisez « Mot de passe oublié » sur la page de connexion.",
     ]);
+  }
+
+  /**
+   * Session neuve pour l'appareil qui vient de changer son mot de passe. Créée à part, à partir
+   * du compte relu en base : le jeton est aléatoire et ne dépend en rien du mot de passe.
+   */
+  async freshSession(userId: string): Promise<IssuedSession> {
     return this.auth.startSession(await this.activeUser(userId));
   }
 

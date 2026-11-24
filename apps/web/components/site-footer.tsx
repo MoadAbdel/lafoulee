@@ -25,7 +25,7 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
-              <Link href="/compte" className="underline-offset-4 hover:underline">
+              <Link prefetch={false} href="/compte" className="underline-offset-4 hover:underline">
                 Mon compte
               </Link>
             </li>

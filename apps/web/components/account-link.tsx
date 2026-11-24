@@ -27,13 +27,13 @@ export function AccountLink() {
   const className = "min-h-11 content-center font-semibold underline-offset-4 hover:underline";
   if (!user) {
     return (
-      <Link href="/connexion" className={className}>
+      <Link prefetch={false} href="/connexion" className={className}>
         Connexion
       </Link>
     );
   }
   return (
-    <Link href={user.role === "ADMIN" ? "/admin" : "/compte"} className={className}>
+    <Link prefetch={false} href={user.role === "ADMIN" ? "/admin" : "/compte"} className={className}>
       {user.role === "ADMIN" ? "Back-office" : "Mon compte"}
     </Link>
   );
