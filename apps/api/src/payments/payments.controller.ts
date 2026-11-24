@@ -55,6 +55,16 @@ export class PaymentsController {
       throw error;
     }
 
+    try {
+      return await this.handle(event);
+    } catch (error) {
+      // Échec du traitement : on oublie l'événement pour que le nouvel envoi de Stripe soit traité.
+      await this.prisma.stripeEvent.delete({ where: { id: event.id } }).catch(() => undefined);
+      throw error;
+    }
+  }
+
+  private async handle(event: Stripe.Event): Promise<Record<string, unknown>> {
     if (event.type === "charge.refunded") {
       const charge = event.data.object as Stripe.Charge;
       const intentId = typeof charge.payment_intent === "string" ? charge.payment_intent : charge.payment_intent?.id;

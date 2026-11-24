@@ -45,8 +45,24 @@ export class AuthService {
   async register(input: RegisterInput): Promise<void> {
     const existing = await this.prisma.user.findUnique({ where: { email: input.email } });
     if (existing) {
-      if (!existing.emailVerifiedAt && !existing.anonymizedAt) await this.sendVerification(existing);
-      else this.logger.log("Inscription demandée pour un email déjà vérifié : aucune action.");
+      if (!existing.emailVerifiedAt && !existing.anonymizedAt) {
+        // Compte jamais confirmé : le dernier mot de passe choisi remplace l'ancien, et les
+        // anciens liens tombent. Sinon, quelqu'un qui s'inscrit avec l'adresse d'une autre
+        // personne garderait son mot de passe une fois que la vraie titulaire a cliqué.
+        const updated = await this.prisma.user.update({
+          where: { id: existing.id },
+          data: { passwordHash: await this.passwords.hash(input.password), firstName: input.firstName },
+        });
+        await this.prisma.emailToken.updateMany({
+          where: { userId: existing.id, purpose: "VERIFY_EMAIL", usedAt: null },
+          data: { usedAt: new Date() },
+        });
+        await this.sendVerification(updated);
+      } else {
+        // Même coût qu'une vraie inscription : le temps de réponse ne révèle pas le compte.
+        await this.passwords.hash(input.password);
+        this.logger.log("Inscription demandée pour un email déjà vérifié : aucune action.");
+      }
       return;
     }
     const user = await this.prisma.user.create({
@@ -98,10 +114,12 @@ export class AuthService {
     ) {
       throw new ForbiddenException("Ce lien est invalide ou a expiré.");
     }
-    await this.prisma.$transaction([
-      this.prisma.emailToken.update({ where: { id: record.id }, data: { usedAt: new Date() } }),
-      this.prisma.user.update({ where: { id: record.userId }, data: { emailVerifiedAt: new Date() } }),
-    ]);
+    const { count } = await this.prisma.emailToken.updateMany({
+      where: { id: record.id, usedAt: null },
+      data: { usedAt: new Date() },
+    });
+    if (count === 0) throw new ForbiddenException("Ce lien est invalide ou a expiré.");
+    await this.prisma.user.update({ where: { id: record.userId }, data: { emailVerifiedAt: new Date() } });
   }
 
   /**

@@ -234,4 +234,29 @@ describe("Authentification (e2e)", () => {
       await http().post("/api/v1/auth/login/totp").send({ challenge: "faux.defi.signe", code: "123456" }).expect(401);
     });
   });
+
+  it("audit : une inscription au nom d'autrui ne garde pas le mot de passe du tiers (pré-détournement)", async () => {
+    const email = uniqueEmail("victime");
+    await http().post("/api/v1/auth/register").send({ email, password: "Pirate-2026-lyon!" }).expect(202);
+    await http().post("/api/v1/auth/register").send({ email, password: PASSWORD }).expect(202);
+    // Seul le dernier lien est valable, et il active le mot de passe de la vraie titulaire.
+    await http()
+      .post("/api/v1/auth/verify-email")
+      .send({ token: tokenFromMail(t.mails.at(-1)) })
+      .expect(200);
+    await http().post("/api/v1/auth/login").send({ email, password: "Pirate-2026-lyon!" }).expect(401);
+    await http().post("/api/v1/auth/login").send({ email, password: PASSWORD }).expect(200);
+  });
+
+  it("audit : un X-Forwarded-For forgé ne contourne plus la limite par IP", async () => {
+    const statuses: number[] = [];
+    for (let i = 0; i < 4; i++) {
+      const res = await http()
+        .post("/api/v1/auth/resend-verification")
+        .set("X-Forwarded-For", `198.51.100.${i + 1}`)
+        .send({ email: uniqueEmail("relance") });
+      statuses.push(res.status);
+    }
+    expect(statuses).toEqual([202, 202, 202, 429]);
+  });
 });
