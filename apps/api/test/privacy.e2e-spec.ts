@@ -222,4 +222,30 @@ describe("RGPD et newsletter (e2e)", () => {
     expect(await t.prisma.consentLog.count({ where: { consentId } })).toBe(0);
     expect((await t.prisma.user.findUniqueOrThrow({ where: { id: inactive.id } })).anonymizedAt).not.toBeNull();
   });
+
+  it("durées de conservation : newsletter non confirmée après 7 jours, confirmée après 3 ans", async () => {
+    const day = 86_400_000,
+      now = Date.now();
+    const mk = (email: string, status: "PENDING" | "CONFIRMED", createdDaysAgo: number, confirmedDaysAgo?: number) =>
+      t.prisma.newsletterSubscription.create({
+        data: {
+          email,
+          status,
+          createdAt: new Date(now - createdDaysAgo * day),
+          confirmedAt: confirmedDaysAgo === undefined ? null : new Date(now - confirmedDaysAgo * day),
+        },
+      });
+    const vieille = uniqueEmail("nl-vieille"),
+      recente = uniqueEmail("nl-recente"),
+      attente = uniqueEmail("nl-attente");
+    await mk(vieille, "CONFIRMED", 1200, 1100);
+    await mk(recente, "CONFIRMED", 400, 400);
+    await mk(attente, "PENDING", 10);
+    const result = await t.app.get(PrivacyService).applyRetention();
+    expect(result.newsletterPlusDe3Ans).toBeGreaterThanOrEqual(1);
+    const restants = await t.prisma.newsletterSubscription.findMany({
+      where: { email: { in: [vieille, recente, attente] } },
+    });
+    expect(restants.map((r) => r.email)).toEqual([recente]);
+  });
 });
