@@ -39,6 +39,7 @@ test.describe("Parcours visiteur", () => {
       .evaluateAll((options) => options.map((option) => (option as HTMLOptionElement).value));
     for (const slug of slugs) {
       await stores.selectOption(slug);
+      await page.getByRole("checkbox", { name: /conditions générales de vente/ }).check();
       await page.getByRole("button", { name: "Continuer vers le paiement" }).click();
       const outcome = await Promise.race([
         page

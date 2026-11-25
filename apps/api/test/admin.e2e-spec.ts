@@ -47,7 +47,7 @@ describe("Back-office et API partenaires (e2e)", () => {
       await http()
         .post("/api/v1/orders")
         .set("Cookie", cart)
-        .send({ fulfillment: "PICKUP", pickupStoreSlug: store.slug, email: uniqueEmail("achat") })
+        .send({ fulfillment: "PICKUP", acceptCgv: true, pickupStoreSlug: store.slug, email: uniqueEmail("achat") })
         .expect(201)
     ).body as CreateOrderResult;
     const payment = await t.prisma.payment.findFirstOrThrow({ where: { orderId: created.orderId } });

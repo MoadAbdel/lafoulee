@@ -44,6 +44,16 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
+              <Link href="/conditions-generales-de-vente" className="underline-offset-4 hover:underline">
+                Conditions générales de vente
+              </Link>
+            </li>
+            <li>
+              <Link href="/conditions-generales-d-utilisation" className="underline-offset-4 hover:underline">
+                Conditions d&apos;utilisation
+              </Link>
+            </li>
+            <li>
               <ManageConsentButton />
             </li>
           </ul>

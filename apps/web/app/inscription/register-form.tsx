@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { useState, type FormEvent } from "react";
 import { registerSchema } from "@lafoulee/shared";
 import { buttonClass, FormErrors, inputClass } from "@/components/form-errors";
@@ -17,6 +19,7 @@ export function RegisterForm() {
       email: String(form.get("email") ?? ""),
       password: String(form.get("password") ?? ""),
       firstName: String(form.get("firstName") ?? "").trim() || undefined,
+      acceptTerms: form.get("acceptTerms") === "on",
     };
     // Même schéma que l'API : l'erreur s'affiche sans aller-retour réseau.
     const parsed = registerSchema.safeParse(input);
@@ -79,6 +82,20 @@ export function RegisterForm() {
         <p id="password-aide" className="mt-1 text-sm text-asphalte/80">
           12 caractères minimum, avec au moins 3 types parmi : minuscules, majuscules, chiffres, caractères spéciaux.
         </p>
+      </div>
+      <div className="flex items-start gap-3">
+        <input id="acceptTerms" name="acceptTerms" type="checkbox" required className="mt-1 size-5 shrink-0" />
+        <label htmlFor="acceptTerms">
+          J&apos;accepte les{" "}
+          <Link href="/conditions-generales-d-utilisation" className="underline underline-offset-4">
+            conditions générales d&apos;utilisation
+          </Link>
+          . Mes données sont traitées comme expliqué dans la{" "}
+          <Link href="/confidentialite" className="underline underline-offset-4">
+            politique de confidentialité
+          </Link>
+          .
+        </label>
       </div>
       <button type="submit" disabled={pending} className={buttonClass}>
         {pending ? "Création en cours..." : "Créer mon compte"}

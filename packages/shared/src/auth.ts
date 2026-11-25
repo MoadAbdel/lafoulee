@@ -21,10 +21,14 @@ export const passwordSchema = z
     error: "Utilisez au moins 3 types : minuscules, majuscules, chiffres, caractères spéciaux.",
   });
 
+/** Version des conditions générales d'utilisation acceptées à l'inscription (date de publication). */
+export const TERMS_VERSION = "2026-11-25";
+
 export const registerSchema = z.strictObject({
   email: emailSchema,
   password: passwordSchema,
   firstName: z.string().trim().min(1).max(60).optional(),
+  acceptTerms: z.literal(true, { error: "Acceptez les conditions générales d'utilisation pour créer un compte." }),
 });
 export type RegisterInput = z.infer<typeof registerSchema>;
 

@@ -29,6 +29,9 @@ model User {
   totpSecretEnc   String?   @map("totp_secret_enc")
   lastLoginAt     DateTime? @map("last_login_at") @db.Timestamptz
   anonymizedAt    DateTime? @map("anonymized_at") @db.Timestamptz
+  /// Acceptation des CGU à l'inscription : date et version (preuve).
+  termsAcceptedAt DateTime? @map("terms_accepted_at") @db.Timestamptz
+  termsVersion    String?   @map("terms_version")
   createdAt       DateTime  @default(now()) @map("created_at") @db.Timestamptz
 
   refreshTokens RefreshToken[]
@@ -226,6 +229,9 @@ model Order {
   totalCents         Int         @map("total_cents")
   /// Empreinte du jeton qui permet au client (même sans compte) de suivre sa commande.
   accessTokenHash    String      @map("access_token_hash")
+  /// Acceptation des CGV à la commande : date et version (preuve).
+  cgvAcceptedAt      DateTime?   @map("cgv_accepted_at") @db.Timestamptz
+  cgvVersion         String?     @map("cgv_version")
   /// Date d'envoi de l'email de confirmation (envoi idempotent).
   confirmationSentAt DateTime?   @map("confirmation_sent_at") @db.Timestamptz
   createdAt          DateTime    @default(now()) @map("created_at") @db.Timestamptz

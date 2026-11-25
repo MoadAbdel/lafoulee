@@ -1,6 +1,12 @@
 import { ForbiddenException, Inject, Injectable, Logger, UnauthorizedException } from "@nestjs/common";
 import { randomUUID } from "node:crypto";
-import type { LoginInput, LoginResult, RegisterInput, SessionUser } from "@lafoulee/shared";
+import {
+  TERMS_VERSION,
+  type LoginInput,
+  type LoginResult,
+  type RegisterInput,
+  type SessionUser,
+} from "@lafoulee/shared";
 import { ENV, type Env } from "../config/env.js";
 import { randomToken, sha256 } from "../common/crypto.js";
 import { PrismaService } from "../prisma/prisma.service.js";
@@ -51,7 +57,12 @@ export class AuthService {
         // personne garderait son mot de passe une fois que la vraie titulaire a cliqué.
         const updated = await this.prisma.user.update({
           where: { id: existing.id },
-          data: { passwordHash: await this.passwords.hash(input.password), firstName: input.firstName },
+          data: {
+            passwordHash: await this.passwords.hash(input.password),
+            firstName: input.firstName,
+            termsAcceptedAt: new Date(),
+            termsVersion: TERMS_VERSION,
+          },
         });
         await this.prisma.emailToken.updateMany({
           where: { userId: existing.id, purpose: "VERIFY_EMAIL", usedAt: null },
@@ -66,7 +77,13 @@ export class AuthService {
       return;
     }
     const user = await this.prisma.user.create({
-      data: { email: input.email, firstName: input.firstName, passwordHash: await this.passwords.hash(input.password) },
+      data: {
+        email: input.email,
+        firstName: input.firstName,
+        passwordHash: await this.passwords.hash(input.password),
+        termsAcceptedAt: new Date(),
+        termsVersion: TERMS_VERSION,
+      },
     });
     await this.sendVerification(user);
   }

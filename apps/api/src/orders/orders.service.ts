@@ -8,6 +8,7 @@ import {
 } from "@nestjs/common";
 import { timingSafeEqual } from "node:crypto";
 import {
+  CGV_VERSION,
   computeTotals,
   RESERVATION_MINUTES,
   type CheckoutInput,
@@ -111,6 +112,8 @@ export class OrdersService {
           shippingAddress: input.fulfillment === "DELIVERY" ? input.address : undefined,
           ...totals,
           accessTokenHash: sha256(accessToken),
+          cgvAcceptedAt: new Date(),
+          cgvVersion: CGV_VERSION,
           lines: {
             create: allocations.map((allocation) => {
               const line = byVariant.get(allocation.variantId)!;
