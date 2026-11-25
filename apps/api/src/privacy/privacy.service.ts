@@ -321,9 +321,13 @@ export class PrivacyService {
 
   async applyRetention(now = new Date()): Promise<Record<string, number>> {
     const ago = (days: number) => new Date(now.getTime() - days * DAY);
-    const [tokens, newsletter, consents, audit, refresh] = await Promise.all([
+    const [tokens, newsletter, newsletterOld, consents, audit, refresh] = await Promise.all([
       this.prisma.emailToken.deleteMany({ where: { expiresAt: { lt: ago(7) } } }),
       this.prisma.newsletterSubscription.deleteMany({ where: { status: "PENDING", createdAt: { lt: ago(7) } } }),
+      // Prospection : 3 ans après l'inscription confirmée, sans nouveau consentement (recommandation CNIL).
+      this.prisma.newsletterSubscription.deleteMany({
+        where: { status: "CONFIRMED", confirmedAt: { lt: ago(3 * 365) } },
+      }),
       this.prisma.consentLog.deleteMany({ where: { createdAt: { lt: ago(182) } } }),
       this.prisma.auditLog.deleteMany({ where: { createdAt: { lt: ago(365) } } }),
       this.prisma.refreshToken.deleteMany({ where: { expiresAt: { lt: ago(7) } } }),
@@ -342,6 +346,7 @@ export class PrivacyService {
     return {
       jetons: tokens.count,
       newsletterNonConfirmees: newsletter.count,
+      newsletterPlusDe3Ans: newsletterOld.count,
       consentements: consents.count,
       journalAudit: audit.count,
       sessionsExpirees: refresh.count,
