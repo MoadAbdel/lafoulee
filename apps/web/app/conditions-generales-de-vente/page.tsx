@@ -16,6 +16,8 @@ export const metadata: Metadata = {
 };
 
 const h2 = "font-display tracking-tight text-3xl font-extrabold";
+/** Adresse du service client. Enseigne fictive : domaine réservé aux exemples (RFC 2606). */
+const EMAIL = "service-client@lafoulee.example";
 
 /**
  * Conditions générales de vente (Code de la consommation, articles L221-5 et suivants).
@@ -34,8 +36,8 @@ export default function CgvPage() {
       <section className="space-y-2">
         <h2 className={h2}>1. Vendeur</h2>
         <p>
-          La Foulée (enseigne fictive), 42 rue d&apos;Austerlitz, 69004 Lyon. Trois boutiques : Croix-Rousse, Part-Dieu
-          et Gerland (adresses et horaires sur la page{" "}
+          La Foulée (enseigne fictive), 42 rue d&apos;Austerlitz, 69004 Lyon. Email : {EMAIL}. Trois boutiques :
+          Croix-Rousse, Part-Dieu et Gerland (adresses et horaires sur la page{" "}
           <Link href="/boutiques" className="underline underline-offset-4">
             Nos boutiques
           </Link>
@@ -92,12 +94,12 @@ export default function CgvPage() {
         <h2 className={h2}>6. Droit de rétractation</h2>
         <p>
           Vous disposez de 14 jours pour changer d&apos;avis, sans avoir à vous justifier (article L221-18). Le délai
-          court à partir du jour où vous recevez ou retirez la commande. Informez-nous en boutique ou par courrier à
-          l&apos;adresse ci-dessus, avec le formulaire ci-dessous ou une déclaration claire, puis renvoyez ou rapportez
-          les articles en boutique dans les 14 jours suivants. Les articles doivent être neufs, non portés en extérieur,
-          dans leur emballage d&apos;origine. Nous vous remboursons dans les 14 jours suivant votre demande, par le même
-          moyen de paiement, frais de livraison initiaux compris. Les frais de retour par la poste restent à votre
-          charge ; le retour en boutique est gratuit.
+          court à partir du jour où vous recevez ou retirez la commande. Informez-nous par email à {EMAIL}, en boutique
+          ou par courrier à l&apos;adresse ci-dessus, avec le formulaire ci-dessous ou une déclaration claire. Nous
+          accusons réception par email. Renvoyez ensuite ou rapportez les articles en boutique dans les 14 jours
+          suivants. Les articles doivent être neufs, non portés en extérieur, dans leur emballage d&apos;origine. Nous
+          vous remboursons dans les 14 jours suivant votre demande, par le même moyen de paiement, frais de livraison
+          initiaux compris. Les frais de retour par la poste restent à votre charge ; le retour en boutique est gratuit.
         </p>
         <p>
           Exceptions (article L221-28) : les produits de nutrition descellés après la livraison, et les sous-vêtements
@@ -106,9 +108,9 @@ export default function CgvPage() {
         <div className="border border-asphalte/20 bg-white p-4 text-sm">
           <p className="font-semibold">Formulaire de rétractation</p>
           <p>
-            À l&apos;attention de La Foulée, 42 rue d&apos;Austerlitz, 69004 Lyon : je vous notifie par la présente ma
-            rétractation du contrat portant sur la vente du bien ci-dessous. Commandé le : ... Reçu le : ... Numéro de
-            commande : ... Nom : ... Adresse : ... Date et signature (en cas d&apos;envoi papier).
+            À l&apos;attention de La Foulée, 42 rue d&apos;Austerlitz, 69004 Lyon, {EMAIL} : je vous notifie par la
+            présente ma rétractation du contrat portant sur la vente du bien ci-dessous. Commandé le : ... Reçu le : ...
+            Numéro de commande : ... Nom : ... Adresse : ... Date et signature (en cas d&apos;envoi papier).
           </p>
         </div>
       </section>
@@ -125,9 +127,10 @@ export default function CgvPage() {
       <section className="space-y-2">
         <h2 className={h2}>8. Service client et médiation</h2>
         <p>
-          Pour toute question ou réclamation : dans l&apos;une des trois boutiques, ou par courrier à l&apos;adresse du
-          vendeur. Si le désaccord persiste, vous pouvez saisir gratuitement un médiateur de la consommation (article
-          L612-1). Enseigne fictive : le médiateur serait désigné par un vrai commerce lors de son adhésion.
+          Pour toute question ou réclamation : par email à {EMAIL}, dans l&apos;une des trois boutiques, ou par courrier
+          à l&apos;adresse du vendeur. Si le désaccord persiste, vous pouvez saisir gratuitement un médiateur de la
+          consommation (article L612-1). Enseigne fictive : le médiateur serait désigné par un vrai commerce lors de son
+          adhésion.
         </p>
       </section>
 
