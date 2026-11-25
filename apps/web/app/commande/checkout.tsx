@@ -67,11 +67,13 @@ export function Checkout() {
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const email = String(new FormData(event.currentTarget).get("email") ?? "").trim() || undefined;
+    const data = new FormData(event.currentTarget);
+    const email = String(data.get("email") ?? "").trim() || undefined;
+    const acceptCgv = data.get("acceptCgv") === "on";
     const input =
       fulfillment === "PICKUP"
-        ? { fulfillment, pickupStoreSlug: storeSlug, email }
-        : { fulfillment, address: { ...address, line2: address.line2.trim() || undefined }, email };
+        ? { fulfillment, acceptCgv, pickupStoreSlug: storeSlug, email }
+        : { fulfillment, acceptCgv, address: { ...address, line2: address.line2.trim() || undefined }, email };
     const parsed = checkoutSchema.safeParse(input);
     if (!parsed.success) {
       setErrors(parsed.error.issues.map((issue) => issue.message));
@@ -232,6 +234,16 @@ export function Checkout() {
               </div>
             )}
 
+            <div className="flex items-start gap-3">
+              <input id="acceptCgv" name="acceptCgv" type="checkbox" required className="mt-1 size-5 shrink-0" />
+              <label htmlFor="acceptCgv">
+                J&apos;accepte les{" "}
+                <Link prefetch={false} href="/conditions-generales-de-vente" className="underline underline-offset-4">
+                  conditions générales de vente
+                </Link>{" "}
+                (droit de rétractation de 14 jours, garanties légales).
+              </label>
+            </div>
             <button type="submit" disabled={pending} className={buttonClass}>
               {pending ? "Réservation de vos articles..." : "Continuer vers le paiement"}
             </button>

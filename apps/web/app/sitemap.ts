@@ -19,6 +19,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${ORIGIN}/boutiques`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${ORIGIN}/confidentialite`, changeFrequency: "yearly", priority: 0.1 },
     { url: `${ORIGIN}/mentions-legales`, changeFrequency: "yearly", priority: 0.1 },
+    { url: `${ORIGIN}/conditions-generales-de-vente`, changeFrequency: "yearly", priority: 0.1 },
+    { url: `${ORIGIN}/conditions-generales-d-utilisation`, changeFrequency: "yearly", priority: 0.1 },
   ];
   try {
     const categories = await getCategories();

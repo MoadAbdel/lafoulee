@@ -1,3 +1,4 @@
+import { CGV_VERSION } from "@lafoulee/shared";
 import request from "supertest";
 import type { CartDto, CreateOrderResult, OrderDto } from "@lafoulee/shared";
 import { env } from "../src/config/env.js";
@@ -76,6 +77,18 @@ describe("Commande et paiement (e2e)", () => {
         ]),
       ),
     ).toEqual([stores[0]!.slug]);
+  });
+
+  it("CGV : commande refusée sans acceptation ; date et version enregistrées sinon", async () => {
+    await resetStock();
+    const cookie = await cartWith([[variantA, 1]]);
+    const sans = { fulfillment: "PICKUP", pickupStoreSlug: stores[0]!.slug, email: uniqueEmail("cgv") };
+    expect((await order(cookie, sans)).status).toBe(400);
+    const res = await order(cookie, { ...sans, acceptCgv: true });
+    expect(res.status).toBe(201);
+    const created = await t.prisma.order.findUniqueOrThrow({ where: { id: res.body.orderId } });
+    expect(created.cgvVersion).toBe(CGV_VERSION);
+    expect(created.cgvAcceptedAt).toBeInstanceOf(Date);
   });
 
   async function order(cookie: string, body: object) {
@@ -174,16 +187,39 @@ describe("Commande et paiement (e2e)", () => {
   describe("création de commande (EF05, EF06)", () => {
     it("panier vide : 400 ; visiteur sans email : 422 ; boutique inconnue : 400 ; code postal faux : 400", async () => {
       expect(
-        (await order("", { fulfillment: "PICKUP", pickupStoreSlug: stores[0]!.slug, email: uniqueEmail("v") })).status,
+        (
+          await order("", {
+            fulfillment: "PICKUP",
+            acceptCgv: true,
+            pickupStoreSlug: stores[0]!.slug,
+            email: uniqueEmail("v"),
+          })
+        ).status,
       ).toBe(400);
       const cookie = await cartWith([[variantA, 1]]);
-      expect((await order(cookie, { fulfillment: "PICKUP", pickupStoreSlug: stores[0]!.slug })).status).toBe(422);
       expect(
-        (await order(cookie, { fulfillment: "PICKUP", pickupStoreSlug: "inconnue", email: uniqueEmail("v") })).status,
+        (await order(cookie, { fulfillment: "PICKUP", acceptCgv: true, pickupStoreSlug: stores[0]!.slug })).status,
+      ).toBe(422);
+      expect(
+        (
+          await order(cookie, {
+            fulfillment: "PICKUP",
+            acceptCgv: true,
+            pickupStoreSlug: "inconnue",
+            email: uniqueEmail("v"),
+          })
+        ).status,
       ).toBe(400);
       const badAddress = { fullName: "Léa Martin", line1: "12 rue Max Dormoy", postalCode: "6900", city: "Lyon" };
       expect(
-        (await order(cookie, { fulfillment: "DELIVERY", address: badAddress, email: uniqueEmail("v") })).status,
+        (
+          await order(cookie, {
+            fulfillment: "DELIVERY",
+            acceptCgv: true,
+            address: badAddress,
+            email: uniqueEmail("v"),
+          })
+        ).status,
       ).toBe(400);
     });
 
@@ -191,6 +227,7 @@ describe("Commande et paiement (e2e)", () => {
       const cookie = await cartWith([[variantA, 2]]);
       const res = await order(cookie, {
         fulfillment: "PICKUP",
+        acceptCgv: true,
         pickupStoreSlug: stores[0]!.slug,
         email: uniqueEmail("retrait"),
       });
@@ -205,12 +242,22 @@ describe("Commande et paiement (e2e)", () => {
     it("livraison sous 60 € : 4,90 € de port ; stock pris dans plusieurs boutiques si besoin", async () => {
       const cookie = await cartWith([[variantA, 2]]);
       const address = { fullName: "Léa Martin", line1: "12 rue Max Dormoy", postalCode: "69003", city: "Lyon" };
-      const res = await order(cookie, { fulfillment: "DELIVERY", address, email: uniqueEmail("livraison") });
+      const res = await order(cookie, {
+        fulfillment: "DELIVERY",
+        acceptCgv: true,
+        address,
+        email: uniqueEmail("livraison"),
+      });
       expect((res.body as CreateOrderResult).totalCents).toBe(5490);
 
       // Il reste 1 paire en boutique 0 et 1 en boutique 1 : la livraison prend dans les deux.
       const split = await cartWith([[variantA, 2]]);
-      const res2 = await order(split, { fulfillment: "DELIVERY", address, email: uniqueEmail("livraison") });
+      const res2 = await order(split, {
+        fulfillment: "DELIVERY",
+        acceptCgv: true,
+        address,
+        email: uniqueEmail("livraison"),
+      });
       expect(res2.status).toBe(201);
       expect((await stockOf(variantA, stores[0]!.id)).reserved).toBe(3);
       expect((await stockOf(variantA, stores[1]!.id)).reserved).toBe(1);
@@ -220,7 +267,12 @@ describe("Commande et paiement (e2e)", () => {
 
     it("TB04/RG1 deux commandes simultanées sur la dernière paire : une seule réussit", async () => {
       const [c1, c2] = [await cartWith([[variantB, 1]]), await cartWith([[variantB, 1]])];
-      const body = { fulfillment: "PICKUP", pickupStoreSlug: stores[0]!.slug, email: uniqueEmail("course") };
+      const body = {
+        fulfillment: "PICKUP",
+        acceptCgv: true,
+        pickupStoreSlug: stores[0]!.slug,
+        email: uniqueEmail("course"),
+      };
       const statuses = (await Promise.all([order(c1, body), order(c2, body)]))
         .map((res) => res.status)
         .sort((a, b) => a - b);
@@ -234,6 +286,7 @@ describe("Commande et paiement (e2e)", () => {
       const cookie = await cartWith([[variantB, 1]]);
       const res = await order(cookie, {
         fulfillment: "PICKUP",
+        acceptCgv: true,
         pickupStoreSlug: stores[1]!.slug,
         email: uniqueEmail("vide"),
       });
@@ -247,6 +300,7 @@ describe("Commande et paiement (e2e)", () => {
       t.stripe.failNextCreate = true;
       const res = await order(cookie, {
         fulfillment: "PICKUP",
+        acceptCgv: true,
         pickupStoreSlug: stores[0]!.slug,
         email: uniqueEmail("ko"),
       });
@@ -260,6 +314,7 @@ describe("Commande et paiement (e2e)", () => {
       const cookie = await cartWith([[variantA, quantity]]);
       const res = await order(cookie, {
         fulfillment: "PICKUP",
+        acceptCgv: true,
         pickupStoreSlug: stores[0]!.slug,
         email: uniqueEmail("paiement"),
       });
@@ -362,10 +417,16 @@ describe("Commande et paiement (e2e)", () => {
         .split(";")[0]!;
 
       const cart = await cartWith([[variantA, 1]]);
-      const mine = (await order(`${cart}; ${session}`, { fulfillment: "PICKUP", pickupStoreSlug: stores[0]!.slug }))
-        .body as CreateOrderResult;
+      const mine = (
+        await order(`${cart}; ${session}`, { fulfillment: "PICKUP", acceptCgv: true, pickupStoreSlug: stores[0]!.slug })
+      ).body as CreateOrderResult;
       const other = await cartWith([[variantA, 1]]);
-      await order(other, { fulfillment: "PICKUP", pickupStoreSlug: stores[0]!.slug, email: uniqueEmail("autre") });
+      await order(other, {
+        fulfillment: "PICKUP",
+        acceptCgv: true,
+        pickupStoreSlug: stores[0]!.slug,
+        email: uniqueEmail("autre"),
+      });
 
       expect((await http().get("/api/v1/me/orders").set("Cookie", session).expect(200)).body).toHaveLength(0); // en attente : masquée
       t.stripe.intents.get(await intentOf(mine.orderId))!.status = "succeeded";

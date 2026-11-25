@@ -51,7 +51,7 @@ describe("sitemap.xml", () => {
   it("publie quand même les pages fixes si l'API est indisponible", async () => {
     vi.mocked(getCategories).mockRejectedValue(new Error("API HS"));
     const entries = await sitemap();
-    expect(entries).toHaveLength(5);
+    expect(entries).toHaveLength(7);
     expect(entries[0].priority).toBe(1);
   });
 });

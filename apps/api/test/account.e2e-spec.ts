@@ -19,7 +19,7 @@ describe("Sécurité du compte (e2e)", () => {
 
   async function customer(): Promise<{ email: string; cookie: string }> {
     const email = uniqueEmail("compte");
-    await http().post("/api/v1/auth/register").send({ email, password: PASSWORD }).expect(202);
+    await http().post("/api/v1/auth/register").send({ acceptTerms: true, email, password: PASSWORD }).expect(202);
     await http()
       .post("/api/v1/auth/verify-email")
       .send({ token: tokenFromMail(t.mails.at(-1)) })

@@ -1,3 +1,4 @@
+import { TERMS_VERSION } from "@lafoulee/shared";
 import request from "supertest";
 import { vi } from "vitest";
 import { MailService } from "../src/mail/mail.service.js";
@@ -32,7 +33,7 @@ describe("Authentification (e2e)", () => {
   /** Inscrit puis vérifie un client ; renvoie son email. */
   async function verifiedCustomer(): Promise<string> {
     const email = uniqueEmail("client");
-    await http().post("/api/v1/auth/register").send({ email, password: PASSWORD }).expect(202);
+    await http().post("/api/v1/auth/register").send({ acceptTerms: true, email, password: PASSWORD }).expect(202);
     await http()
       .post("/api/v1/auth/verify-email")
       .send({ token: tokenFromMail(t.mails.at(-1)) })
@@ -48,7 +49,7 @@ describe("Authentification (e2e)", () => {
   it("TF09 inscription : mot de passe faible refusé avec un message par règle", async () => {
     const res = await http()
       .post("/api/v1/auth/register")
-      .send({ email: uniqueEmail("faible"), password: "court" })
+      .send({ acceptTerms: true, email: uniqueEmail("faible"), password: "court" })
       .expect(400);
     expect(res.body.message.join(" ")).toContain("12 caractères minimum");
   });
@@ -56,39 +57,45 @@ describe("Authentification (e2e)", () => {
   it("TB20 champ non prévu (role) refusé en 400", async () => {
     await http()
       .post("/api/v1/auth/register")
-      .send({ email: uniqueEmail("role"), password: PASSWORD, role: "ADMIN" })
+      .send({ acceptTerms: true, email: uniqueEmail("role"), password: PASSWORD, role: "ADMIN" })
       .expect(400);
   });
 
   it("EF08 inscription : même réponse pour un email nouveau ou existant (pas d'énumération)", async () => {
     const email = await verifiedCustomer();
-    const again = await http().post("/api/v1/auth/register").send({ email, password: PASSWORD }).expect(202);
+    const again = await http()
+      .post("/api/v1/auth/register")
+      .send({ acceptTerms: true, email, password: PASSWORD })
+      .expect(202);
     expect(again.body).toEqual({ status: "VERIFICATION_SENT" });
   });
 
   it("un échec d'envoi de l'email n'empêche pas l'inscription (202)", async () => {
     vi.spyOn(t.app.get(MailService), "send").mockRejectedValueOnce(new Error("Brevo HTTP 401"));
     const email = uniqueEmail("brevo-ko");
-    await http().post("/api/v1/auth/register").send({ email, password: PASSWORD }).expect(202);
+    await http().post("/api/v1/auth/register").send({ acceptTerms: true, email, password: PASSWORD }).expect(202);
     expect(await t.prisma.user.findUnique({ where: { email } })).not.toBeNull();
   });
 
   it("TB14 connexion refusée tant que l'email n'est pas vérifié", async () => {
     const email = uniqueEmail("nonverifie");
-    await http().post("/api/v1/auth/register").send({ email, password: PASSWORD }).expect(202);
+    await http().post("/api/v1/auth/register").send({ acceptTerms: true, email, password: PASSWORD }).expect(202);
     const res = await http().post("/api/v1/auth/login").send({ email, password: PASSWORD }).expect(403);
     expect(res.body.code).toBe("EMAIL_NOT_VERIFIED");
   });
 
   it("lien de vérification à usage unique, et lien expiré refusé", async () => {
     const email = uniqueEmail("lien");
-    await http().post("/api/v1/auth/register").send({ email, password: PASSWORD }).expect(202);
+    await http().post("/api/v1/auth/register").send({ acceptTerms: true, email, password: PASSWORD }).expect(202);
     const token = tokenFromMail(t.mails.at(-1));
     await http().post("/api/v1/auth/verify-email").send({ token }).expect(200);
     await http().post("/api/v1/auth/verify-email").send({ token }).expect(403);
 
     const other = uniqueEmail("expire");
-    await http().post("/api/v1/auth/register").send({ email: other, password: PASSWORD }).expect(202);
+    await http()
+      .post("/api/v1/auth/register")
+      .send({ acceptTerms: true, email: other, password: PASSWORD })
+      .expect(202);
     const expired = tokenFromMail(t.mails.at(-1));
     await t.prisma.emailToken.updateMany({ where: { email: other }, data: { expiresAt: new Date(Date.now() - 1000) } });
     await http().post("/api/v1/auth/verify-email").send({ token: expired }).expect(403);
@@ -96,7 +103,7 @@ describe("Authentification (e2e)", () => {
 
   it("le jeton du lien n'est jamais stocké en clair", async () => {
     const email = uniqueEmail("hash");
-    await http().post("/api/v1/auth/register").send({ email, password: PASSWORD }).expect(202);
+    await http().post("/api/v1/auth/register").send({ acceptTerms: true, email, password: PASSWORD }).expect(202);
     const token = tokenFromMail(t.mails.at(-1));
     const stored = await t.prisma.emailToken.findFirstOrThrow({ where: { email } });
     expect(stored.tokenHash).not.toContain(token);
@@ -237,8 +244,11 @@ describe("Authentification (e2e)", () => {
 
   it("audit : une inscription au nom d'autrui ne garde pas le mot de passe du tiers (pré-détournement)", async () => {
     const email = uniqueEmail("victime");
-    await http().post("/api/v1/auth/register").send({ email, password: "Pirate-2026-lyon!" }).expect(202);
-    await http().post("/api/v1/auth/register").send({ email, password: PASSWORD }).expect(202);
+    await http()
+      .post("/api/v1/auth/register")
+      .send({ acceptTerms: true, email, password: "Pirate-2026-lyon!" })
+      .expect(202);
+    await http().post("/api/v1/auth/register").send({ acceptTerms: true, email, password: PASSWORD }).expect(202);
     // Seul le dernier lien est valable, et il active le mot de passe de la vraie titulaire.
     await http()
       .post("/api/v1/auth/verify-email")
@@ -258,5 +268,14 @@ describe("Authentification (e2e)", () => {
       statuses.push(res.status);
     }
     expect(statuses).toEqual([202, 202, 202, 429]);
+  });
+
+  it("CGU : inscription refusée sans acceptation ; date et version enregistrées sinon", async () => {
+    const email = uniqueEmail("cgu");
+    await http().post("/api/v1/auth/register").send({ email, password: PASSWORD }).expect(400);
+    await http().post("/api/v1/auth/register").send({ acceptTerms: true, email, password: PASSWORD }).expect(202);
+    const user = await t.prisma.user.findUniqueOrThrow({ where: { email } });
+    expect(user.termsVersion).toBe(TERMS_VERSION);
+    expect(user.termsAcceptedAt).toBeInstanceOf(Date);
   });
 });

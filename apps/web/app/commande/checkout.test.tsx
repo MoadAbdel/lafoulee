@@ -72,11 +72,13 @@ describe("Checkout (EF05, EF06)", () => {
     expect(screen.queryByLabelText("Adresse")).not.toBeInTheDocument();
     expect(screen.getByText("Offerts")).toBeInTheDocument();
     await user.type(screen.getByLabelText("Email pour la confirmation"), "lea@exemple.fr");
+    await user.click(screen.getByRole("checkbox", { name: /conditions générales de vente/ }));
     await user.click(screen.getByRole("button", { name: "Continuer vers le paiement" }));
     expect(await screen.findByText("Étape de paiement")).toBeInTheDocument();
     const post = calls.find((call) => call.init?.method === "POST")!;
     expect(JSON.parse(String(post.init?.body))).toEqual({
       fulfillment: "PICKUP",
+      acceptCgv: true,
       pickupStoreSlug: "gerland",
       email: "lea@exemple.fr",
     });
@@ -86,6 +88,7 @@ describe("Checkout (EF05, EF06)", () => {
     const { calls } = setup();
     const user = userEvent.setup();
     render(<Checkout />);
+    await user.click(await screen.findByRole("checkbox", { name: /conditions générales de vente/ }));
     await user.click(await screen.findByRole("button", { name: "Continuer vers le paiement" }));
     expect(screen.getByRole("alert")).toHaveTextContent("adresse email");
     expect(calls.some((call) => call.init?.method === "POST")).toBe(false);
@@ -99,6 +102,7 @@ describe("Checkout (EF05, EF06)", () => {
     expect(screen.queryByLabelText("Email pour la confirmation")).not.toBeInTheDocument();
     await user.click(screen.getByRole("radio", { name: "Livraison à domicile" }));
     expect(screen.getByText("4,90 €")).toBeInTheDocument();
+    await user.click(screen.getByRole("checkbox", { name: /conditions générales de vente/ }));
     await user.click(screen.getByRole("button", { name: "Continuer vers le paiement" }));
     expect(screen.getByRole("alert")).toHaveTextContent("Code postal à 5 chiffres");
   });
@@ -116,6 +120,7 @@ describe("Checkout (EF05, EF06)", () => {
     const user = userEvent.setup();
     render(<Checkout />);
     await user.type(await screen.findByLabelText("Email pour la confirmation"), "lea@exemple.fr");
+    await user.click(screen.getByRole("checkbox", { name: /conditions générales de vente/ }));
     await user.click(screen.getByRole("button", { name: "Continuer vers le paiement" }));
     expect(await screen.findByRole("alert")).toHaveTextContent("Stock insuffisant");
   });
@@ -141,5 +146,15 @@ describe("Checkout (EF05, EF06)", () => {
     render(<Checkout />);
     expect(await screen.findByRole("radio", { name: /Retrait en boutique indisponible/ })).toBeDisabled();
     expect(screen.getByRole("radio", { name: "Livraison à domicile" })).toBeChecked();
+  });
+
+  it("CGV non acceptées : message, aucune commande créée", async () => {
+    const { calls } = setup();
+    const user = userEvent.setup();
+    render(<Checkout />);
+    await user.type(await screen.findByLabelText("Email pour la confirmation"), "lea@exemple.fr");
+    await user.click(screen.getByRole("button", { name: "Continuer vers le paiement" }));
+    expect(screen.getByRole("alert")).toHaveTextContent("conditions générales de vente");
+    expect(calls.some((call) => call.init?.method === "POST")).toBe(false);
   });
 });

@@ -32,10 +32,15 @@ describe("RegisterForm (EF08)", () => {
     render(<RegisterForm />);
     await user.type(screen.getByLabelText("Email"), "Lea@Exemple.fr");
     await user.type(screen.getByLabelText("Mot de passe"), "Foulee-2026-lyon");
+    await user.click(screen.getByRole("checkbox", { name: /conditions générales d'utilisation/ }));
     await user.click(screen.getByRole("button", { name: "Créer mon compte" }));
     expect(await screen.findByRole("status")).toHaveTextContent("lea@exemple.fr");
     const [, init] = fetchSpy.mock.calls[0]!;
-    expect(JSON.parse(String(init?.body))).toEqual({ email: "lea@exemple.fr", password: "Foulee-2026-lyon" });
+    expect(JSON.parse(String(init?.body))).toEqual({
+      email: "lea@exemple.fr",
+      password: "Foulee-2026-lyon",
+      acceptTerms: true,
+    });
   });
 
   it("erreur de l'API affichée (limitation de débit)", async () => {
@@ -44,7 +49,19 @@ describe("RegisterForm (EF08)", () => {
     render(<RegisterForm />);
     await user.type(screen.getByLabelText("Email"), "lea@exemple.fr");
     await user.type(screen.getByLabelText("Mot de passe"), "Foulee-2026-lyon");
+    await user.click(screen.getByRole("checkbox", { name: /conditions générales d'utilisation/ }));
     await user.click(screen.getByRole("button", { name: "Créer mon compte" }));
     expect(await screen.findByRole("alert")).toHaveTextContent("Patientez une minute");
+  });
+
+  it("CGU non acceptées : message, aucun appel réseau", async () => {
+    const fetchSpy = mockFetch(202, {});
+    const user = userEvent.setup();
+    render(<RegisterForm />);
+    await user.type(screen.getByLabelText("Email"), "lea@exemple.fr");
+    await user.type(screen.getByLabelText("Mot de passe"), "Foulee-2026-lyon");
+    await user.click(screen.getByRole("button", { name: "Créer mon compte" }));
+    expect(screen.getByRole("alert")).toHaveTextContent("conditions générales d'utilisation");
+    expect(fetchSpy).not.toHaveBeenCalled();
   });
 });

@@ -57,14 +57,20 @@ export const addressSchema = z.strictObject({
 export type AddressInput = z.infer<typeof addressSchema>;
 
 /** Commande : retrait en boutique ou livraison. L'email n'est demandé qu'aux visiteurs sans compte. */
+/** Version des conditions générales de vente acceptées à la commande (date de publication). */
+export const CGV_VERSION = "2026-11-25";
+const acceptCgv = z.literal(true, { error: "Acceptez les conditions générales de vente pour commander." });
+
 export const checkoutSchema = z.discriminatedUnion("fulfillment", [
   z.strictObject({
     fulfillment: z.literal("PICKUP"),
+    acceptCgv,
     pickupStoreSlug: z.string().regex(/^[a-z0-9-]{1,60}$/),
     email: emailSchema.optional(),
   }),
   z.strictObject({
     fulfillment: z.literal("DELIVERY"),
+    acceptCgv,
     address: addressSchema,
     email: emailSchema.optional(),
   }),
